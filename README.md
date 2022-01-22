@@ -5,6 +5,7 @@
 Credits
 
 Name        - Email                  - Github ID
+
 James Odame - jamesaodame@lewisu.edu - JamesOdame
 
 Joseph Urso - josephaurso@lewisu.edu
