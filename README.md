@@ -14,6 +14,6 @@ Name        - Email                  - Github ID
 
 [Joseph Urso](https://getting-to-know-eachother-ju.azurewebsites.net/Getting%20to%20Know%20Each%20Other.html) - josephaurso@lewisu.edu
 
-Ian Stopa - ianmstopa@lewisu.edu
+[Ian Stopa](https://gtkeo-personel-rg-02.azurewebsites.net/GTKEO.html) - ianmstopa@lewisu.edu
 
 [Nicolas Tirio](https://polite-pond-09675dc10.1.azurestaticapps.net/) - Nicolasatirio@lewisu.edu
