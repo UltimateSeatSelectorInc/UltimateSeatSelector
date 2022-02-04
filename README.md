@@ -17,3 +17,8 @@ Name        - Email                  - Github ID
 [Ian Stopa](https://gtkeo-personel-rg-02.azurewebsites.net/GTKEO.html) - ianmstopa@lewisu.edu
 
 [Nicolas Tirio](https://polite-pond-09675dc10.1.azurestaticapps.net/) - Nicolasatirio@lewisu.edu
+
+USS web sites
+
+Production Site - https://capstone-is-pro-site.azurewebsites.net/
+Testing Site -    https://capstone-is-test-site.azurewebsites.net/
