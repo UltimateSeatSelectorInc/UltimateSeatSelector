@@ -10,10 +10,10 @@ Credits
 
 Name        - Email                  - Github ID
 
-James Odame - jamesaodame@lewisu.edu - JamesOdame
+[James Odame](https://getting-to-know-each-other-jamesedition.azurewebsites.net/Get-to-Know-Me.html) - jamesaodame@lewisu.edu - JamesOdame
 
-Joseph Urso - josephaurso@lewisu.edu
+[Joseph Urso](https://getting-to-know-eachother-ju.azurewebsites.net/Getting%20to%20Know%20Each%20Other.html) - josephaurso@lewisu.edu
 
 Ian Stopa - ianmstopa@lewisu.edu
 
-Nicolas Tirio - Nicolasatirio@lewisu.edu
+[Nicolas Tirio](https://polite-pond-09675dc10.1.azurestaticapps.net/) - Nicolasatirio@lewisu.edu
