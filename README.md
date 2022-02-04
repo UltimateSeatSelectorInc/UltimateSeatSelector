@@ -4,6 +4,8 @@
 
 # 1/25/2022 Created the Team MVP.md in GitHub
 
+# 2/3/22 Created CICD_TeamPhilosophy to document products process and configuration
+
 Credits
 
 Name        - Email                  - Github ID
