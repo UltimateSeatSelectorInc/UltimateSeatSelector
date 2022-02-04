@@ -6,7 +6,7 @@ James Odame - jamesaodame@lewisu.edu - Product Owner [James Getting to Know Each
 
 Joseph Urso - josephaurso@lewisu.edu - Scrum Master [Joe's Getting to Know Each Other Site](https://getting-to-know-eachother-ju.azurewebsites.net/Getting%20to%20Know%20Each%20Other.html)
 
-Ian Stopa - ianmstopa@lewisu.edu - Dev Team [Ian Getting to Know Each Other Site] ()
+Ian Stopa - ianmstopa@lewisu.edu - Dev Team [Ian Getting to Know Each Other Site](https://gtkeo-personel-rg-02.azurewebsites.net/GTKEO.html)
 
 Nicolas Tirio - Nicolasatirio@lewisu.edu - Dev Team [Nic's Getting to Know Each Other Site](https://polite-pond-09675dc10.1.azurestaticapps.net/)
 
