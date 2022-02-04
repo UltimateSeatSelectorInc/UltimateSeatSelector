@@ -4,7 +4,7 @@ James Odame - jamesaodame@lewisu.edu - Product Owner [James Getting to Know Each
 
   2/2/22 - With Sprint two as a team we were able to understand each others perspectives in regards to the MVP which allowed us to work and communicate better.
 
-Joseph Urso - josephaurso@lewisu.edu - [Joe's Getting to Know Each Other Site](https://getting-to-know-eachother-ju.azurewebsites.net/Getting%20to%20Know%20Each%20Other.html)
+Joseph Urso - josephaurso@lewisu.edu - Scrum Master [Joe's Getting to Know Each Other Site](https://getting-to-know-eachother-ju.azurewebsites.net/Getting%20to%20Know%20Each%20Other.html)
 
 Ian Stopa - ianmstopa@lewisu.edu - Dev Team [Ian Getting to Know Each Other Site] ()
 
