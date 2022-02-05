@@ -5,6 +5,7 @@ James Odame - jamesaodame@lewisu.edu - Product Owner [James Getting to Know Each
   2/2/22 - With Sprint two as a team we were able to understand each others perspectives in regards to the MVP which allowed us to work and communicate better.
 
 Joseph Urso - josephaurso@lewisu.edu - Scrum Master [Joe's Getting to Know Each Other Site](https://getting-to-know-eachother-ju.azurewebsites.net/Getting%20to%20Know%20Each%20Other.html)
+2/5/22 We have continuously improved by gaining a better understanding as a team into the tools that we are using for our product. Prior to this we all had limited to no knowledge of git and rarely have used GitHub. By collaborating to understand how everything works together I feel more confident in our ability to put a better product out and be confident in future products. From a timing aspect I feel that by having a few longer working sessions to fill knowledge gaps it will result in us working more effectively on the final product in sprints to come.
 
 Ian Stopa - ianmstopa@lewisu.edu - Dev Team [Ian Getting to Know Each Other Site](https://gtkeo-personel-rg-02.azurewebsites.net/GTKEO.html)
 
