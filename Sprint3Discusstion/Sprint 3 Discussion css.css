@@ -1,12 +1,15 @@
-body { background-color: #000000; 
+body { background-color: #303030; 
       color: #F8F8FF;
       font-family: Verdana, Arial, sans-serif;
-	  background-image: url(classroom.jpg);
 	  background-position-x: center;
+	  background-repeat: no-repeat;
+	  background-image: url(classroom.jpg);
+
 }
+
 #wrapper { background-color: #303030;
            width: 80%;
-	margin-right: 900px;
+	margin-right: auto;
 	margin-left: auto;
 	min-width: 90px;
 	max-width: 500px;
@@ -15,9 +18,9 @@ body { background-color: #000000;
 }
 
 header { background-color: #303030;
-        height: 125px;
+	height: 125px;
 	margin-top: 200px;
-	margin-right: 610px;
+	margin-right: auto;
 	margin-left:auto;
 	max-width: 650px;
        
