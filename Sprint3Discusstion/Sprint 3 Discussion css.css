@@ -2,6 +2,7 @@ body { background-color: #000000;
       color: #F8F8FF;
       font-family: Verdana, Arial, sans-serif;
 	  background-image: url(classroom.jpg);
+	  background-position-x: center;
 }
 #wrapper { background-color: #303030;
            width: 80%;
