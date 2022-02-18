@@ -10,6 +10,8 @@ This is the current process but this can change. The reason we are doing this we
 is because we are not the owners of the repo and given how we were taught in making the Azure website. We need to be 
 the owners in order for it to operate as intended. If we find a more efficent way to do it, than we will implement it.
 
+We are testing out the ability to use an authentication that requires users to sign into a Microsoft account before being redirected into the main site. 
+
 New Team Members:
 Access to the newest source code is available here in this repository. The branches are for test and production. 
 Those branches corespond to the test and production sites. 
