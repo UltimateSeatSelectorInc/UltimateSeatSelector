@@ -49,3 +49,7 @@ So that I do not cause conflict with the other student.
 
 Definition of done:
 When a feature meets the minimum requirements to function.
+
+Currently done:
+Students can not select a seat already occupied
+Students can select a seat and enter their information
