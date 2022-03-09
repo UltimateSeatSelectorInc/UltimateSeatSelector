@@ -1,0 +1,23 @@
+{
+  "name": "newnode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jurso28/NewNode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jurso28/NewNode/issues"
+  },
+  "homepage": "https://github.com/Jurso28/NewNode#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongodb": "^4.4.0"
+  }
+}
