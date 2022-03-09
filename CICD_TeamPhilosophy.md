@@ -12,6 +12,8 @@ the owners in order for it to operate as intended. If we find a more efficent wa
 
 We are testing out the ability to use an authentication that requires users to sign into a Microsoft account before being redirected into the main site. 
 
+We are planning on making JS function calls from our HTML to javascript files to allow for events to occur on our site.
+
 New Team Members:
 Access to the newest source code is available here in this repository. The branches are for test and production. 
 Those branches corespond to the test and production sites. 
