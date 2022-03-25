@@ -6,10 +6,6 @@ Review technical materials for product implementation
 
 Product Backlog:
 
-As an Instructor. - Nic 2 points I want to select a seat. So I may instruct the class.
-
-As an Instructor. - Joe 2 points I want to enter my information. So that others may know I am an Instructor.
-
 As a Student - James 3 points I want to be able to confirm my selection for the day of class. So the Instructor will know I will show up.
 
 As a Student. - Ian 2 points I would like other students to recognize my seat. So that they know it is occupied.
@@ -36,3 +32,5 @@ As a Student. - Joe 3 points I want to be able to attend class virtually by havi
 As an Instructor. - Joe 2 points I want to be able to see a list of students that have decided to participate virtually for the class session.
 As an Instructor. - Joe 2 points I want to be able to password protect our website so only students can enter into my class seating selector.
 As an Instructor. - Joe 4 points I want to be able to have my students see our class on the website that the instructor provides.
+As an Instructor. - Nic 2 points I want to select a seat. So I may instruct the class.
+As an Instructor. - James 2 points I want to enter my information. So that others may know I am an Instructor.
