@@ -1,0 +1,356 @@
+.Space{
+  padding-top: 10%;
+}
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.top{
+  top: auto;
+  padding-bottom: 50%;
+}
+.left {
+  left: 0;
+}
+.right {
+  right: 0;
+}
+.row{
+  padding: 1px;
+}
+.center{
+  width: 50%;
+  padding: 1px;
+  margin-bottom: 5%;
+  margin-left: 75%;
+}
+.rowcenterL{
+  width: 50%;
+  padding: 1px;
+  margin-bottom: 5%;
+  margin-left: 50%;
+}
+.rowcenterR{
+  margin-top: 5%;
+ ;
+}
+.topcolumnL{
+  float:left;
+  width: 8%;
+  margin-left: 90px;
+  padding:5px;
+}
+.bottomcolumnL {
+  float:left;
+  width: 15%;
+  padding:5px;
+}
+.topcolumnR{
+  float:right;
+  width: 8%;
+  margin-right: 90px;
+  padding:5px;
+}
+.bottomcolumnR {
+  float:right;
+  width: 15%;
+  padding:5px;
+}
+.midleft{
+  padding-left: 50%;
+}
+.midright{
+  padding-left: 30%;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+#button{
+  width: 5%;
+  padding: 1px;
+  margin-top: 35%;
+  margin-left: 0%;
+}
+
+#Box0 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+
+#Box1 {
+    width: 100px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 0;
+    outline-color: black;
+  }
+
+#Box2 {
+    width: 100px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 0;
+    outline-color: black;
+}
+#Box3 {
+    width: 100px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 0;
+    outline-color: black;
+}
+#Box4 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box5 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box6 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box7 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box8 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box9 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box10 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box11 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box12 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box13 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box14 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box15 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box16 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box17 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box18 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box19 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box20 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box21 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box22 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box23 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box24 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box25 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box26 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box27 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box28 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box29 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+#Box30 {
+  width: 100px;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+  outline-color: black;
+}
+  
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  /* The actual popup (appears on top) */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class when clicking on the popup container (hide and show the popup) */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
