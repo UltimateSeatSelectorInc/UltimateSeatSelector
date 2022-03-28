@@ -23,14 +23,14 @@ As an Instructor.- James 2 points I want to be able to edit and remove students 
 Definition of done: When a feature meets the minimum requirements to function.
 
 Currently done: Students can not select a seat already occupied Students can select a seat and enter their information Sprint 3 Review Sprint 3 Retrospective
-As a Student. - Nic 2 points I want to select a seat. So I may attend class.
-As a Student. - Joe 2 points I want to enter my information. So that others may know I am a Student.
+As a Student. - Nic 2 points I want to select a seat. So I may attend class. (Single browser instance)
+As a Student. - Joe 2 points I want to enter my information. So that others may know I am a Student. (Single browser instance)
 As a Student. - James 3 points I want to know what the room looks like. So I may select my seat accurately.
 As an Instructor. - Ian 2 points I want to be able to give the students a short description of the class. So that they know what to expect of the class.
-As a Student. - Joe 2 point I do not want to select a seat that is already occupied. So that I do not cause conflict with the other student.
-As a Student. - Joe 3 points I want to be able to attend class virtually by having a special spot that I can enter my user information.
-As an Instructor. - Joe 2 points I want to be able to see a list of students that have decided to participate virtually for the class session.
+As a Student. - Joe 2 point I do not want to select a seat that is already occupied. So that I do not cause conflict with the other student. (Single browser instance)
+As a Student. - Joe 3 points I want to be able to attend class virtually by having a special spot that I can enter my user information. (Single browser instance)
+As an Instructor. - Joe 2 points I want to be able to see a list of students that have decided to participate virtually for the class session. (Single browser instance)
 As an Instructor. - Joe 2 points I want to be able to password protect our website so only students can enter into my class seating selector.
 As an Instructor. - Joe 4 points I want to be able to have my students see our class on the website that the instructor provides.
-As an Instructor. - Nic 2 points I want to select a seat. So I may instruct the class.
-As an Instructor. - James 2 points I want to enter my information. So that others may know I am an Instructor.
+As an Instructor. - Nic 2 points I want to select a seat. So I may instruct the class. (Single browser instance)
+As an Instructor. - James 2 points I want to enter my information. So that others may know I am an Instructor. (Single browser instance)
