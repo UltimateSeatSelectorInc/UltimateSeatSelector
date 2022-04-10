@@ -1,0 +1,79 @@
+body { background-color: #303030; 
+	color: #F8F8FF;
+	font-family: Verdana, Arial, sans-serif;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	background-image: url(classroom.jpg);
+    
+
+}
+
+#wrapper { background-color: #303030;
+		 width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  min-width: 90px;
+  max-width: 800px;
+  margin-top:20px;
+  text-align: center;
+
+}
+
+header { background-color: #303030;
+  height: 125px;
+  margin-top: 200px;
+  margin-right: auto;
+  margin-left:auto;
+  max-width: 650px;
+	 
+}
+h1 { 	padding-top: 45px;
+	  padding-left: auto;
+  font-size: 3em; 
+}
+
+
+
+main { 	padding-left: 2em;
+		padding-right: 2em;
+  padding-bottom: 2em;
+		display: block; 
+}
+
+
+.details { padding-left: 20%;
+		padding-right: 20%;
+}
+.center { display: block;
+  margin-left: auto;
+	   margin-right: auto;
+  width: 25%;
+  height: auto;
+}
+
+footer { text-align: center;
+}
+
+a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: pink;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+  }

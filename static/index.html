@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Node on Azure</title>
+<title>Ultimate Seat Selector</title>
+<meta charset="utf-8">
+<meta name ="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="authpage.css">
 </head>
+<header>
+    <h1>Ultimate Seat Selector</h1>
+</header>
 <body>
-<h1>Node.js and Express Hosted on Microsoft Azure Template</h1>
-<p>This repository serves as a template that can be used to create a Node.js and Express based website that can easily
-be hosted on Microsoft Azure. The current password to get into the site is "1234"</p>
+<div id="wrapper">
+<p>This site allows for students and instructors to interactively choose a seat in a lecture. Once entering the password you will be moved to the seat selection page.
+    Here you will click on a seat, which may be a physical one or you can click the virtual button if that is how you wish to attend. Once you click on a seat you will 
+    enter in your preferred name and last name to the text box. Note, only one per seat unless it is the virtual student area. The current password to get into the site is "1234"</p>
 
-<br>Additional application functionality includes:<br/>
+<br>Click the Following link to choose a seat:<br/>
 
 <a href="seatselector.html" id="Hyperlink" onclick="ValidateProcess()">Here is the class seating chart for this course</a>
 <script>
@@ -20,7 +27,7 @@ be hosted on Microsoft Azure. The current password to get into the site is "1234
         alert("Wrong password, try again")
         ValidateProcess()
     }
-    
 </script>
+</div>
 </body>
 </html>

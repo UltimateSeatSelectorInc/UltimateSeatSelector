@@ -1,3 +1,8 @@
+body{
+  background-image: url("Empty_Class.jpg");
+  background-size: auto;
+}
+
 .Space{
   padding-top: 10%;
 }
@@ -38,7 +43,6 @@
 }
 .rowcenterR{
   margin-top: 5%;
- ;
 }
 .topcolumnL{
   float:left;
@@ -78,228 +82,293 @@
 #button{
   width: 5%;
   padding: 1px;
-  margin-top: 35%;
+  margin-top: 25%;
   margin-left: 0%;
 }
 
-#Box0 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+.container0 {
+  position: relative;
+  text-align: center;
+  color: white;
+  padding-bottom: 80%;
 }
 
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.container2 {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: 20%;
+}
+
+.container3 {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: 35%;
+}
+
+.container4 {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: 105%;
+}
+
+.container5 {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: 55%;
+  margin-left: -25%;
+}
+
+.container6 {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: -5%;
+  margin-left: -5%;
+}
+.container7 {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: 10%;
+}
+
+#img{
+  left: 5%;
+  position: absolute;
+  height: "auto";
+  width: 200px;
+}
+
+#Box0 {
+  margin-top: 110%;
+  margin-left: 105%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
+
+}
+
+
 #Box1 {
-    width: 100px;
-    padding: 10px;
-    border: 5px solid gray;
-    margin: 0;
-    outline-color: black;
+  margin-top: 110%;
+  margin-left: 125%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
   }
 
 #Box2 {
-    width: 100px;
-    padding: 10px;
-    border: 5px solid gray;
-    margin: 0;
-    outline-color: black;
+  margin-top: 110%;
+  margin-left: 125%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box3 {
-    width: 100px;
-    padding: 10px;
-    border: 5px solid gray;
-    margin: 0;
-    outline-color: black;
+  margin-top: 20%;
+  margin-left: 22%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box4 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 65%;
+  margin-left: 65%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box5 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 65%;
+  margin-left: 65%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box6 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 65%;
+  margin-left: 65%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box7 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 120%;
+  margin-left: 125%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box8 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 120%;
+  margin-left: 125%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box9 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 12%;
+  margin-left: 19%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box10 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 40%;
+  margin-left: 50%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box11 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 40%;
+  margin-left: 50%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box12 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 40%;
+  margin-left: 50%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box13 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 110%;
+  margin-left: 125%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box14 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 110%;
+  margin-left: 125%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box15 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 20%;
+  margin-left: 22%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box16 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 65%;
+  margin-left: 65%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box17 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 65%;
+  margin-left: 65%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box18 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 65%;
+  margin-left: 65%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box19 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 120%;
+  margin-left: 125%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box20 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 120%;
+  margin-left: 125%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box21 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 12%;
+  margin-left: 19%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box22 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 40%;
+  margin-left: 50%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box23 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 40%;
+  margin-left: 50%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box24 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 40%;
+  margin-left: 50%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box25 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 20%;
+  margin-left: 22%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box26 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 20%;
+  margin-left: 22%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box27 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 20%;
+  padding-top: 10%;
+  margin-left: -70%;
+  position: relative;
+  font-size: 15px;
 }
 #Box28 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  margin-top: 20%;
+  margin-left: 22%;
+  position: absolute;
+  text-align: center;
+  font-size: 15px;
 }
 #Box29 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  padding-top: 10%;
+  margin-left: -70%;
+  position: relative;
+  font-size: 15px;
+
 }
 #Box30 {
-  width: 100px;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;
-  outline-color: black;
+  padding-top: 10%;
+  margin-left: -70%;
+  position: relative;
+  font-size: 15px;
 }
   
 /* Popup container */
