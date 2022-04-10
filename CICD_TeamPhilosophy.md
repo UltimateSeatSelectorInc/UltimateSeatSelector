@@ -15,6 +15,8 @@ We have implemented a password system from the initial homepage to our seat sele
 We are planning on making JS function calls from our HTML to javascript files to allow for events to occur on our site. Currently we have the ability to choose a seat,
 attend virtually, and enter user information.
 
+Added CSS to make a more elegant looking page that shows seat icons and the layout of the room.
+
 New Team Members:
 Access to the newest source code is available here in this repository. The branches are for test and production. 
 Those branches corespond to the test and production sites. 
