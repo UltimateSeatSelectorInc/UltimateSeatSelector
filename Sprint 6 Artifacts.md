@@ -44,22 +44,41 @@ Definition of done: When a feature meets the minimum requirements to function.
 
 Currently done - All Story Points here are in production and can be demoed: 
 Students can not select a seat already occupied Students can select a seat and enter their information Sprint 3 Review Sprint 3 Retrospective
+
 As a Student. - Nic 2 points I want to select a seat. So I may attend class. (Single browser instance)
+
 As a Student. - Joe 2 points I want to enter my information. So that others may know I am a Student. (Single browser instance)
+
 As a Student. - James 3 points I want to know what the room looks like. So I may select my seat accurately.
+
 As an Instructor. - Ian 2 points I want to be able to give the students a short description of the class. So that they know what to expect of the class.
+
 As a Student. - Joe 2 point I do not want to select a seat that is already occupied. So that I do not cause conflict with the other student. (Single browser instance)
+
 As a Student. - Joe 3 points I want to be able to attend class virtually by having a special spot that I can enter my user information. (Single browser instance)
+
 As an Instructor. - Joe 2 points I want to be able to see a list of students that have decided to participate virtually for the class session. (Single browser instance)
+
 As an Instructor. - Joe 2 points I want to be able to password protect our website so only students can enter into my class seating selector.
+
 As an Instructor. - Joe 4 points I want to be able to have my students see our class on the website that the instructor provides.
+
 As an Instructor. - Nic 2 points I want to select a seat. So I may instruct the class. (Single browser instance)
+
 As an Instructor. - James 2 points I want to enter my information. So that others may know I am an Instructor. (Single browser instance)
+
 As an Instructor. - Nic 3 points I would like to the site to have an elegant look to it when students select the seats.
+
 As a Student. - Ian 3 points I would to have a nice looking site to look at when choosing my seat.
+
 As a Student. - Nic 2 points I would like to know the layout of the class prior to attending.
+
 As an Instructor. - Joe 2 points I would like to display the layout of the classroom for the students to see before attending.
+
 As a Student. - James 2 points I would like to have a description of how the prodcut works to know what functionality I can do on it.
+
 As an Instructor. - James 3 points I would like the authentication page to have an engaging look to it as the students enter their password.
+
 As an Instructor. - Joe 3 points I would like to hear user feedback on things they like and disliked about the application.
+
 As a Student. - Ian 2 points I would like other students to recognize my seat. So that they know it is occupied. (Single bowser instance)
