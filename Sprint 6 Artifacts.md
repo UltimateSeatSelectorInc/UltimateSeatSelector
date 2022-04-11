@@ -40,10 +40,11 @@ As a student.- James 2 points I want to be able to remove my information from a 
 
 As an Instructor.- James 2 points I want to be able to edit and remove students from a seat.
 
-Definition of done: When a feature meets the minimum requirements to function.
 
-Currently done - All Story Points here are in production and can be demoed: 
-Students can not select a seat already occupied Students can select a seat and enter their information Sprint 3 Review Sprint 3 Retrospective
+
+
+
+Definition of done: When a feature meets the minimum requirements to function. All Story Points here are in production and can be demoed:
 
 As a Student. - Nic 2 points I want to select a seat. So I may attend class. (Single browser instance)
 
