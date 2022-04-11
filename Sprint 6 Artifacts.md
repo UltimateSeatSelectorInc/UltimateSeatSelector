@@ -41,7 +41,7 @@ As a student.- James 2 points I want to be able to remove my information from a 
 As an Instructor.- James 2 points I want to be able to edit and remove students from a seat.
 
 
-
+-------------------------------------------------------------------------------------------------------------------------------
 
 
 Definition of done: When a feature meets the minimum requirements to function. All Story Points here are in production and can be demoed:
