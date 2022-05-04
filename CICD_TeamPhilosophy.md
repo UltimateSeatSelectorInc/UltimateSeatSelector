@@ -17,7 +17,7 @@ attend virtually, and enter user information.
 
 Added CSS to make a more elegant looking page that shows seat icons and the layout of the room. 
 
-Utilize the database to remember the users input information and allow for students to see input information from other students on different sessions.
+Utilize the database to remember the users input information and allow for students to see input information from other students on different sessions. Allow for information to remain after we refresh the page.
 
 New Team Members:
 Access to the newest source code is available here in this repository. The branches are for test and production. 
