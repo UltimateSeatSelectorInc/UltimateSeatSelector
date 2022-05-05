@@ -29,7 +29,7 @@ understanding JavaScript, HTML, CSS, and MERN stack knowledge as that is what a 
 to support testing on whatever IDE you would like to use. Our team utilized Visual Studio Code to write the code and then used Powershell to tell the console when to
 start running. Here is where you can test it from a local host website prior to pushing to your GitHub. Once testing is done on the local side we can push it to the
 repos where the Azure sites kick in and host. New members should also look to implement a password system in the event that you have "Students" or "Teachers" that 
-should not be able to reach the site. 
+should not be able to reach the site. Members will also need to install mongoose to be able to have the database running to communicate from client to server.
 
 **New Customers**:
 To experience the application users will have to reach the website and have access to the password to enter the seating chart. Our active website links are 
