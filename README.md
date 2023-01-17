@@ -1,24 +1,14 @@
-# UltimateSeatSelector
+# Ultimate Seat Selector
 
-# 1/18/2022 The Teams.md file has been created and included team members names and Lewis emails. The Teams.md was updated to include the role they will assume. The Process.md file initially was created by Nic and Ian where they collaborated on how we will implement scrum and how the team will interact. 
+## Description
+Ultimate Seat Selector is a web app that allows students and teachers
+to interactively claim/view seats taken in a classroom.
 
-# 1/25/2022 Created the Team MVP.md in GitHub
+## Team
+Eric's Angels includes Connor, Vince, & Matt.
+Please see TEAM.md for more information
 
-# 2/3/22 Created CICD_TeamPhilosophy to document products process and configuration
+## Website
+LINK WEBSITE HERE
 
-Credits
-
-Name        - Email                  - Github ID
-
-[James Odame](https://getting-to-know-each-other-jamesedition.azurewebsites.net/Get-to-Know-Me.html) - jamesaodame@lewisu.edu - JamesOdame
-
-[Joseph Urso](https://getting-to-know-eachother-ju.azurewebsites.net/Getting%20to%20Know%20Each%20Other.html) - josephaurso@lewisu.edu
-
-[Ian Stopa](https://gtkeo-personel-rg-02.azurewebsites.net/GTKEO.html) - ianmstopa@lewisu.edu
-
-[Nicolas Tirio](https://polite-pond-09675dc10.1.azurestaticapps.net/) - Nicolasatirio@lewisu.edu
-
-USS web sites
-
-Production Site - https://capstone-is-pro-site.azurewebsites.net/
-Testing Site -    https://capstone-is-test-site.azurewebsites.net/
+Please see PROCESS.md for more information
