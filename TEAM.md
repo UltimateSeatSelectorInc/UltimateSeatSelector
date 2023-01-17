@@ -6,7 +6,7 @@ Current Team Members & Roles
 - Vincent Cortesi - Product Owner
 
 Previous Team Members - Spring 2022
-Ian Stopa
-Joe Urso
-Nic Tirio
-James Odame
+- Ian Stopa
+- Joe Urso
+- Nic Tirio
+- James Odame
