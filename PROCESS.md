@@ -9,8 +9,6 @@ to be ready for the Sprint Review session the following
 Tuesday.
 
 ## Schedule
-Team members will be participating in a Sprint Planning
-session on Tuesday, January 24th @ 2:00 P.M.
-
-We will then participate in a Sprint Review session on
-Tuesday, January 31st @ 2:00 P.M.
+Team members will be participating in a Sprint Planning 
+session and a Sprint Review session on the first Tuesday
+of each sprint @ 2:00 P.M.
