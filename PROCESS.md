@@ -10,5 +10,5 @@ Tuesday.
 
 ## Schedule
 Team members will be participating in a Sprint Planning 
-session and a Sprint Review session on the first tuesday
+session and a Sprint Review session on the first Tuesday
 of each sprint @ 2:00 P.M.
