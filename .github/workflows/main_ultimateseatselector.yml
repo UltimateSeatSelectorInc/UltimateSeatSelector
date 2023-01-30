@@ -2,10 +2,6 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
 name: Build and deploy Node.js app to Azure Web App - UltimateSeatSelector
-
-defaults:
-  run:
-    working-directory: webapp
     
 on:
   push:
@@ -13,6 +9,10 @@ on:
       - main
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: webapp
+    
 jobs:
   build:
     runs-on: windows-latest
