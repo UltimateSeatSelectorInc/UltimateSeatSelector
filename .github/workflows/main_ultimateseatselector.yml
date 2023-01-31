@@ -2,17 +2,13 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
 name: Build and deploy Node.js app to Azure Web App - UltimateSeatSelector
-    
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: static
-    
 jobs:
   build:
     runs-on: windows-latest
@@ -23,7 +19,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: '16.x'
 
       - name: npm install, build, and test
         run: |
@@ -56,5 +52,5 @@ jobs:
         with:
           app-name: 'UltimateSeatSelector'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_352D21DA1FBC47029562E4D89DDF0FAC }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_46B62610BD394829A7E310BFA7DDFF02 }}
           package: .
