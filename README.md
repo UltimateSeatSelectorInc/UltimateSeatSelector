@@ -6,9 +6,9 @@ to interactively claim/view seats taken in a classroom.
 
 ## Team
 Eric's Angels includes Connor, Vince, & Matt.
-Please see TEAM.md for more information
+Please see [TEAM.md]https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector/blob/c378bacb9b803e456f8c138c028b5cea64c82cd0/TEAM.md for more information
 
 ## Website
-LINK WEBSITE HERE
+Visit the site: [Website](https://ultimateseatselector.azurewebsites.net/)
 
-Please see PROCESS.md for more information
+Please see [PROCESS.md](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector/blob/c378bacb9b803e456f8c138c028b5cea64c82cd0/PROCESS.md) for more information
