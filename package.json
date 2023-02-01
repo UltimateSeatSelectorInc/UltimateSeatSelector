@@ -1,8 +1,7 @@
 {
-  "name": "webapp",
+  "name": "ultimate-seat-selector",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "An app that allows you to identify as present for class and allows teachers to check attendance.",
   "scripts": {
     "start": "node index.js"
   },
