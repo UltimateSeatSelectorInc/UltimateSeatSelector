@@ -5,7 +5,7 @@ Current Team Members & Roles
 - Connor Thompson  - Development Team Member
 - Vincent Cortesi - Product Owner
 
-Previous Team Members - Spring 2022
+Previous Team Members - [Spring 2022](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector/blob/f994936e787dfff1ce2da13db116f45eab328a81/DOCS/SP2022REVIEW.md)
 - Ian Stopa
 - Joe Urso
 - Nic Tirio
