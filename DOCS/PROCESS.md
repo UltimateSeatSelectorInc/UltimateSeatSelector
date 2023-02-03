@@ -25,7 +25,7 @@ following improvements
 --> ???
 
 ## New Team Member Process and Configuration
---> Get permission updated  
+--> Have permissions updated  
 --> [Clone repository](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector)  
 --> [Product](https://ultimateseatselector.azurewebsites.net/)  
 
