@@ -12,3 +12,11 @@ Tuesday.
 Team members will be participating in a Sprint Planning 
 session and a Sprint Review session on the first Tuesday
 of each sprint @ 2:00 P.M.
+
+## Continuous Improvement
+*Sprint 2*
+In the spirit of continuous improvement, our team was able to make the
+following improvements
+--> more frequent and clear communication
+--> improved planning session by dividing story points as vision materialized
+--> more clearly solidified scrum roles
