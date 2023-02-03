@@ -20,3 +20,16 @@ following improvements
 --> more frequent and clear communication
 --> improved planning session by dividing story points as vision materialized
 --> more clearly solidified scrum roles
+
+## System Process and Configuration
+--> ???
+
+## New Team Member Process and Configuration
+--> Get permission updated
+--> [Clone repository](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector)
+--> [Product](https://ultimateseatselector.azurewebsites.net/)
+
+## New User Process and Configuration
+--> [Go to](https://ultimateseatselector.azurewebsites.net/)
+--> Use it
+--> ???
