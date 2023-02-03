@@ -41,3 +41,10 @@ and a database to track each reporting of ‘here’ as it happens, but that is
 unnecessary for the minimum viable product. As a team, we are hoping that with an 
 MVP created, determining which of these changes to implement moving forward with 
 the product will be made easy. We look forward to the results!
+
+Upon reviewing the existing product code we realized, as a team, that there was very
+little to no code in production at all. We did discuss ideas surrounding the product
+which were originally used. For example, the existing product contained a picture of 
+the classroom. Since this idea was already put into place, it gave us a solid direction
+on where we wanted to go with our product in terms of theoretically mapping out the
+classroom.
