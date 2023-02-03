@@ -25,11 +25,11 @@ following improvements
 --> ???
 
 ## New Team Member Process and Configuration
---> Get permission updated
---> [Clone repository](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector)\n
---> [Product](https://ultimateseatselector.azurewebsites.net/)\n
+--> Get permission updated  
+--> [Clone repository](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector)  
+--> [Product](https://ultimateseatselector.azurewebsites.net/)  
 
 ## New User Process and Configuration
---> [Go to](https://ultimateseatselector.azurewebsites.net/)
---> Use it
---> ???
+--> [Go to](https://ultimateseatselector.azurewebsites.net/)  
+--> Use it  
+--> ???  
