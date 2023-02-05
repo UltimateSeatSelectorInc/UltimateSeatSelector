@@ -31,5 +31,5 @@ following improvements
 
 ## New User Process and Configuration
 --> [Go to](https://ultimateseatselector.azurewebsites.net/)  
---> Use it  
---> ???  
+--> Use the product, with assistance from a help page if needed.  
+--> Provide feedback.
