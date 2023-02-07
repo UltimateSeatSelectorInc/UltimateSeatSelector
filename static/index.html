@@ -3,22 +3,42 @@
 
     <head>
         <meta charset = 'UTF-8'>
-        <title>ULTIMATE SEAT SELECTOR</title>
+        <title>Ultimate Seat Selector</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel = "stylesheet" href = "index.css">
     </head>
 
+
+
+<!--------------------------------TESTING PURPOSES--------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------->
+
+    <script>
+        // send the data to the server
+        async function sendData() {
+
+            // get the text from the textarea element
+            const theData = document.getElementById('theInput').value;
+
+            // send the text to the server
+            const fetchString = "/testDatabase?textData="+theData
+            const response = await fetch(fetchString)
+            const responseText = await response.text()
+
+            // if the data comes back, alert with the text data
+            if (responseText) {
+                alert(responseText) }
+        }
+    </script>
+
     <body>
-        <table class = "tableStyle">
-            <tr>
-                <td><a href = "/">Seat 1</a></td>
-                <td>Seat 2</td>
-            </tr>
-            <tr>
-                <td>Seat 3</td>
-                <td>Seat 4</td>
-            </tr>
-        </table>
+        <textarea placeholder = "Send to database" id = "theInput"></textarea>
+        <button id = "submitButton"  type = "button"onclick = "sendData()">Click to submit</button>
     </body>
+
+<!--------------------------------TESTING PURPOSES--------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------->
+
+
 
 </html>
