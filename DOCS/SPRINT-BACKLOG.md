@@ -11,10 +11,10 @@
 - VINCE (2) As an instructor,  I want to be able to click on the podium and claim my status as instructor.
 - VINCE (2) As an instructor, I want to be asked that I am, in fact, the instructor.
 -
--
--
--
--
+- MATT (4) As a user, I want to be able to view a clear layout of the classroom.
+- MATT (2) As a user, I want to have the same experience across different devices.
+- MATT (4) As a user, I want to be able to click on each seat and get information about it.
+- MATT (2) As a student, I want to be able to input my name so that my seat is associated with me.
 
 **Total Story Points: 36**
 Matt: 12
