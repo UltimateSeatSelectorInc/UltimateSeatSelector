@@ -14,6 +14,9 @@
 - VINCE (2) As an instructor, I want to be asked that I am, in fact, the instructor.
 - MATT (2) As a user, I want to have the same experience across different devices.
 
+Definition of Done:
+A user is able to click on a table at a seat and have the change reflected, as is
+demoable to the team
 
 **Total Story Points: 36**
 Matt: 12
