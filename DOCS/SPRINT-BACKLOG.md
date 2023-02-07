@@ -19,25 +19,3 @@
 Matt: 12
 Vince: 12
 Connor: 12
-
-
-## **Sprint 4 Backlog**
-
-### User Stories:
-- 
-- .
-- 
--
--
--
--
--
--
--
--
--
-
-**Total Story Points: 36**
-Matt: 12
-Vince: 12
-Connor: 12
