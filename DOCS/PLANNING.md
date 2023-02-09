@@ -13,3 +13,9 @@ and how it function. Specifically, we:
 - We will have to custom-make an image of the classroom
 - There are methods/tricks avaiable with our stack that allow for "real-time"
 functionality.
+
+## Sprint Review Feb 7, 2023
+- All members of the team organized, prioritized, and assigned
+story points, equaling 36 total story points for the sprint. Please see
+[Product Backlog](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector/blob/0763338a0fba9ec53585e159a14902b029b7ec28/DOCS/PRODUCT-BACKLOG.md) 
+and [Sprint Backlog](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector/blob/0763338a0fba9ec53585e159a14902b029b7ec28/DOCS/SPRINT-BACKLOG.md)
