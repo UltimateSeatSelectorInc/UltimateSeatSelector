@@ -8,48 +8,20 @@
         <link rel = "stylesheet" href = "index.css">
     </head>
 
-    <!-- Navigation bar -->
-    <body class = "navbody">
-        <div style class = "topnav">
-            <table style = "float: right">
-                <p style = "float: left">Ultimate Seat Selector</p>
-                <td><a class = "active" href = "/">View Classroom</a></td>
-                <td><a href = "/login">Login</a></td>
-                <td><a href = "/about">About</td>
-            </table>
-        </div>
-    </body>
-
-
-<!--------------------------------TESTING PURPOSES--------------------------------------------------------------->
-<!--------------------------------------------------------------------------------------------------------------->
-
-    <script>
-        // send the data to the server
-        async function sendData() {
-
-            // get the text from the textarea element
-            const theData = document.getElementById('theInput').value;
-
-            // send the text to the server
-            const fetchString = "/testDatabase?textData="+theData
-            const response = await fetch(fetchString)
-            const responseText = await response.text()
-
-            // if the data comes back, alert with the text data
-            if (responseText) {
-                alert(responseText) }
-        }
-    </script>
-
     <body>
-        <textarea placeholder = "Send to database" id = "theInput"></textarea>
-        <button id = "submitButton"  type = "button"onclick = "sendData()">Click to submit</button>
+
+    <!-- Navigation bar -->
+    <div class = "navbar">
+        <table class = "title navtable">
+            <td><a href = "/">Ultimate Seat Selector</a></td>
+        </table>
+        <table class = "navtable">
+            <td><a class = "active" href = "/">View Classroom</a></td>
+            <!-- <td><a href = "/login">Login</a></td>
+            <td><a href = "/about">About</td> -->
+        </table>
+    </div>
+
     </body>
-
-<!--------------------------------TESTING PURPOSES--------------------------------------------------------------->
-<!--------------------------------------------------------------------------------------------------------------->
-
-
 
 </html>

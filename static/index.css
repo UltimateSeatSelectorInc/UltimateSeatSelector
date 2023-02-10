@@ -4,19 +4,18 @@ html {
 
 /* NAVBAR STYLING ------------------------------------- */
 
-.navbody {
+body {
     margin: 0;
 }
 
-/* navbar background */
-.topnav {
+.navbar {
+    width: 100%;
     overflow: hidden;
     background-color: #940731;
-    padding: .5%;
 }
 
 /* title styling */
-.topnav p {
+.navbar p {
     position: fixed;
     font-size: 30px;
     font-family: sarabun;
@@ -25,8 +24,18 @@ html {
     margin-top: .3%;
 }
 
+.navtable {
+    float: right;
+    padding: .5%;
+}
+
+.title {
+    pointer-events: none; 
+    float: left;
+}
+
 /* navbar link styling */
-.topnav a {
+.navbar a {
     float: right;
     text-decoration: none;
     font-family: sarabun;
@@ -35,15 +44,25 @@ html {
     padding: 12px;
 }
 
-.topnav a:hover {
+.navbar a:hover {
     background-color: #6e0726;
 }
 
-.topnav a.active {
+.navbar a.active {
     background-color: #6e0726;
 }
 
 /* NAVBAR STYLING ------------------------------------- */
+
+.mainarea {
+    text-align: center;
+    width: 50%;
+    margin: 5%;
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
 
 @font-face {
     font-family: 'sarabun';
