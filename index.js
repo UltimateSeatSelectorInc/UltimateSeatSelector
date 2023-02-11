@@ -5,6 +5,19 @@ var url = require('url')
 app.use(express.static(__dirname + '/static'))
 const port = process.env.PORT || 8080;
 
+// initializing the database
+var admin = require("firebase-admin");
+
+var serviceAccount = require(__dirname + '/firebase-private-key.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://ultimate-seat-selector-15f36-default-rtdb.firebaseio.com"
+});
+
+var db = admin.database()
+var ref = db.ref()
+
 // import libraries required for reading/parsing SVGs
 const fs = require('fs')
 const { parse } = require('svgson');
@@ -55,8 +68,8 @@ readStream.on("data", chunk => {
         return (!noN.seat.includes("N")) // result elements without 'N' in the name
       });
 
-     // ref.set(resultF)
-     // THIS IS WHERE WE WILL SEND TO DATABASE
+    //Sending the result to the database.  
+    //ref.set(resultF)
 
   })
   .catch((err) => console.log(err))
