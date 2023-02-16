@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "An app that allows you to identify as present for class and allows teachers to check attendance.",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +16,4 @@
     "save": "^2.9.0",
     "svgson": "^5.2.1"
   }
-
 }
