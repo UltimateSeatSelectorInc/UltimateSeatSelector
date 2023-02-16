@@ -5,11 +5,13 @@ var url = require('url')
 app.use(express.static(__dirname + '/static'))
 const port = process.env.PORT || 8080;
 
+// import libraries required for reading/parsing SVGs
+const fs = require('fs')
+const { parse } = require('svgson');
+
 // initializing the database
 var admin = require("firebase-admin");
-
 var serviceAccount = require(__dirname + '/firebase-private-key.json');
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://ultimate-seat-selector-15f36-default-rtdb.firebaseio.com"
@@ -17,10 +19,6 @@ admin.initializeApp({
 
 var db = admin.database()
 var ref = db.ref()
-
-// import libraries required for reading/parsing SVGs
-const fs = require('fs')
-const { parse } = require('svgson');
 
 // read the SVG file
 var readStream = fs.createReadStream('static/images/seatselect.svg', 'utf-8')
@@ -49,7 +47,7 @@ readStream.on("data", chunk => {
   parse(data).then(json => {
       svg = json
       // only get objects we need from data stream and then filter for rectangles
-      rectObjects = svg.children[2].children[0]
+      rectObjects = svg.children[2]
       let result = rectObjects.children.filter(item => item.name === 'rect')
 
       // for loop to give attributes to each seat
@@ -69,7 +67,7 @@ readStream.on("data", chunk => {
       });
 
     //Sending the result to the database.  
-    //ref.set(resultF)
+    ref.set(resultF)
 
   })
   .catch((err) => console.log(err))
