@@ -61,6 +61,7 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'UltimateSeatSelector'
+          path: 'release.zip'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_46B62610BD394829A7E310BFA7DDFF02 }}
           package: .
