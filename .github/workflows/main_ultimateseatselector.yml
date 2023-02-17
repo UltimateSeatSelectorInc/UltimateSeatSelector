@@ -6,12 +6,12 @@ name: Build and deploy Node.js app to Azure Web App - UltimateSeatSelector
 on:
   push:
     branches:
-      - build
+      - main
   workflow_dispatch:
 
 defaults:
   run:
-    working-directory: client
+    working-directory: static
 
 jobs:
   build:
