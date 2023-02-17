@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An app that allows you to identify as present for class and allows teachers to check attendance.",
   "scripts": {
-    "start": "node index.js",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
