@@ -1,0 +1,70 @@
+html {
+    background-color: rgb(235, 235, 235);
+}
+
+/* NAVBAR STYLING ------------------------------------- */
+
+body {
+    margin: 0;
+}
+
+.navbar {
+    width: 100%;
+    overflow: hidden;
+    background-color: #940731;
+}
+
+/* title styling */
+.navbar p {
+    position: fixed;
+    font-size: 30px;
+    font-family: sarabun;
+    color: white;
+    margin-left: .5%;
+    margin-top: .3%;
+}
+
+.navtable {
+    float: right;
+    padding: .5%;
+}
+
+.title {
+    pointer-events: none; 
+    float: left;
+}
+
+/* navbar link styling */
+.navbar a {
+    float: right;
+    text-decoration: none;
+    font-family: sarabun;
+    font-size: 19px;
+    color: white;
+    padding: 12px;
+}
+
+.navbar a:hover {
+    background-color: #6e0726;
+}
+
+.navbar a.active {
+    background-color: #6e0726;
+}
+
+/* NAVBAR STYLING ------------------------------------- */
+
+.mainarea {
+    text-align: center;
+    width: 50%;
+    margin: 5%;
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+
+@font-face {
+    font-family: 'sarabun';
+    src: url(fonts/sarabun.ttf)
+}
