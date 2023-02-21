@@ -30,7 +30,10 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
-      
+          
+      - name: Zip artifact for deployment
+        run: Compress-Archive . release.zip
+        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
@@ -49,12 +52,16 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
-
+          
+      - name: unzip artifact for deployment
+        run: unzip release.zip
+        
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'UltimateSeatSelector'
+          path: 'release.zip'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_46B62610BD394829A7E310BFA7DDFF02 }}
           package: .

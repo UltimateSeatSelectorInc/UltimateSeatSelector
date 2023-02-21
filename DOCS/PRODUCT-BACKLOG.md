@@ -12,6 +12,8 @@
 - (Vince 2) As an instructor,  I want to be able to click on the podium and claim my status as instructor.
 - (Vince 2) As an instructor, I want to be asked that I am, in fact, the instructor.
 
+Definition of Done: A user is able to click on a table at a seat and have the change reflected, and is demoable to the team
+
 ## All Story Points
 - (NAME 4) As a student, I want the status of my occupancy reflected on the page quickly.
 - (NAME 3) As a student, I want to be able to input my email so I can receive confirmation that I selected a particular seat.
