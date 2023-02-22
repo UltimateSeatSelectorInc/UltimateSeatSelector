@@ -15,7 +15,7 @@ defaults:
 
 env: 
   CI: false
-  
+
 jobs:
   build:
     runs-on: windows-latest
@@ -31,7 +31,6 @@ jobs:
       - name: npm install, build, and start
         run: |
           npm run build
-          npm start
           
       - name: Zip artifact for deployment
         run: Compress-Archive . release.zip
