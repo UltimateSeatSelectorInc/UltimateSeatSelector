@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 // serve up production assets
-app.use(express.static('client/build'));
+app.use(express.static('build'));
 // let the react app to handle any unknown routes 
 // serve up the index.html if express does'nt recognize the route
 const path = require('path');
 app.get('*', (req, res) => {
-res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 // if not in production use the port 8080
 const PORT = process.env.PORT || 8080;
@@ -24,7 +24,7 @@ var admin = require("firebase-admin");
 var serviceAccount = require(__dirname + '/firebase-private-key.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://ultimate-seat-selector-15f36-default-rtdb.firebaseio.com"
+  databaseURL: "https://ultimate-seat-selector-15f36-default-rtdb.firebaseio.com/"
 });
 
 var db = admin.database()
@@ -49,7 +49,6 @@ contains an 'N', it will later not be considered and thrown out because it is
 not a seat but rather an element that had not been compressed */
 
 var data = ""
-
 // Parse the SVG file
 readStream.on("data", chunk => {
     data += chunk
@@ -59,7 +58,7 @@ readStream.on("data", chunk => {
         // only get objects we need from data stream and then filter for rectangles
         rectObjects = svg.children[2]
         let result = rectObjects.children.filter(item => item.name === 'rect')
-  
+
         // for loop to give attributes to each seat
         for(let i = 0; i < result.length; i++){
                 result[i].seat = seats[i] // assign the seat names
@@ -70,15 +69,15 @@ readStream.on("data", chunk => {
                 result[i].attributes.y = Number(result[i].attributes.y)
                 // height, width, x and y coords changed to nums to make them easier to change
            }
-  
+
         // Use filter to remove seats with 'N' in the name (not a seat)
         let resultF = result.filter(function(noN) {
           return (!noN.seat.includes("N")) // result elements without 'N' in the name
         });
-  
-      //Sending the result to the database.  
+
+      //Sending the result to the database.
       ref.set(resultF)
-  
+
     })
     .catch((err) => console.log(err))
   })
