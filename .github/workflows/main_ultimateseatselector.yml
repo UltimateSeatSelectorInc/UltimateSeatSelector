@@ -31,9 +31,6 @@ jobs:
       - name: npm install, build, and start
         run: |
           npm run build
-          
-      - name: Zip artifact for deployment
-        run: Compress-Archive . release.zip
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -53,9 +50,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
-          
-      - name: unzip artifact for deployment
-        run: unzip release.zip
         
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
