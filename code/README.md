@@ -1,3 +1,6 @@
+# https://javascript.works-hub.com/learn/how-to-host-a-react-app-on-azure-10042
+# Tutorial initially followed
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
