@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, set, child, onValue,  } from "firebase/database";
 import Map from './Map.jsx'
 
 // Our web app's Firebase configuration
@@ -37,6 +37,15 @@ function Maploader(){
       })
     })
 }, [])
+
+// function that handles a seat selection w/ firebase
+function submitChoice(index) {
+  const db = getDatabase(); // reference to database
+  const chosenRef = child(ref(db), `${index}/chosen`); // child node of seat
+  set(chosenRef, true); // set chosen value to true
+  
+}
+
 // The svg style styles the entire image on the page.
   function updateStyle(index){ 
     setSeatStyle((prev) => (prev === index ? null : index))
@@ -59,6 +68,7 @@ function Maploader(){
                 />
         )}
         </svg>
+        <button onClick = {() => submitChoice(seatStyle)}>Submit</button>
     </div>
   )
 }

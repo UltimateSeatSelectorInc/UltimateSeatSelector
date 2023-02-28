@@ -23,7 +23,7 @@ const fs = require('fs')
 const { parse } = require('svgson');
 
 // read the SVG file
-var readStream = fs.createReadStream('static/images/seatselect.svg', 'utf-8')
+var readStream = fs.createReadStream('images/seatselect.svg', 'utf-8')
 
 // create an array of seat names for the svg file
 seats = [
@@ -49,7 +49,7 @@ readStream.on("data", chunk => {
   parse(data).then(json => {
       svg = json
       // only get objects we need from data stream and then filter for rectangles
-      rectObjects = svg.children[2].children[0]
+      rectObjects = svg.children[2]
       let result = rectObjects.children.filter(item => item.name === 'rect')
 
       // for loop to give attributes to each seat
@@ -69,7 +69,7 @@ readStream.on("data", chunk => {
       });
 
     //Sending the result to the database.  
-    //ref.set(resultF)
+    ref.set(resultF)
 
   })
   .catch((err) => console.log(err))

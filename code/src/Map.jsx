@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
 
-function Map(props){ 
+function Map(props){
 
     const [hover, setHover] = useState(false)
 
+    // function that changes color of the square on hover
     function handleHover(){ 
         setHover(prev => !prev)
     }
 
+    // function that changes color of the square on click
     function handleClick(){ 
        const index = props.index 
         props.updateStyle(index)
@@ -25,8 +27,8 @@ function Map(props){
                 width = {props.width}>
                     {props.seat}
             </text>
-            <rect 
-                onMouseEnter = {() => handleHover()}
+            <rect // styling for the rectangle objects
+                onMouseEnter = {() => handleHover()} // call functions to handle hover/click
                 onMouseLeave = {() => handleHover()}
                 onClick = {!props.chosen ? () => handleClick() : null}
                 x = {props.x}
