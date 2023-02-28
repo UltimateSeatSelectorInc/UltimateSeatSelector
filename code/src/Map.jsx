@@ -11,7 +11,7 @@ function Map(props){
 
     // function that changes color of the square on click
     function handleClick(){
-        const index = props.index 
+        const index = props.index
         props.updateStyle(index)
     }
 
@@ -35,14 +35,19 @@ function Map(props){
                 y = {props.y}
                 height = {props.height}
                 width = {props.width}
-                fill = { props.chosen && hover
-                    // fill changes based on whether its chosen, selected, or empty
-                    ? '#b3b1b1'
+                fill = {
+                    // fill color changes depending on selection, hover, occupancy
+                    props.chosen && hover && props.updateStyle
+                    ? '#707070'
+                    : props.chosen && props.seatStyle === props.index
+                    ? '#707070'
                     : props.chosen
                     ? 'grey'
                     : hover || props.seatStyle === props.index
                     ? 'blue'
-                    : 'black' }>
+                    : 'black'
+                    }>
+                        
             </rect>
         </>
     )

@@ -55,6 +55,8 @@ readStream.on("data", chunk => {
       // for loop to give attributes to each seat
       for(let i = 0; i < result.length; i++){
               result[i].seat = seats[i] // assign the seat names
+              result[i].name = ""
+              result[i].email = ""
               result[i].chosen = false
               result[i].attributes.height = Number(result[i].attributes.height)
               result[i].attributes.width = Number(result[i].attributes.width)

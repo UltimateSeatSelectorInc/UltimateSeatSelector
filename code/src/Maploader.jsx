@@ -45,7 +45,7 @@ function Maploader(){
     })
 }, [])
 
-// function that handles a seat selection w/ firebase
+// function that changes firebase values to seat taken and updates name/email
 function submitChoice(index, name, email) {
   const db = ref(getDatabase());
   const seatRef = child(db, index.toString());
@@ -53,6 +53,18 @@ function submitChoice(index, name, email) {
     chosen: true,
     name: name,
     email: email,
+  };
+  update(seatRef, updates);
+}
+
+// changes firebase data to seat not taken, removing name and email
+function deSelectSeat(index) {
+  const db = ref(getDatabase());
+  const seatRef = child(db, index.toString());
+  const updates = {
+    chosen: false,
+    name: '',
+    email: '',
   };
   update(seatRef, updates);
 }
@@ -85,10 +97,10 @@ function updateStyle(index){
       <label>
         Email: <input type="email" value={inputEmail} onChange={e => setInputEmail(e.target.value)} /> </label>
       <button onClick = {() => {submitChoice(seatStyle, inputName, inputEmail); setInputName(''); setInputEmail('')}}>Submit</button>
-
+      <button onClick = {() => {deSelectSeat(seatStyle)}}>De-select seat</button>
     </div>
-
-  ) // need the onlick to only allow onclick if a seat is onclick
+    // buttons call functions that update database values
+  )
 }
 
 export default Maploader
