@@ -5,13 +5,13 @@ function Map(props){
     const [hover, setHover] = useState(false)
 
     // function that changes color of the square on hover
-    function handleHover(){ 
-        setHover(prev => !prev)
+    function handleHover(){
+        setHover(true);
     }
 
     // function that changes color of the square on click
-    function handleClick(){ 
-       const index = props.index 
+    function handleClick(){
+        const index = props.index 
         props.updateStyle(index)
     }
 
@@ -29,15 +29,21 @@ function Map(props){
             </text>
             <rect // styling for the rectangle objects
                 onMouseEnter = {() => handleHover()} // call functions to handle hover/click
-                onMouseLeave = {() => handleHover()}
-                onClick = {!props.chosen ? () => handleClick() : null}
+                onMouseLeave = {() => setHover(false)}
+                onClick = { () => handleClick() } // will work even tho already chosen... need to change this later
                 x = {props.x}
                 y = {props.y}
                 height = {props.height}
                 width = {props.width}
-                fill = {props.chosen ? 'grey' : hover || props.seatStyle === props.index ? "blue" : "black" }>
-            </rect> 
-
+                fill = { props.chosen && hover
+                    // fill changes based on whether its chosen, selected, or empty
+                    ? '#b3b1b1'
+                    : props.chosen
+                    ? 'grey'
+                    : hover || props.seatStyle === props.index
+                    ? 'blue'
+                    : 'black' }>
+            </rect>
         </>
     )
 }

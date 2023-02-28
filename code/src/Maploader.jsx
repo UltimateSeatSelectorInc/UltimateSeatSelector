@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import React, { useState, useEffect } from 'react';
-import { getDatabase, ref, set, child, onValue,  } from "firebase/database";
+import { getDatabase, ref, update, child, onValue,  } from "firebase/database";
 import Map from './Map.jsx'
 
 // Our web app's Firebase configuration
@@ -24,6 +24,13 @@ function Maploader(){
 
   const [seats, setSeats] = useState([])
   const [seatStyle, setSeatStyle] = useState()
+  const [inputName, setInputName] = useState('')
+  const [inputEmail, setInputEmail] = useState('')
+
+  /*
+  const handleSubmit = () => {
+    submitChoice(seatStyle, inputName, inputEmail); dont think we need this
+  }*/
 
   useEffect(() => {
     const db = ref(getDatabase());
@@ -39,17 +46,21 @@ function Maploader(){
 }, [])
 
 // function that handles a seat selection w/ firebase
-function submitChoice(index) {
-  const db = getDatabase(); // reference to database
-  const chosenRef = child(ref(db), `${index}/chosen`); // child node of seat
-  set(chosenRef, true); // set chosen value to true
-  
+function submitChoice(index, name, email) {
+  const db = ref(getDatabase());
+  const seatRef = child(db, index.toString());
+  const updates = {
+    chosen: true,
+    name: name,
+    email: email,
+  };
+  update(seatRef, updates);
 }
 
 // The svg style styles the entire image on the page.
-  function updateStyle(index){ 
-    setSeatStyle((prev) => (prev === index ? null : index))
-  }
+function updateStyle(index){ 
+  setSeatStyle((prev) => (prev === index ? null : index))
+}
 
   return( 
     <div> 
@@ -68,9 +79,16 @@ function submitChoice(index) {
                 />
         )}
         </svg>
-        <button onClick = {() => submitChoice(seatStyle)}>Submit</button>
+
+      <label>
+        Name: <input type="text" value={inputName} onChange={e => setInputName(e.target.value)} /> </label>
+      <label>
+        Email: <input type="email" value={inputEmail} onChange={e => setInputEmail(e.target.value)} /> </label>
+      <button onClick = {() => {submitChoice(seatStyle, inputName, inputEmail); setInputName(''); setInputEmail('')}}>Submit</button>
+
     </div>
-  )
+
+  ) // need the onlick to only allow onclick if a seat is onclick
 }
 
 export default Maploader
