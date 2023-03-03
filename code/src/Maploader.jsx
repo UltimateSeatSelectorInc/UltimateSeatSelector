@@ -78,7 +78,8 @@ function updateStyle(index){
     <div> 
         <svg style = {{width: "100%", height: "100vh"}} viewBox="100 -150 1000 2000">
         {seats && seats.map((seat, index) => 
-            <Map 
+            <Map
+                key = {index}
                 index = {index}
                 seatStyle = {seatStyle}
                 updateStyle = {updateStyle}
