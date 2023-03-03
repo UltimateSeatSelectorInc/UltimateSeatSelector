@@ -3,7 +3,7 @@ import Maploader from './Maploader'
  
 function App() {
  return (
-   <div>
+   <div className ="crimson">
        <Maploader />
    </div>
  );

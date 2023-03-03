@@ -61,9 +61,10 @@ function Map(props) {
         onClick={() => handleClick()}
         x={props.x}
         y={props.y}
-        height={props.height}
-        width={props.width}
-        fill={
+        height={props.height + 4} // adjust height to make outline slightly bigger
+        width={props.width + 4} // adjust width to make outline slightly bigger
+        fill="transparent" // set fill to transparent to remove black box fill
+        stroke={
           props.chosen && hover && props.updateStyle
             ? "#707070"
             : props.chosen && props.seatStyle === props.index
@@ -71,10 +72,13 @@ function Map(props) {
             : props.chosen
             ? "grey"
             : hover || props.seatStyle === props.index
-            ? "blue"
-            : "black"
+            ? "yellow"
+            : "white"
         }
+        stroke-width="5" // make the lines thicker
       ></rect>
+
+
       {lecternModalIsOpen ? (
         <Modal // Lectern Modal - popup
           isOpen={lecternModalIsOpen}
