@@ -72,7 +72,10 @@ function updateStyle(index){
 }
 
   return( 
-    <div> 
+    <div>
+      
+        <button onClick = {() => {deSelectSeat()}}>De-select all seats (DEV)</button>
+
         <svg style = {{width: "100%", height: "100vh"}} viewBox="114 -150 1000 2000">
         {seats && seats.map((seat, index) => 
             <Map
@@ -91,7 +94,7 @@ function updateStyle(index){
                 />
         )}
         </svg>
-      <button onClick = {() => {deSelectSeat()}}>De-select all seats (DEV)</button>
+
     </div>
   )
 }

@@ -197,8 +197,6 @@ function Map(props) {
           <button class = "submitButton" onClick={() => closeModal()}>Close</button>
         </div>
         </Modal>
-        
-        
       )}
     </>
   );

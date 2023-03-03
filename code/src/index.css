@@ -1,7 +1,8 @@
-.crimson {
-    background: linear-gradient(#000000, #000251);
-    min-height: 100vh; /* minimum height of page would be equal to available view-port height */
-  }
+html {
+  background: linear-gradient(#000000, #000251);
+  min-height: 100vh; /* minimum height of page would be equal to available view-port height */
+
+}
 
 .popupStyle {
   padding-left: 10px;
@@ -57,4 +58,3 @@
   font-family: 'fira';
   src: url(fonts/fira.ttf)
 }
-
