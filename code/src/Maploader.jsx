@@ -16,6 +16,18 @@ const firebaseConfig = {
   measurementId: "G-G8QNWC8T4R"
 };
 
+// function that changes firebase values to seat taken and updates name/email
+export function submitChoice(index, name, email) {
+  const db = ref(getDatabase());
+  const seatRef = child(db, index.toString());
+  const updates = {
+    chosen: true,
+    name: name,
+    email: email,
+  };
+  update(seatRef, updates);
+}
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -24,8 +36,7 @@ function Maploader(){
 
   const [seats, setSeats] = useState([])
   const [seatStyle, setSeatStyle] = useState()
-  const [inputName, setInputName] = useState('')
-  const [inputEmail, setInputEmail] = useState('')
+
 
   useEffect(() => {
     const db = ref(getDatabase());
@@ -40,28 +51,19 @@ function Maploader(){
     })
 }, [])
 
-// function that changes firebase values to seat taken and updates name/email
-function submitChoice(index, name, email) {
-  const db = ref(getDatabase());
-  const seatRef = child(db, index.toString());
-  const updates = {
-    chosen: true,
-    name: name,
-    email: email,
-  };
-  update(seatRef, updates);
-}
 
 // changes firebase data to seat not taken, removing name and email
-function deSelectSeat(index) {
+function deSelectSeat() {
   const db = ref(getDatabase());
-  const seatRef = child(db, index.toString());
-  const updates = {
-    chosen: false,
-    name: '',
-    email: '',
-  };
-  update(seatRef, updates);
+  const updates = {};
+  updates['chosen'] = false;
+  updates['name'] = '';
+  updates['email'] = '';
+
+  for (let i = 0; i < 30; i++) {
+    const seatRef = child(db, i.toString());
+    update(seatRef, updates);
+  }
 }
 
 // The svg style styles the entire image on the page.
@@ -71,7 +73,7 @@ function updateStyle(index){
 
   return( 
     <div> 
-        <svg style = {{width: "100%", height: "100vh"}} viewBox="100 -150 1000 2000">
+        <svg style = {{width: "100%", height: "100vh"}} viewBox="114 -150 1000 2000">
         {seats && seats.map((seat, index) => 
             <Map
                 key = {index}
@@ -81,22 +83,16 @@ function updateStyle(index){
                 x = {seat.attributes.x} 
                 y = {seat.attributes.y} 
                 seat = {seat.seat} 
-                chosen = {seat.chosen} 
+                chosen = {seat.chosen}
+                name = {seat.name}
+                email = {seat.email}
                 height = {seat.attributes.height} 
                 width = {seat.attributes.width}
-                popupClick={popupClick}
                 />
         )}
         </svg>
-
-      <label>
-        Name: <input type="text" value={inputName} onChange={e => setInputName(e.target.value)} /> </label>
-      <label>
-        Email: <input type="email" value={inputEmail} onChange={e => setInputEmail(e.target.value)} /> </label>
-      <button onClick = {() => {submitChoice(seatStyle, inputName, inputEmail); setInputName(''); setInputEmail('')}}>Submit</button>
-      <button onClick = {() => {deSelectSeat(seatStyle)}}>De-select seat</button>
+      <button onClick = {() => {deSelectSeat()}}>De-select all seats (DEV)</button>
     </div>
-    // buttons call functions that update database values
   )
 }
 
