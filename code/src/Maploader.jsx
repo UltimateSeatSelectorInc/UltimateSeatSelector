@@ -1,10 +1,10 @@
-// Import the functions you need from the SDKs you need
+// Import modules
 import { initializeApp } from "firebase/app";
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, update, child, onValue,  } from "firebase/database";
 import Map from './Map.jsx'
 
-// Our web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBehKF152E5XJdsZf-Yzj5PBaX3DOiFeRk",
   authDomain: "ultimate-seat-selector-15f36.firebaseapp.com",
@@ -26,11 +26,6 @@ function Maploader(){
   const [seatStyle, setSeatStyle] = useState()
   const [inputName, setInputName] = useState('')
   const [inputEmail, setInputEmail] = useState('')
-
-  /*
-  const handleSubmit = () => {
-    submitChoice(seatStyle, inputName, inputEmail); dont think we need this
-  }*/
 
   useEffect(() => {
     const db = ref(getDatabase());
@@ -88,6 +83,7 @@ function updateStyle(index){
                 chosen = {seat.chosen} 
                 height = {seat.attributes.height} 
                 width = {seat.attributes.width}
+                popupClick={popupClick}
                 />
         )}
         </svg>

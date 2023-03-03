@@ -13,6 +13,7 @@ function Map(props){
     function handleClick(){
         const index = props.index
         props.updateStyle(index)
+        props.popupClick(index)
     }
 
     return( 
@@ -28,9 +29,9 @@ function Map(props){
                     {props.seat}
             </text>
             <rect // styling for the rectangle objects
-                onMouseEnter = {() => handleHover()} // call functions to handle hover/click
+                onMouseEnter = {() => handleHover()}
                 onMouseLeave = {() => setHover(false)}
-                onClick = { () => handleClick() } // will work even tho already chosen... need to change this later
+                onClick = { () => handleClick()}
                 x = {props.x}
                 y = {props.y}
                 height = {props.height}
