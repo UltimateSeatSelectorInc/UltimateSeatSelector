@@ -131,30 +131,45 @@ function Map(props) {
         ) : null}
 
       {lecternModalIsOpen ? (
-        <Modal // Lectern Modal - popup
+        <Modal // Regular Modal - popup
           isOpen={lecternModalIsOpen}
-          onRequestClose={() => setlecternModalIsOpen(false)}
-          contentLabel="Lectern Modal"
+          onRequestClose={() => closeModal()}
+          contentLabel="Example Modal"
           style={{
             overlay: {
               backgroundColor: "rgba(0, 0, 0, 0.5)",
               zIndex: 999,
+
             },
             content: {
-              width: "25%",
-              height: "25%",
-              top: "25%",
-              left: "15%",
+              width: "30%",
+              height: "30%",
+              top: "35%",
+              left: "50%",
               transform: "translate(-50%, -50%)",
+              backgroundColor: "light-grey",
+              border: "black"
             },
           }}
         >
-          <h2>This is a lectern seat!</h2>
-          <h3>Professor Credentials: </h3>
-          Name: <input type="text"></input><br></br><br></br>
-          Email: <input type="email"></input><br></br><br></br><br></br>
+        <div class = "popupStyle">
+          <h2>Lectern (Instructor) </h2>
 
-          <button onClick={() => closeModal()}>Close</button>
+          <table class = "inputTable">
+                <tr>
+                    <td class = "cell"><input class = "InputBox" type = "text" id = "inputName"
+                        placeholder = "Full Name" maxlength = "100"></input></td>
+                </tr>
+                <tr>
+                    <td class = "cell"><input class = "InputBox" type = "text" id = "inputEmail"
+                        placeholder = "Email" maxlength = "100"></input></td>
+                </tr>
+                    
+                
+            </table>
+          <button class = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
+          <button class = "submitButton" onClick={() => closeModal()}>Close</button>
+        </div>
         </Modal>
       ) : (
         <Modal // Regular Modal - popup
