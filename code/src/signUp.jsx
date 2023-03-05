@@ -1,15 +1,40 @@
-// SignUp.jsx
-
-// I cannot figure out how to serve this page lol
-
 import React from 'react';
+import './Signup.css';
+import Navbar from './Navbar.jsx'
 
-const SignUp = () => {
+// basic sign up page
+
+function SignUp() {
   return (
-    <div>
+
+    // ** Just example code **
+    <div class = "signupstyle">
+
+          <Navbar />
+        
       <h1>Sign Up</h1>
-      <form>
-        Hello bozo
+      <form> 
+        <label>
+          First Name:
+          <input type="text" name="firstName" />
+        </label>
+        <br />
+        <label>
+          Last Name:
+          <input type="text" name="lastName" />
+        </label>
+        <br />
+        <label>
+          Email:
+          <input type="email" name="email" />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" name="password" />
+        </label>
+        <br />
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );

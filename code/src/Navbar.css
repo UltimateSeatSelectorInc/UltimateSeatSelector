@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e0e0e0;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .navbar-title {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: fira;
+    margin-left: 20px;
+  }
+  
+  .navbar-nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 10px;
+  }
+  
+  .nav-item {
+    margin-right: 10px;
+  }
+  
+  .nav-link {
+    color: black;
+    border-radius: 6px;
+    font-family: fira;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+  }
+  
+  .nav-link:hover {
+    background-color: #aeaeae;
+  }
+
+  @font-face {
+    font-family: 'fira';
+    src: url(fonts/fira.ttf)
+  }
