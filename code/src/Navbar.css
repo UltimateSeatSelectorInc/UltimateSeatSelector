@@ -47,3 +47,14 @@ body {
     font-family: 'fira';
     src: url(fonts/fira.ttf)
   }
+
+  /* Styling for most smart phones */
+@media (min-width: 300px) and (max-width: 450px) {
+  .navbar-title {
+    font-size: 13px;
+  }
+  .nav-link {
+    font-size: 11px;
+    padding: 5px;
+  }
+}

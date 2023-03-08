@@ -1,0 +1,13 @@
+/* Styling for Map component for responsive web design */
+
+.map {
+    width: 100%;
+    height: 100vh;
+}
+
+/* Styling for most smart phones */
+@media (min-width: 300px) and (max-width: 450px) {
+    .map {
+      height: 70vh;
+    }
+}
