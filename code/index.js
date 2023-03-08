@@ -27,12 +27,12 @@ var readStream = fs.createReadStream('images/seatselect.svg', 'utf-8')
 
 // create an array of seat names for the svg file
 seats = [
-  '2A', '2B', '2C', '2D', '2E', '2F',
-  '4A', '4B', '4C', '4D', '4E', '4F',
-  '5A', '5B', '5C', '5D', '5E', '5F',
-  '1B', '1A', '1E', '4N', '2N', '1D', 
-  '1C', '3B', '3A', '3E', '3D', '3C', 
-  '1F', '3F','Lectern', '3N', '1N', '5N'
+  '3E', '3D', '3C', '3F', 'Lectern', 'TABLE3',
+  '4F', '1F', 'TABLE1', '2F', 'TABLE2', 'TABLE5',
+  '5C', '5D', '5E', '5F', '5A', '5B',
+  '3B', '3A', '1E', '1D', '1C', '1B', 
+  '1A', '2A', '2B', '4A', '4B', '2C', 
+  '2D', '2E','4C', '4D', '4E', 'TABLE4'
 ]
 
 /* These values are not ordered alphabetically or numerically, they are 
@@ -49,7 +49,8 @@ readStream.on("data", chunk => {
   parse(data).then(json => {
       svg = json
       // only get objects we need from data stream and then filter for rectangles
-      rectObjects = svg.children[2]
+      //rectObjects = svg.children[2]
+      rectObjects = svg
       let result = rectObjects.children.filter(item => item.name === 'rect')
 
       // for loop to give attributes to each seat
@@ -65,13 +66,7 @@ readStream.on("data", chunk => {
               // height, width, x and y coords changed to nums to make them easier to change
          }
 
-      // Use filter to remove seats with 'N' in the name (not a seat)
-      let resultF = result.filter(function(noN) {
-        return (!noN.seat.includes("N")) // result elements without 'N' in the name
-      });
-
-    //Sending the result to the database.  
-    ref.set(resultF)
+      ref.set(result)
 
   })
   .catch((err) => console.log(err))

@@ -8,6 +8,8 @@ function Map(props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [lecternModalIsOpen, setlecternModalIsOpen] = useState(false);
   const [chosenModalIsOpen, setChosenModalIsOpen] = useState(false);
+  const [tableModalIsOpen, setTableModalIsOpen] = useState(false);
+
 
   function handleHover() {
     setHover(true);
@@ -15,26 +17,25 @@ function Map(props) {
 
   function handleClick() {
     const index = props.index;
-    if (props.index === 30) { // Checks if lectern seat is clicked for lectern popup
+    if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
       props.updateStyle(index);
-      console.log("lectern seat selected!");
-      setlecternModalIsOpen(true);
+      setlecternModalIsOpen(true)
+      console.log("LECTERN SELECTED");
+
+    } else if (props.seat.includes("TABLE")) { // if table is selected
+      props.updateStyle(index, 'blue')
+      setTableModalIsOpen(true)
+      console.log("TABLE SELECTED")
+
     } else if (!props.chosen || props.seatStyle === index) { // If not, display regular popup
       props.updateStyle(index);
-      console.log("Regular seat selected!");
+      console.log("SEAT SELECTED");
       setModalIsOpen(true);
+
     } else if (props.chosen) { // If already chosen, display information popup
       props.updateStyle(index);
-      setModalIsOpen(false);
-      setlecternModalIsOpen(false);
       setChosenModalIsOpen(true);
-    }
-    if (props.chosen || props.seatStyle === index) {// Checks if lectern seat is being deselected
-      if(props.index===30){
-        console.log(props.index)
-        props.updateStyle(null);
-        setlecternModalIsOpen(false);
-      }
+      console.log("CHOSEN SEAT SELECTED")
     }
   }
 
@@ -42,6 +43,7 @@ function Map(props) {
     setModalIsOpen(false);
     setlecternModalIsOpen(false);
     setChosenModalIsOpen(false)
+    setTableModalIsOpen(false)
   }
 
   function submitInfo() {
@@ -92,7 +94,7 @@ function Map(props) {
 
         {chosenModalIsOpen ? (
             <Modal // Chosen seat modal - popup, just displays who claimed seat.
-            isOpen={modalIsOpen}
+            isOpen={chosenModalIsOpen}
             onRequestClose={() => closeModal()}
             contentLabel="Example Modal"
             style={{
@@ -125,6 +127,36 @@ function Map(props) {
                       
                   
               </table>
+            <button class = "submitButton" onClick={() => closeModal()}>Close</button>
+          </div>
+          </Modal>
+        ) : null}
+
+          {tableModalIsOpen ? (
+            <Modal // Table seat model, just contains the table name
+            isOpen={tableModalIsOpen}
+            onRequestClose={() => closeModal()}
+            contentLabel="Example Modal"
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                zIndex: 999,
+  
+              },
+              content: {
+                width: "15%",
+                height: "15%",
+                top: "35%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                backgroundColor: "light-grey",
+                border: "black"
+              },
+            }}
+          >
+          <div class = "popupStyle">
+            <h2>Table {props.seat[5]} </h2>
+
             <button class = "submitButton" onClick={() => closeModal()}>Close</button>
           </div>
           </Modal>

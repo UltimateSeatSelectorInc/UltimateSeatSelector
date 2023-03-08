@@ -61,7 +61,7 @@ function deSelectSeat() {
   updates['name'] = '';
   updates['email'] = '';
 
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 36; i++) {
     const seatRef = child(db, i.toString());
     update(seatRef, updates);
   }
