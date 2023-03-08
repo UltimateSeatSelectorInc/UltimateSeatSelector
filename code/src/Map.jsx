@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { submitChoice } from "./Maploader";
 
@@ -9,7 +9,6 @@ function Map(props) {
   const [lecternModalIsOpen, setlecternModalIsOpen] = useState(false);
   const [chosenModalIsOpen, setChosenModalIsOpen] = useState(false);
   const [tableModalIsOpen, setTableModalIsOpen] = useState(false);
-
 
   function handleHover() {
     setHover(true);
@@ -27,13 +26,14 @@ function Map(props) {
       setTableModalIsOpen(true)
       console.log("TABLE SELECTED")
 
-    } else if (!props.chosen || props.seatStyle === index) { // If not, display regular popup
+    } else if (!props.chosen) { // If not, display regular popup
       props.updateStyle(index);
       console.log("SEAT SELECTED");
       setModalIsOpen(true);
 
     } else if (props.chosen) { // If already chosen, display information popup
       props.updateStyle(index);
+      setModalIsOpen(false)
       setChosenModalIsOpen(true);
       console.log("CHOSEN SEAT SELECTED")
     }
@@ -144,8 +144,8 @@ function Map(props) {
   
               },
               content: {
-                width: "15%",
-                height: "15%",
+                width: "30%",
+                height: "30%",
                 top: "35%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
@@ -239,7 +239,7 @@ function Map(props) {
                 </tr>
                     
                 
-            </table>
+          </table>
           <button class = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
           <button class = "submitButton" onClick={() => closeModal()}>Close</button>
         </div>
