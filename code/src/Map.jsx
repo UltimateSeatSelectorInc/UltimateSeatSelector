@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { submitChoice } from "./Maploader";
+import './mainMap.css';
 
 function Map(props) {
   const [hover, setHover] = useState(false);
@@ -82,7 +83,6 @@ function Map(props) {
         stroke={
           props.chosen && hover && props.updateStyle
             ? "grey"
-
             : props.chosen
             ? "white"
             : hover || props.seatStyle === props.index
@@ -109,7 +109,7 @@ function Map(props) {
                 top: "35%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                backgroundColor: "light-grey",
+                backgroundColor: "#1a1d29",
                 border: "black"
               },
             }}
@@ -119,7 +119,7 @@ function Map(props) {
   
             <table class = "inputTable">
                   <tr>
-                      <td>Seat Claimed by: {props.name}</td>
+                      <td><p>Seat Claimed by: {props.name}</p></td>
                   </tr>
                   <tr>
                       <td></td>
@@ -149,7 +149,8 @@ function Map(props) {
                 top: "35%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                backgroundColor: "light-grey",
+                textColor: "white",
+                backgroundColor: "#1a1d29",
                 border: "black"
               },
             }}
@@ -179,7 +180,7 @@ function Map(props) {
               top: "35%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              backgroundColor: "light-grey",
+              backgroundColor: "#1a1d29",
               border: "black"
             },
           }}
@@ -220,7 +221,7 @@ function Map(props) {
               top: "35%",
               left: "50%",
               transform: "translate(-50%, -50%)",
-              backgroundColor: "light-grey",
+              backgroundColor: "#1a1d29",
               border: "black"
             },
           }}

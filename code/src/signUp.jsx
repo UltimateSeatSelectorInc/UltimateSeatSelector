@@ -26,15 +26,21 @@ function SignUp() {
 
           <table class = "inputTableSign">
                 <tr>
-                    <td class = "cellSign"><input class = "InputBoxSign" type = "email" id = "inputName"
-                        placeholder = "Your email" maxlength = "100"></input></td>
+                    <td class = "cellSign"><input class = "InputBoxSign" type = "text" id = "inputEmail"
+                        placeholder = "First name" maxlength = "100"></input></td>
+                    <td class = "cellSign"><input class = "InputBoxSign" type = "text" id = "inputEmail"
+                        placeholder = "Last name" maxlength = "100"></input></td>
                 </tr>
                 <tr>
-                    <td class = "cellSign"><input class = "InputBoxSign" type = "password" id = "inputEmail"
-                        placeholder = "A strong password" maxlength = "100"></input></td>
+                    <td colspan = "2" class = "cellSign"><input class = "InputBoxSign" type = "email" id = "inputName"
+                        placeholder = "Email" maxlength = "100"></input></td>
                 </tr>
                 <tr>
-                    <td class = "cellSign"><input class = "InputBoxSign" type = "password" id = "inputEmail"
+                    <td colspan = "2" class = "cellSign"><input class = "InputBoxSign" type = "password" id = "inputEmail"
+                        placeholder = "Password" maxlength = "100"></input></td>
+                </tr>
+                <tr>
+                    <td colspan = "2" class = "cellSign"><input class = "InputBoxSign" type = "password" id = "inputEmail"
                         placeholder = "Repeat password" maxlength = "100"></input></td>
                 </tr>
                 <tr>
