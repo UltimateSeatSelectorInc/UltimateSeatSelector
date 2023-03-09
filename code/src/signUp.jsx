@@ -2,40 +2,48 @@ import React from 'react';
 import './Signup.css';
 import Navbar from './Navbar.jsx'
 
-// basic sign up page
-
 function SignUp() {
   return (
 
-    // ** Just example code **
     <div class = "signupstyle">
 
-          <Navbar />
+      <Navbar />
+
+
+      <div class = "maintitle">
+        <h1>Signup</h1>
+      </div>
+
+      <div class = "mainbody">
+        <div class = "mainbodytitle">
+          <p>Let's sign you up</p>
+        </div>
+        <div class = "mainbodysubtitle">
+          <p>Signup to Utimate Seat Selector with an email and password. You will
+            receive an email to verify your account.
+          </p>
+        </div>
+
+          <table class = "inputTableSign">
+                <tr>
+                    <td class = "cellSign"><input class = "InputBoxSign" type = "email" id = "inputName"
+                        placeholder = "Your email" maxlength = "100"></input></td>
+                </tr>
+                <tr>
+                    <td class = "cellSign"><input class = "InputBoxSign" type = "password" id = "inputEmail"
+                        placeholder = "A strong password" maxlength = "100"></input></td>
+                </tr>
+                <tr>
+                    <td class = "cellSign"><input class = "InputBoxSign" type = "password" id = "inputEmail"
+                        placeholder = "Repeat password" maxlength = "100"></input></td>
+                </tr>
+                <tr>
+                    <td><a href="/verify"><button class = "signupButton" onClick={() => { }}>Continue</button></a></td>
+                </tr>
+          </table>
         
-      <h1>Sign Up</h1>
-      <form> 
-        <label>
-          First Name:
-          <input type="text" name="firstName" />
-        </label>
-        <br />
-        <label>
-          Last Name:
-          <input type="text" name="lastName" />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input type="email" name="email" />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input type="password" name="password" />
-        </label>
-        <br />
-        <button type="submit">Sign Up</button>
-      </form>
+      </div>
+
     </div>
   );
 };

@@ -126,7 +126,7 @@ function Map(props) {
                   </tr>
                       
                   
-              </table>
+            </table>
             <button class = "submitButton" onClick={() => closeModal()}>Close</button>
           </div>
           </Modal>

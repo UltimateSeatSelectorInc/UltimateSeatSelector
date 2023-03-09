@@ -1,3 +1,128 @@
 .signupstyle {
     color: white;
 }
+
+h1 {
+    font-size: 35px;
+    font-family: ubu;
+}
+
+.maintitle {
+    padding-left: 20px;
+}
+
+.mainbody {
+    padding: 10px;
+    font-family: ubu;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #1a1d29;
+    border-radius: 4px;
+    width: 40%;
+}
+
+.mainbodytitle {
+    padding-left: 18px;
+    font-size: 20px;
+}
+
+.mainbodysubtitle {
+    font-family: ubu-reg;
+    padding-left: 18px;
+    padding-right: 18px;
+    font-size: 14px;
+}
+
+.inputTableLog {
+    margin-right: auto;
+    border-collapse: separate;
+    border-spacing: 8px;
+    width: 100%;
+    padding: 10px;
+}
+  
+.cellLog {
+    border: 1px solid grey;
+    border-radius: 4px;
+    padding: 7px;
+}
+  
+.InputBoxLog {
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    background-color: #1a1d29;
+    border: none;
+    padding: 3px;
+    width: 99%;
+    outline: none;
+}
+
+.loginButton {
+    margin: 10px;
+    padding: 10px;
+    font-family: ubu;
+    border: none;
+    background-color: #1f6bdc;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    color: white;
+}
+
+.bottomtext {
+    text-align: center;
+    font-family: fira;
+    font-size: 13px;
+    letter-spacing: .6px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'ubu';
+    src: url(fonts/ubu.ttf)
+}
+
+@font-face {
+    font-family: 'ubu-reg';
+    src: url(fonts/ubu-reg.ttf)
+}
+
+/* Responsive web design  */
+@media (min-width: 800px) {
+    .mainbody {
+        width: 45%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .mainbody {
+        width: 25%;
+    }
+}
+
+@media (max-width: 700px) {
+    .mainbodytitle {
+        font-size: 17px;
+    }
+    .mainbody {
+        width: 50%;
+    }
+}
+
+@media (max-width: 400px) and (min-width: 300px) {
+    .mainbodytitle {
+        font-size: 14px;
+        padding-left: 10px;
+    }
+    .mainbody {
+        width: 70%;
+    }
+}

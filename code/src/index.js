@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import Maploader from './Maploader.jsx';
 import SignUp from './Signup.jsx';
 import Login from './Login.jsx';
+import Verify from './Verify.jsx';
 
 // simple routing
 function App() {
@@ -17,6 +18,8 @@ function App() {
     return <Login />;
   } else if (path === '/signup') {
     return <SignUp />;
+  } else if (path === '/verify') {
+    return <Verify />;
   } else {
     return <div>404 Not Found</div>;
   }
