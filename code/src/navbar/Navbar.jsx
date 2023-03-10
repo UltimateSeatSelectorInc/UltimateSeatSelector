@@ -10,7 +10,7 @@ function Navbar() {
       <ul className="navbar-nav">
         <li className="nav-item">
           <a href="/" className="nav-link">
-            Home
+            Seat Map
           </a>
         </li>
         <li className="nav-item">
@@ -19,8 +19,8 @@ function Navbar() {
           </a>
         </li>
         <li className="nav-item">
-          <a href="/signup" className="nav-link">
-            Signup
+          <a href="/about" className="nav-link">
+            About
           </a>
         </li>
       </ul>

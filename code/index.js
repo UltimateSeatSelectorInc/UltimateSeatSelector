@@ -65,7 +65,6 @@ readStream.on("data", chunk => {
               result[i].attributes.y = Number(result[i].attributes.y)
               // height, width, x and y coords changed to nums to make them easier to change
          }
-
       ref.set(result)
 
   })

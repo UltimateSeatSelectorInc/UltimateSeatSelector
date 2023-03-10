@@ -6,6 +6,7 @@ import Maploader from './Maploader.jsx';
 import SignUp from './signup/Signup.jsx';
 import Login from './login/Login.jsx';
 import Verify from './verify/Verify.jsx';
+import About from './about/About.jsx';
 
 // simple routing
 function App() {
@@ -20,6 +21,8 @@ function App() {
     return <SignUp />;
   } else if (path === '/verify') {
     return <Verify />;
+  } else if (path === '/about') {
+    return <About />;
   } else {
     return <div>404 Not Found</div>;
   }
