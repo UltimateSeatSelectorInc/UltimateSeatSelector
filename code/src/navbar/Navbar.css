@@ -6,16 +6,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e0e0e0;
+    background-color: #1a1d29;
     overflow: hidden;
     width: 100%;
   }
   
   .navbar-title {
-    color: black;
+    color: white;
     font-weight: bold;
-    font-size: 20px;
-    font-family: fira;
+    font-size: 22px;
+    font-family: kanit;
     margin-left: 20px;
   }
   
@@ -31,19 +31,35 @@ body {
   }
   
   .nav-link {
-    color: black;
+    color: white;
     border-radius: 6px;
-    font-family: fira;
+    font-family: kanit;
     text-decoration: none;
     display: block;
     padding: 10px;
   }
   
   .nav-link:hover {
-    background-color: #aeaeae;
+    background-color: #383f59;
   }
 
-  @font-face {
-    font-family: 'fira';
-    src: url(fonts/fira.ttf)
+@font-face {
+  font-family: 'fira';
+  src: url(../fonts/fira.ttf)
+}
+
+@font-face {
+  font-family: 'kanit';
+  src: url(../fonts/kanit.ttf)
+}
+
+/* Styling for most smart phones */
+@media (min-width: 300px) and (max-width: 450px) {
+  .navbar-title {
+    font-size: 13px;
   }
+  .nav-link {
+    font-size: 11px;
+    padding: 5px;
+  }
+}

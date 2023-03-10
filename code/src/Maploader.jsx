@@ -3,7 +3,8 @@ import { initializeApp } from "firebase/app";
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, update, child, onValue,  } from "firebase/database";
 import Map from './Map.jsx'
-import Navbar from './Navbar.jsx'
+import './Map.css'
+import Navbar from './navbar/Navbar.jsx'
 
 // Firebase configuration
 const firebaseConfig = {
@@ -79,7 +80,7 @@ function updateStyle(index){
 
         <button onClick = {() => {deSelectSeat()}}>De-select all seats (DEV)</button>
 
-        <svg style = {{width: "100%", height: "100vh"}} viewBox="114 -150 1000 2000">
+        <svg className = "map" viewBox="119 -150 1000 2000">
         {seats && seats.map((seat, index) => 
             <Map
                 key = {index}
