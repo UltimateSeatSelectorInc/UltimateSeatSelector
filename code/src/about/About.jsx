@@ -7,7 +7,7 @@ function About() {
   
       <div class = "signupstyle">
   
-        <Navbar />
+        <Navbar isActive = { true } />
   
         <div class = "maintitle">
           <h1>About</h1>

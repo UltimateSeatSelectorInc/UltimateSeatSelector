@@ -12,7 +12,7 @@ function Verify() {
   
       <div class = "signupstyle">
   
-        <Navbar />
+        <Navbar isActive = { false } />
   
         <div class = "maintitle">
           <h1>Verify</h1>

@@ -6,6 +6,8 @@ import Map from './Map.jsx'
 import './Map.css'
 import Navbar from './navbar/Navbar.jsx'
 
+
+
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBehKF152E5XJdsZf-Yzj5PBaX3DOiFeRk",
@@ -76,7 +78,7 @@ function updateStyle(index){
   return( 
     <div>
 
-        <Navbar />
+        <Navbar isActive = { true } />
 
         <button onClick = {() => {deSelectSeat()}}>De-select all seats (DEV)</button>
 

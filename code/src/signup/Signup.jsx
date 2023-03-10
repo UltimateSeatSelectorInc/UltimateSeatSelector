@@ -7,8 +7,7 @@ function SignUp() {
 
     <div class = "signupstyle">
 
-      <Navbar />
-
+      <Navbar isActive = { true } />
 
       <div class = "maintitle">
         <h1>Signup</h1>
