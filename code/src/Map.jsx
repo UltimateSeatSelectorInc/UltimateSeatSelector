@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { submitChoice } from "./Maploader";
-import './mainMap.css';
+import './index.css';
 
 function Map(props) {
   const [hover, setHover] = useState(false);
@@ -97,6 +97,7 @@ function Map(props) {
             isOpen={chosenModalIsOpen}
             onRequestClose={() => closeModal()}
             contentLabel="Example Modal"
+            className = "chosenModal"
             style={{
               overlay: {
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -104,13 +105,17 @@ function Map(props) {
   
               },
               content: {
-                width: "30%",
-                height: "30%",
+                position: "fixed",
                 top: "35%",
                 left: "50%",
-                transform: "translate(-50%, -50%)",
                 backgroundColor: "#1a1d29",
-                border: "black"
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "#1a1d29",
+                border: "black",
+                borderRadius: "10px",
+                outline: "none",
+                padding: "10px"
               },
             }}
           >
@@ -137,6 +142,7 @@ function Map(props) {
             isOpen={tableModalIsOpen}
             onRequestClose={() => closeModal()}
             contentLabel="Example Modal"
+            className = "tableModal"
             style={{
               overlay: {
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -144,16 +150,19 @@ function Map(props) {
   
               },
               content: {
-                width: "30%",
-                height: "30%",
+                position: "fixed",
                 top: "35%",
                 left: "50%",
-                transform: "translate(-50%, -50%)",
-                textColor: "white",
                 backgroundColor: "#1a1d29",
-                border: "black"
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "#1a1d29",
+                border: "black",
+                borderRadius: "10px",
+                outline: "none"
               },
             }}
+            
           >
           <div class = "popupStyle">
             <h2>Table {props.seat[5]} </h2>
@@ -168,6 +177,7 @@ function Map(props) {
           isOpen={lecternModalIsOpen}
           onRequestClose={() => closeModal()}
           contentLabel="Example Modal"
+          className = "lecternModal"
           style={{
             overlay: {
               backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -175,13 +185,17 @@ function Map(props) {
 
             },
             content: {
-              width: "30%",
-              height: "30%",
+              position: "fixed",
               top: "35%",
               left: "50%",
-              transform: "translate(-50%, -50%)",
               backgroundColor: "#1a1d29",
-              border: "black"
+              transform: "translate(-50%, -50%)",
+              color: "white",
+              backgroundColor: "#1a1d29",
+              border: "black",
+              borderRadius: "10px",
+              outline: "none",
+              padding: "10px"
             },
           }}
         >
@@ -190,11 +204,11 @@ function Map(props) {
 
           <table class = "inputTable">
                 <tr>
-                    <td class = "cell"><input class = "InputBox" type = "text" id = "inputName"
+                    <td class = "cell"><input class = "inputBox" type = "text" id = "inputName"
                         placeholder = "Full Name" maxlength = "100"></input></td>
                 </tr>
                 <tr>
-                    <td class = "cell"><input class = "InputBox" type = "text" id = "inputEmail"
+                    <td class = "cell"><input class = "inputBox" type = "text" id = "inputEmail"
                         placeholder = "Email" maxlength = "100"></input></td>
                 </tr>
                     
@@ -209,6 +223,7 @@ function Map(props) {
           isOpen={modalIsOpen}
           onRequestClose={() => closeModal()}
           contentLabel="Example Modal"
+          className = "regModal"
           style={{
             overlay: {
               backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -216,13 +231,17 @@ function Map(props) {
 
             },
             content: {
-              width: "30%",
-              height: "30%",
+              position: "fixed",
               top: "35%",
               left: "50%",
-              transform: "translate(-50%, -50%)",
               backgroundColor: "#1a1d29",
-              border: "black"
+              transform: "translate(-50%, -50%)",
+              color: "white",
+              backgroundColor: "#1a1d29",
+              border: "black",
+              borderRadius: "10px",
+              outline: "none",
+              padding: "10px"
             },
           }}
         >
@@ -231,15 +250,14 @@ function Map(props) {
 
           <table class = "inputTable">
                 <tr>
-                    <td class = "cell"><input class = "InputBox" type = "text" id = "inputName"
+                    <td class = "cell"><input class = "inputBox" type = "text" id = "inputName"
                         placeholder = "Full Name" maxlength = "100"></input></td>
                 </tr>
                 <tr>
-                    <td class = "cell"><input class = "InputBox" type = "text" id = "inputEmail"
+                    <td class = "cell"><input class = "inputBox" type = "text" id = "inputEmail"
                         placeholder = "Email" maxlength = "100"></input></td>
                 </tr>
-                    
-                
+
           </table>
           <button class = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
           <button class = "submitButton" onClick={() => closeModal()}>Close</button>

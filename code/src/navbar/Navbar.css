@@ -45,15 +45,15 @@ body {
 
 @font-face {
   font-family: 'fira';
-  src: url(fonts/fira.ttf)
+  src: url(../fonts/fira.ttf)
 }
 
 @font-face {
   font-family: 'kanit';
-  src: url(fonts/kanit.ttf)
+  src: url(../fonts/kanit.ttf)
 }
 
-  /* Styling for most smart phones */
+/* Styling for most smart phones */
 @media (min-width: 300px) and (max-width: 450px) {
   .navbar-title {
     font-size: 13px;

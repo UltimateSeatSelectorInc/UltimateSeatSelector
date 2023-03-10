@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Modal from 'react-modal';
 import Maploader from './Maploader.jsx';
-import SignUp from './Signup.jsx';
-import Login from './Login.jsx';
-import Verify from './Verify.jsx';
+import SignUp from './signup/Signup.jsx';
+import Login from './login/Login.jsx';
+import Verify from './verify/Verify.jsx';
 
 // simple routing
 function App() {

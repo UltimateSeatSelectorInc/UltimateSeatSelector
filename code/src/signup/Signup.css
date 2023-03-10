@@ -25,6 +25,7 @@ h1 {
 .mainbodytitle {
     padding-left: 18px;
     font-size: 20px;
+    padding-right: 18px;
 }
 
 .mainbodysubtitle {
@@ -34,7 +35,7 @@ h1 {
     font-size: 14px;
 }
 
-.inputTableLog {
+.inputTableSign {
     margin-right: auto;
     border-collapse: separate;
     border-spacing: 8px;
@@ -42,13 +43,13 @@ h1 {
     padding: 10px;
 }
   
-.cellLog {
+.cellSign {
     border: 1px solid grey;
     border-radius: 4px;
     padding: 7px;
 }
   
-.InputBoxLog {
+.inputBoxSign {
     color: rgb(255, 255, 255);
     font-size: 15px;
     background-color: #1a1d29;
@@ -58,7 +59,7 @@ h1 {
     outline: none;
 }
 
-.loginButton {
+.signupButton {
     margin: 10px;
     padding: 10px;
     font-family: ubu;
@@ -73,26 +74,19 @@ h1 {
     color: white;
 }
 
-.bottomtext {
-    text-align: center;
-    font-family: fira;
-    font-size: 13px;
-    letter-spacing: .6px;
-}
-
-a {
-    color: white;
-    text-decoration: none;
+.signupButton:hover {
+    background-color: #164ea1;
+    color: rgb(183, 183, 183);
 }
 
 @font-face {
     font-family: 'ubu';
-    src: url(fonts/ubu.ttf)
+    src: url(../fonts/ubu.ttf)
 }
 
 @font-face {
     font-family: 'ubu-reg';
-    src: url(fonts/ubu-reg.ttf)
+    src: url(../fonts/ubu-reg.ttf)
 }
 
 /* Responsive web design  */

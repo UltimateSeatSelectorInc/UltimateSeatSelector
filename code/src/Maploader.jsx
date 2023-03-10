@@ -3,8 +3,8 @@ import { initializeApp } from "firebase/app";
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, update, child, onValue,  } from "firebase/database";
 import Map from './Map.jsx'
-import Navbar from './Navbar.jsx'
-import './map.css'
+import './Map.css'
+import Navbar from './navbar/Navbar.jsx'
 
 // Firebase configuration
 const firebaseConfig = {
