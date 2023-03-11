@@ -1,24 +1,10 @@
-// Import modules
-import { initializeApp } from "firebase/app";
+// import modules
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, update, child, onValue,  } from "firebase/database";
+import firebase from './firebase/firebase.js'; // database usage (don't remove)
+import Navbar from './navbar/Navbar.jsx'
 import Map from './Map.jsx'
 import './Map.css'
-import Navbar from './navbar/Navbar.jsx'
-
-
-
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyBehKF152E5XJdsZf-Yzj5PBaX3DOiFeRk",
-  authDomain: "ultimate-seat-selector-15f36.firebaseapp.com",
-  databaseURL: "https://ultimate-seat-selector-15f36-default-rtdb.firebaseio.com",
-  projectId: "ultimate-seat-selector-15f36",
-  storageBucket: "ultimate-seat-selector-15f36.appspot.com",
-  messagingSenderId: "167830181105",
-  appId: "1:167830181105:web:d497c2636b8edba5088550",
-  measurementId: "G-G8QNWC8T4R"
-};
 
 // function that changes firebase values to seat taken and updates name/email
 export function submitChoice(index, name, email) {
@@ -32,15 +18,11 @@ export function submitChoice(index, name, email) {
   update(seatRef, updates);
 }
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
 // Function that gets the seat data from the database
 function Maploader(){
 
   const [seats, setSeats] = useState([])
   const [seatStyle, setSeatStyle] = useState()
-
 
   useEffect(() => {
     const db = ref(getDatabase());
@@ -54,7 +36,6 @@ function Maploader(){
       })
     })
 }, [])
-
 
 // changes firebase data to seat not taken, removing name and email
 function deSelectSeat() {
