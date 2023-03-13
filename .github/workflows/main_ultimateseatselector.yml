@@ -55,5 +55,5 @@ jobs:
         with:
           app-name: 'UltimateSeatSelector'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_825B7692FB3E4435934749835A419717 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_18c76dc6c18a4ea1b0a252d5ed498076 }}
           package: .
