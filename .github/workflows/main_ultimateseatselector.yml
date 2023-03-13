@@ -8,10 +8,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
-defaults:
-  run:
-    working-directory: ./code
 
 jobs:
   build:
@@ -29,12 +25,13 @@ jobs:
         run: |
           npm install
           npm run build --if-present
+          npm run test --if-present
       
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: ./code/build
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -55,5 +52,5 @@ jobs:
         with:
           app-name: 'UltimateSeatSelector'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_18c76dc6c18a4ea1b0a252d5ed498076 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D4BF64C5B8D741C4A5A3F6252B8D6DF0 }}
           package: .
