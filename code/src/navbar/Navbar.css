@@ -44,8 +44,12 @@ body {
 
 .nav-link.disabled {
   pointer-events: none;
-  color: gray;
   text-decoration: none;
+  opacity: 50%;
+}
+
+.profileImg {
+  width: 26px;
 }
 
 @font-face {
