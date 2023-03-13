@@ -8,6 +8,13 @@ const port = process.env.PORT || 8080;
 // initializing the database
 var admin = require("firebase-admin");
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve the React app for any other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 var serviceAccount = require(__dirname + '/firebase-private-key.json');
 
 admin.initializeApp({
