@@ -5,8 +5,8 @@
 ## Sprint 2 Review Feb 13, 2023
 - Upon reviewing Sprint 2, we were pleased with our better Scrum organization that was our improvement goal for the sprint. We also demoed the changes we had made to each other. For the next sprint, we hope to have made great progress towards our Minimum Viable Product.
 
-## Sprint 3 Review ???
-- ???
+## Sprint 3 Review Feb 28th, 2023
+- After reviewing what we accomplished in Sprint 3, we were mostly pleased with meeting most of our goals but decided to put the main focus of our next sprint on ensuring that the website got hosted correctly. This was to be our main priority so that we could see the MVP accomplished.
 
 ## Sprint 4 Review Mar 10, 2023
 - 
