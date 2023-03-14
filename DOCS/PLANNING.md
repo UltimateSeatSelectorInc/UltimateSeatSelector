@@ -14,12 +14,9 @@ and how it function. Specifically, we:
 - There are methods/tricks avaiable with our stack that allow for "real-time"
 functionality.
 
-## Sprint Review Feb 7, 2023
-- All members of the team organized, prioritized, and assigned
-story points, equaling 36 total story points for the sprint. Please see
-[Product Backlog](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector/blob/0763338a0fba9ec53585e159a14902b029b7ec28/DOCS/PRODUCT-BACKLOG.md) 
-and [Sprint Backlog](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector/blob/0763338a0fba9ec53585e159a14902b029b7ec28/DOCS/SPRINT-BACKLOG.md)
-
 ## Sprint 4 Planning Feb 21. 2023
 - First priority is getting the react code for the website to properly display when hosted on Azure. 
 - Then, we will implement all of our previous user stories that aren't "done" into the project.
+
+## Sprint 5 Planning Mar 14, 2023
+- Our priority for the sprint will be to implement a second database for user account info, configure special priveleges for instructors and protected routes, and get token/user tracking functioning.
