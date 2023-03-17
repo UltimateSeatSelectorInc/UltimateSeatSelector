@@ -8,5 +8,8 @@
 ## Sprint 3 Review Feb 28th, 2023
 - After reviewing what we accomplished in Sprint 3, we were mostly pleased with meeting most of our goals but decided to put the main focus of our next sprint on ensuring that the website got hosted correctly. This was to be our main priority so that we could see the MVP accomplished.
 
-## Sprint 4 Review Mar 10, 2023
+## Sprint 4 Review Mar 14, 2023
+- Upon reviewing Sprint 4, we managed to get our production environment working and improved the looks of the front-end. We have a good starting point for Sprint 5 and made massive progress towards the MVP. Ultimately, we were happy with our progress towards meeting our user stories.
+
+## Sprint 5 Review Mar 28, 2023
 - 
