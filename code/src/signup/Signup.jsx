@@ -52,7 +52,8 @@ function SignUp() {
       });*/
 
       // reroute to verify page
-      window.location.href = "/verify";
+      //window.location.href = "/verify";
+      alert("Success!")
     } catch (error) {
       alert(error.message) // using alert for now until input validation implemented
       setErrorMessage(error.message);
@@ -88,6 +89,7 @@ function SignUp() {
                           id = "inputFirstName"
                           placeholder = "First name" 
                           maxlength = "100"
+                          value = {firstName}
                           onChange={(e) => setFirstName(e.target.value)} >
                         </input>
                     </td>
@@ -98,6 +100,7 @@ function SignUp() {
                           id = "inputLastName"
                           placeholder = "Last name" 
                           maxlength = "100"
+                          value = {lastName}
                           onChange={(e) => setLastName(e.target.value)} >
                         </input>
                     </td>
@@ -121,7 +124,7 @@ function SignUp() {
                           class = "inputBoxSign" 
                           type = "password" 
                           id = "inputPassword"
-                          placeholder = "Password" 
+                          placeholder = "Password"
                           maxlength = "100"
                           onChange={(e) => setPassword(e.target.value)} >
                       </input>

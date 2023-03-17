@@ -1,50 +1,82 @@
-import React from 'react';
+import React, { useState  } from 'react';
 import Navbar from '../navbar/Navbar.jsx'
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import './Login.css';
 
 function Login() {
-  return (
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    <div class = "signupstyle">
+  const handleLogIn = async () => {
+    const auth = getAuth()
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("hi")
+        alert('Logged in successfully!');
+    } catch (error) {
+        console.error('Error logging in:', error);
+      }
+    };
 
-      <Navbar isActive = { true } />
+    return(
 
-      <div class = "maintitle">
-        <h1>Login</h1>
+      <div className = "signupstyle">
+
+        <Navbar isActive = { true } />
+
+        <div className = "maintitle">
+          <h1>Login</h1>
+        </div>
+
+        <div className = "mainbody">
+          <div className = "mainbodytitle">
+            <p>Let's get you logged in</p>
+          </div>
+          <div className = "mainbodysubtitle">
+            <p>Please enter your email and password to sign into Ultimate Seat Selector,
+              or <strong><a href="/signup">Sign Up</a></strong>.
+            </p>
+          </div>
+
+            <table className = "inputTableLog">
+                <tr>
+                  <td className = "cellSign">
+                        <input 
+                            className = "inputBoxSign"
+                            type = "string"
+                            id = "inputEmail"
+                            placeholder = "Email" 
+                            maxLength = "100"
+                            value = {email}
+                            onChange={(e) => setEmail(e.target.value)} >
+                        </input>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td className = "cellSign">
+                        <input 
+                            className = "inputBoxSign" 
+                            type = "password" 
+                            id = "inputPassword"
+                            placeholder = "Password" 
+                            maxLength = "100"
+                            onChange={(e) => setPassword(e.target.value)} >
+                        </input>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td ><button className = "signupButton" onClick={() => { handleLogIn() }}>Login</button></td>
+                  </tr>
+                  
+            </table>
+          <div className = "bottomtext">
+              <p></p>
+          </div>
+          
+        </div>
+
       </div>
-
-      <div class = "mainbody">
-        <div class = "mainbodytitle">
-          <p>Let's get you logged in</p>
-        </div>
-        <div class = "mainbodysubtitle">
-          <p>Please enter your email and password to sign into Ultimate Seat Selector,
-            or <strong><a href="/signup">Sign Up</a></strong>.
-          </p>
-        </div>
-
-          <table class = "inputTableLog">
-                <tr>
-                    <td class = "cellLog"><input class = "inputBoxLog" type = "email" id = "inputName"
-                        placeholder = "Email" maxlength = "100"></input></td>
-                </tr>
-                <tr>
-                    <td class = "cellLog"><input class = "inputBoxLog" type = "password" id = "inputEmail"
-                        placeholder = "Password" maxlength = "100"></input></td>
-                </tr>
-                <tr>
-                    <td><button class = "loginButton" onClick={() => { }}>Login</button></td>
-                </tr>
-                
-          </table>
-        <div class = "bottomtext">
-            <p></p>
-        </div>
-        
-      </div>
-
-    </div>
-  );
+    );
 };
 
 export default Login;
