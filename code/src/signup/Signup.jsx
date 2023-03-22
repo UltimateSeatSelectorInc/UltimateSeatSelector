@@ -52,8 +52,7 @@ function SignUp() {
       });*/
 
       // reroute to verify page
-      //window.location.href = "/verify";
-      alert("Success!")
+      window.location.href = "/verify";
     } catch (error) {
       alert(error.message) // using alert for now until input validation implemented
       setErrorMessage(error.message);
@@ -62,88 +61,88 @@ function SignUp() {
 
   return (
 
-    <div class = "signupstyle">
+    <div className = "signupstyle">
 
       <Navbar isActive = { true } />
 
-      <div class = "maintitle">
+      <div className = "maintitle">
         <h1>Signup</h1>
       </div>
 
-      <div class = "mainbody">
-        <div class = "mainbodytitle">
+      <div className = "mainbody">
+        <div className = "mainbodytitle">
           <p>Let's sign you up</p>
         </div>
-        <div class = "mainbodysubtitle">
+        <div className = "mainbodysubtitle">
           <p>Signup to Utimate Seat Selector with an email and password. You will
             receive an email to verify your account.
           </p>
         </div>
 
-          <table class = "inputTableSign">
+          <table className = "inputTableSign">
                 <tr>
-                    <td class = "cellSign">
+                    <td className = "cellSign">
                       <input 
-                          class = "inputBoxSign" 
+                          className = "inputBoxSign" 
                           type = "text" 
                           id = "inputFirstName"
                           placeholder = "First name" 
-                          maxlength = "100"
+                          maxLength = "100"
                           value = {firstName}
                           onChange={(e) => setFirstName(e.target.value)} >
                         </input>
                     </td>
-                    <td class = "cellSign">
+                    <td className = "cellSign">
                       <input 
-                          class = "inputBoxSign" 
+                          className = "inputBoxSign" 
                           type = "text" 
                           id = "inputLastName"
                           placeholder = "Last name" 
-                          maxlength = "100"
+                          maxLength = "100"
                           value = {lastName}
                           onChange={(e) => setLastName(e.target.value)} >
                         </input>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan = "2" class = "cellSign">
+                    <td colSpan = "2" className = "cellSign">
                       <input 
-                          class = "inputBoxSign"
+                          className = "inputBoxSign"
                           type = "email"
                           id = "inputEmail"
                           placeholder = "Email" 
-                          maxlength = "100"
+                          maxLength = "100"
                           value = {email}
                           onChange={(e) => setEmail(e.target.value)} >
                       </input>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan = "2" class = "cellSign">
+                    <td colSpan = "2" className = "cellSign">
                       <input 
-                          class = "inputBoxSign" 
+                          className = "inputBoxSign" 
                           type = "password" 
                           id = "inputPassword"
                           placeholder = "Password"
-                          maxlength = "100"
+                          maxLength = "100"
                           onChange={(e) => setPassword(e.target.value)} >
                       </input>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan = "2" class = "cellSign">
+                    <td colSpan = "2" className = "cellSign">
                       <input 
-                          class = "inputBoxSign" 
+                          className = "inputBoxSign" 
                           type = "password" 
                           id = "inputRepeatPassword"
                           placeholder = "Repeat password" 
-                          maxlength = "100"
+                          maxLength = "100"
                           onChange={(e) => setRepeatPassword(e.target.value)} >
                         </input>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan = "2"><button class = "signupButton" onClick={() => { handleSignUp() }}>Continue</button></td>
+                    <td colSpan = "2"><button className = "signupButton" onClick={() => { handleSignUp() }}>Continue</button></td>
                 </tr>
           </table>
         

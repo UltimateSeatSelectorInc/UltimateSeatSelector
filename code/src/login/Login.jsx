@@ -11,8 +11,7 @@ function Login() {
     const auth = getAuth()
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log("hi")
-        alert('Logged in successfully!');
+        window.location.href = "/";
     } catch (error) {
         console.error('Error logging in:', error);
       }
