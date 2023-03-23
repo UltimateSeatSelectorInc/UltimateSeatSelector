@@ -111,14 +111,14 @@ function Map(props) {
     setWasSelected(!wasSelected)
   
     // Get the user's current location
-    try {
-      const location = await getCurrentLocation();
-      const distance = getDistance(
-        location.latitude,
-        location.longitude,
-        lewisUniversityLat,
-        lewisUniversityLon
-      );
+    //try { **GEO IMPLEMENTATION**
+      //const location = await getCurrentLocation();
+      //const distance = getDistance(
+        //location.latitude,
+        //location.longitude,
+        //lewisUniversityLat,
+        //lewisUniversityLon
+     //);**GEO IMPLEMENTATION**
 
       // Set an allowed distance range in kilometers (e.g., 1 km)
       const allowedDistance = 1000;
@@ -128,30 +128,30 @@ function Map(props) {
         console.log("TABLE SELECTED")
     
       }   
-      else if (distance <= allowedDistance) {
+      //else if (distance <= allowedDistance) {**GEO IMPLEMENTATION**
         // If the user is within range, display the modal to claim a seat
-        if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
-          props.updateStyle(index);
-          setlecternModalIsOpen(true)
-          console.log("LECTERN SELECTED");
-      
-        } else if (!props.chosen) { // If not, display regular popup
-          props.updateStyle(index);
-          console.log("SEAT SELECTED");
-          setModalIsOpen(true);
-      
-        } else if (props.chosen) { // If already chosen, display information popup
-          props.updateStyle(index);
-          setModalIsOpen(false)
-          setChosenModalIsOpen(true);
-          console.log("CHOSEN SEAT SELECTED")
-        }
-      } else {
-          setAlertModalIsOpen(true);
+      if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
+        props.updateStyle(index);
+        setlecternModalIsOpen(true)
+        console.log("LECTERN SELECTED");
+    
+      } else if (!props.chosen) { // If not, display regular popup
+        props.updateStyle(index);
+        console.log("SEAT SELECTED");
+        setModalIsOpen(true);
+    
+      } else if (props.chosen) { // If already chosen, display information popup
+        props.updateStyle(index);
+        setModalIsOpen(false)
+        setChosenModalIsOpen(true);
+        console.log("CHOSEN SEAT SELECTED")
       }
-    } catch (error) {
-      alert("Unable to get your location. Please check your location settings.");
-    }
+      //} else {**GEO IMPLEMENTATION**
+          //setAlertModalIsOpen(true);
+      //}
+    //} catch (error) {
+      //alert("Unable to get your location. Please check your location settings.");
+    //}**GEO IMPLEMENTATION**
   }
  
   function closeModal() {
