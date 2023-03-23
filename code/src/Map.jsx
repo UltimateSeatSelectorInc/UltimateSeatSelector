@@ -38,6 +38,38 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// function that gets the user's location
+function getCurrentLocation() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => {
+        reject(error);
+      }
+    );
+  });
+}
+// function that gets the distance between two coords
+function getDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Earth's radius in km
+  const dLat = (lat2 - lat1) * (Math.PI / 180);
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * (Math.PI / 180)) *
+      Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
+  return d;
+}
+
 // function that accesses the users collection and returns fullName and userID
 async function getUser(userID) {
   const usersRef = collection(dbstore, "users");
@@ -68,31 +100,58 @@ function Map(props) {
     setHover(true);
   }
 
-  function handleClick() {
+  async function handleClick() {
+    // ...existing code...
+  
+    // Get Lewis University's coordinates (latitude and longitude)
+    const lewisUniversityLat = 41.6053;
+    const lewisUniversityLon = -88.0798;
     const index = props.index;
-    if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
-      props.updateStyle(index);
-      setlecternModalIsOpen(true)
-      console.log("LECTERN SELECTED");
-
-    } else if (props.seat.includes("TABLE")) { // if table is selected
-      props.updateStyle(index, 'blue')
-      setTableModalIsOpen(true)
-      console.log("TABLE SELECTED")
-
-    } else if (!props.chosen) { // If not, display regular popup
-      props.updateStyle(index);
-      console.log("SEAT SELECTED");
-      setModalIsOpen(true);
-
-    } else if (props.chosen) { // If already chosen, display information popup
-      props.updateStyle(index);
-      setModalIsOpen(false)
-      setChosenModalIsOpen(true);
-      console.log("CHOSEN SEAT SELECTED")
+  
+    // Get the user's current location
+    try {
+      const location = await getCurrentLocation();
+      const distance = getDistance(
+        location.latitude,
+        location.longitude,
+        lewisUniversityLat,
+        lewisUniversityLon
+      );
+  
+      // Set an allowed distance range in kilometers (e.g., 1 km)
+      const allowedDistance = 1;
+  
+      if (distance <= allowedDistance) {
+        // If the user is within range, display the modal to claim a seat
+        if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
+          props.updateStyle(index);
+          setlecternModalIsOpen(true)
+          console.log("LECTERN SELECTED");
+      
+        } else if (props.seat.includes("TABLE")) { // if table is selected
+          props.updateStyle(index, 'blue')
+          setTableModalIsOpen(true)
+          console.log("TABLE SELECTED")
+      
+        } else if (!props.chosen) { // If not, display regular popup
+          props.updateStyle(index);
+          console.log("SEAT SELECTED");
+          setModalIsOpen(true);
+      
+        } else if (props.chosen) { // If already chosen, display information popup
+          props.updateStyle(index);
+          setModalIsOpen(false)
+          setChosenModalIsOpen(true);
+          console.log("CHOSEN SEAT SELECTED")
+        }
+      } else {
+        alert("You must be at Lewis University to claim a seat.");
+      }
+    } catch (error) {
+      alert("Unable to get your location. Please check your location settings.");
     }
   }
-
+ 
   function closeModal() {
     setModalIsOpen(false);
     setlecternModalIsOpen(false);
