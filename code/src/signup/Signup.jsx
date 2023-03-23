@@ -3,6 +3,8 @@ import './Signup.css';
 import Navbar from '../navbar/Navbar.jsx'
 import { auth } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore"; 
+import { dbstore } from "../firebase/firebaseStore";
 
 function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -43,13 +45,12 @@ function SignUp() {
       );
       const user = userCredential.user;
 
-      /*
-      // save the user data with the user account id
-      await db.ref(`users/${user.uid}`).set({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-      });*/
+      //Creates a new document in the database for the user's account details.
+      const docRef = await addDoc(collection(dbstore, "users"), {
+        First_Name: firstName,
+        Last_Name: lastName,
+        Email: email
+      });
 
       // reroute to verify page
       window.location.href = "/verify";
