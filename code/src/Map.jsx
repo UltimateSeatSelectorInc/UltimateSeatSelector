@@ -130,7 +130,7 @@ function Map(props) {
       }   
       //else if (distance <= allowedDistance) {**GEO IMPLEMENTATION**
         // If the user is within range, display the modal to claim a seat
-      if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
+      else if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
         props.updateStyle(index);
         setlecternModalIsOpen(true)
         console.log("LECTERN SELECTED");
