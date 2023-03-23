@@ -121,7 +121,7 @@ function Map(props) {
       );
 
       // Set an allowed distance range in kilometers (e.g., 1 km)
-      const allowedDistance = 1;
+      const allowedDistance = 1000;
       if (props.seat.includes("TABLE")) { // if table is selected
         props.updateStyle(index, 'blue')
         setTableModalIsOpen(true)
@@ -183,14 +183,6 @@ function Map(props) {
       <motion.rect
         initial={false}
         whileHover={
-          !props.seat.includes("TABLE")
-            ? {
-              scale: [1, 0.95, 1],
-              transition: { duration: 0.2, ease: "easeOut" },
-              }
-            : {}
-        }
-        whileTap={
           !props.seat.includes("TABLE")
             ? {
               scale: [1, 0.95, 1],
