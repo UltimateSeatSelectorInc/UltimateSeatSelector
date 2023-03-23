@@ -3,7 +3,7 @@ import './Signup.css';
 import Navbar from '../navbar/Navbar.jsx'
 import { auth } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore"; 
+import { setDoc, doc } from "firebase/firestore"; 
 import { dbstore } from "../firebase/firebaseStore";
 
 function SignUp() {
@@ -46,7 +46,7 @@ function SignUp() {
       const user = userCredential.user;
 
       //Creates a new document in the database for the user's account details.
-      const docRef = await addDoc(collection(dbstore, "users"), {
+      const docRef = await setDoc(doc(dbstore, "users", user.uid), {
         First_Name: firstName,
         Last_Name: lastName,
         Email: email

@@ -1,7 +1,60 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
+import { auth } from "./firebase/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import { submitChoice } from "./Maploader";
+import { collection, getDoc, doc } from "firebase/firestore"; 
+import { dbstore } from "./firebase/firebaseStore";
 import './index.css';
+
+/* IMPORTANT */
+
+/* This function below checks if someone is logged in. If they are, it calls
+getUser to retrieve the fullname and email of the user that is logged in by
+passing in the userID (where each user in firestore has the same exact userID)
+It then logs that information. 
+
+The next step will be to use this onAuth to determine if this page is accessible
+and to display the name or email in the corner to show who is logged in. 
+
+getUser will be called each time a user clicks on the "submit" button in the popupModals.
+The full name and email will be passed in automatically so that each seat then holds
+that information */
+
+/* IMPORTANT */
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    getUser(user.uid).then((result) => {
+      if (result) {
+        const fullName = result.fullName;
+        const email = result.email
+        console.log(fullName);
+        console.log(email)
+      } else {
+        console.log("No user is logged in");
+      }
+    });
+  }
+});
+
+// function that accesses the users collection and returns fullName and userID
+async function getUser(userID) {
+  const usersRef = collection(dbstore, "users");
+  const userDocRef = doc(usersRef, userID);
+
+  return getDoc(userDocRef)
+    .then((doc) => {
+      if (doc.exists()) {
+        const fullName = doc.data().First_Name + " " + doc.data().Last_Name;
+        const email = doc.data().Email
+        return { fullName, email };
+      } else {
+        console.log("No data exists for current user or no user logged in");
+        return null;
+      }
+    })
+}
 
 function Map(props) {
   const [hover, setHover] = useState(false);
