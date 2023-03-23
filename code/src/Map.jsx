@@ -97,6 +97,7 @@ function Map(props) {
   const [lecternModalIsOpen, setlecternModalIsOpen] = useState(false);
   const [chosenModalIsOpen, setChosenModalIsOpen] = useState(false);
   const [tableModalIsOpen, setTableModalIsOpen] = useState(false);
+  const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
 
   function handleHover() {
     setHover(true);
@@ -146,7 +147,7 @@ function Map(props) {
           console.log("CHOSEN SEAT SELECTED")
         }
       } else {
-        alert("You must be at Lewis University to claim a seat.");
+          setAlertModalIsOpen(true);
       }
     } catch (error) {
       alert("Unable to get your location. Please check your location settings.");
@@ -222,9 +223,6 @@ function Map(props) {
         }
         strokeWidth="5"
       ></motion.rect>
-
-
-
         {chosenModalIsOpen ? (
             <Modal // Chosen seat modal - popup, just displays who claimed seat.
             isOpen={chosenModalIsOpen}
@@ -267,6 +265,41 @@ function Map(props) {
             </table>
             <button class = "submitButton" onClick={() => closeModal()}>Close</button>
           </div>
+          </Modal>
+        ) : null}
+        {alertModalIsOpen ? (
+          <Modal
+            isOpen={alertModalIsOpen}
+            onRequestClose={() => setAlertModalIsOpen(false)}
+            contentLabel="Alert Modal"
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                zIndex: 999,
+  
+              },
+              content: {
+                position: "fixed",
+                top: "35%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "25%",
+                height: "20%",
+                fontSize: "16px",
+                backgroundColor: "#1a1d29",
+                border: "black",
+                borderRadius: "10px",
+                outline: "none",
+                padding: "20px",
+              },
+            }}
+          >
+            <div className="popupStyle">
+              <h2>You must be at Lewis University to claim a seat.</h2>
+              <button className="submitButton" onClick={() => setAlertModalIsOpen(false)}>
+                Close
+              </button>
+            </div>
           </Modal>
         ) : null}
 
