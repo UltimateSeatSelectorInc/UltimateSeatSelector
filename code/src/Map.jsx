@@ -101,8 +101,6 @@ function Map(props) {
   }
 
   async function handleClick() {
-    // ...existing code...
-  
     // Get Lewis University's coordinates (latitude and longitude)
     const lewisUniversityLat = 41.6053;
     const lewisUniversityLon = -88.0798;
@@ -117,21 +115,21 @@ function Map(props) {
         lewisUniversityLat,
         lewisUniversityLon
       );
-  
+
       // Set an allowed distance range in kilometers (e.g., 1 km)
       const allowedDistance = 1;
-  
-      if (distance <= allowedDistance) {
+      if (props.seat.includes("TABLE")) { // if table is selected
+        props.updateStyle(index, 'blue')
+        setTableModalIsOpen(true)
+        console.log("TABLE SELECTED")
+    
+      }   
+      else if (distance <= allowedDistance) {
         // If the user is within range, display the modal to claim a seat
         if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
           props.updateStyle(index);
           setlecternModalIsOpen(true)
           console.log("LECTERN SELECTED");
-      
-        } else if (props.seat.includes("TABLE")) { // if table is selected
-          props.updateStyle(index, 'blue')
-          setTableModalIsOpen(true)
-          console.log("TABLE SELECTED")
       
         } else if (!props.chosen) { // If not, display regular popup
           props.updateStyle(index);
