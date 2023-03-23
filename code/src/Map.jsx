@@ -5,7 +5,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { submitChoice } from "./Maploader";
 import { collection, getDoc, doc } from "firebase/firestore"; 
 import { dbstore } from "./firebase/firebaseStore";
+import { motion } from 'framer-motion';
 import './index.css';
+
 
 /* IMPORTANT */
 
@@ -105,6 +107,7 @@ function Map(props) {
     const lewisUniversityLat = 41.6053;
     const lewisUniversityLon = -88.0798;
     const index = props.index;
+    setWasSelected(!wasSelected)
   
     // Get the user's current location
     try {
@@ -176,30 +179,51 @@ function Map(props) {
         width={props.width}
       >
       </text>
-      <rect
+      <motion.rect
+        initial={false}
+        whileHover={
+          !props.seat.includes("TABLE")
+            ? {
+              scale: [1, 0.95, 1],
+              transition: { duration: 0.2, ease: "easeOut" },
+              }
+            : {}
+        }
+        whileTap={
+          !props.seat.includes("TABLE")
+            ? {
+              scale: [1, 0.95, 1],
+              transition: { duration: 0.2, ease: "easeOut" },
+              }
+            : {}
+        }
         onMouseEnter={() => handleHover()}
         onMouseLeave={() => setHover(false)}
         onClick={() => handleClick()}
         x={props.x}
         y={props.y}
-        height={props.height + 4} // adjust height to make outline slightly bigger
-        width={props.width + 4} // adjust width to make outline slightly bigger
-        fill= {
-            props.chosen
-            ? (hover && props.updateStyle ? "grey" : "white")
+        height={props.height + 4}
+        width={props.width + 4}
+        fill={
+          props.chosen
+            ? hover && props.updateStyle
+              ? "grey"
+              : "white"
             : "transparent"
         }
         stroke={
           props.chosen && hover && props.updateStyle
             ? "grey"
-            : props.chosen
+            : props.chosen && !props.seat.includes("TABLE")
             ? "white"
             : hover || props.seatStyle === props.index
             ? "yellow"
             : "white"
         }
-        strokeWidth="5" // make the lines thicker
-      ></rect>
+        strokeWidth="5"
+      ></motion.rect>
+
+
 
         {chosenModalIsOpen ? (
             <Modal // Chosen seat modal - popup, just displays who claimed seat.

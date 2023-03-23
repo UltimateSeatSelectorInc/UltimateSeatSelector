@@ -148,3 +148,7 @@ p {
     width: 25%;
   }
 }
+
+rect:focus {
+  outline: none;
+}
