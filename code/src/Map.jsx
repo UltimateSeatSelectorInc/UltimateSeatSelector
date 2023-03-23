@@ -175,7 +175,6 @@ function Map(props) {
         height={props.height}
         width={props.width}
       >
-        {props.seat}
       </text>
       <rect
         onMouseEnter={() => handleHover()}
