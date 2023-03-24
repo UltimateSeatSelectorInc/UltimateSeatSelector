@@ -5,7 +5,63 @@ import { auth } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore"; 
 import { dbstore } from "../firebase/firebaseStore";
+import { checkIfEmpty, checkIfEmailValid, checkIfPasswordValid } from "./inputVal"
 
+// function to add a red border to the inputs if there are errors
+function setEmptyErrors(fieldName) {
+  const element = document.getElementById(fieldName);
+  if (element) {
+    element.parentElement.classList.remove("cellSign")
+    element.parentElement.classList.add("cellSignError")
+    document.getElementById("emptyError").classList.remove("errorShowNone")
+
+    // remove the red border class style for each element when user enters input
+    element.addEventListener("input", () => {
+      element.parentElement.classList.remove("cellSignError")
+      element.parentElement.classList.add("cellSign")
+
+      const errorElements = document.querySelectorAll(".cellSignError")
+      if (errorElements.length === 0) {
+        document.getElementById("emptyError").classList.add("errorShowNone")
+      }
+    })
+  }
+}
+
+// sets errors based on provided fieldIDs
+function setFieldErrors(fieldName) {
+  const element = document.getElementById(fieldName);
+  if (element) {
+    element.parentElement.classList.remove("cellSign")
+    element.parentElement.classList.add("cellSignError")
+    if (fieldName == "email") {
+      document.getElementById("emailInvalidError").classList.remove("errorShowNone")
+    }
+    if (fieldName == "password") {
+      document.getElementById("passwordInvalidError").classList.remove("errorShowNone")
+    }
+    if (fieldName == "repeatPassword") {
+      document.getElementById("passwordsDontMatch").classList.remove("errorShowNone")
+    }
+      
+    element.addEventListener("input", () => {
+      if (fieldName == "email") {
+        document.getElementById("emailInvalidError").classList.add("errorShowNone")
+      }
+      if (fieldName == "password") {
+        document.getElementById("passwordInvalidError").classList.add("errorShowNone")
+      }
+      if (fieldName == "repeatPassword") {
+        document.getElementById("passwordsDontMatch").classList.add("errorShowNone")
+      }
+      
+      element.parentElement.classList.remove("cellSignError")
+      element.parentElement.classList.add("cellSign")
+    })
+  }
+}
+
+// function that handles signing up
 function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -13,28 +69,47 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  
-  /* TO DO (for whole project)
-  - implement extensive input validation and display that to user (use firebase error msgs)
-  - figure out how to get user data stored with account (first name, last name, email)
-        it doesn't currently work because we are already using main node for seats.
-  - implement tokens to track users throughout pages
-  - implement firebase login on login page
-  - implement tokens to track users through pages
-  - configure verify page to send email verification and auto reroute when email verification
-        is clicked (if possible... not sure now that we are not using node.js express because
-        then we could make server requests every x seconds until it's clicked) otherwise just
-        make seat map page protected route for logged in users.
-  - configure protected routes
-  - uhhh
-  */
 
-  // make sure passwords match
+  // some simple string manipulation to make names proper
+  const firstNameCap = ((firstName.charAt(0).toUpperCase()) + firstName.substring(1).toLowerCase())
+  const lastNameCap = ((lastName.charAt(0).toUpperCase()) + lastName.substring(1).toLowerCase())
+  const listOfFields = [
+    {name: 'firstName', value: firstName},
+    {name: 'lastName', value: lastName},
+    {name: 'email', value: email},
+    {name: 'password', value: password},
+    {name: 'repeatPassword', value: repeatPassword}
+  ];
+
   const handleSignUp = async () => {
+    let hasErrors = false;
+    
+    // check if any of the fields are empty, and if so, apply error styling
+    for (let i = 0; i < listOfFields.length; i++) {
+      if (checkIfEmpty(listOfFields[i].value)) {
+        setEmptyErrors(listOfFields[i].name);
+        hasErrors = true; // set the flag to true if an error is found
+      }
+    }
+    
+    // check if email, password, and repeat password are valid
+    if (checkIfEmailValid(email) === false) {
+      setFieldErrors("email");
+      hasErrors = true;
+    }
+    if (checkIfPasswordValid(password) === false) {
+      setFieldErrors("password");
+      hasErrors = true;
+    }
     if (password !== repeatPassword) {
-      setErrorMessage("Passwords do not match.");
+      setFieldErrors("repeatPassword");
+      hasErrors = true;
+    }
+  
+    if (hasErrors === true) { // if there are errors, do not create the user
       return;
     }
+
 
     // try to create a user with the function
     try {
@@ -47,8 +122,8 @@ function SignUp() {
 
       //Creates a new document in the database for the user's account details.
       const docRef = await setDoc(doc(dbstore, "users", user.uid), {
-        First_Name: firstName,
-        Last_Name: lastName,
+        First_Name: firstNameCap,
+        Last_Name: lastNameCap,
         Email: email
       });
 
@@ -86,7 +161,7 @@ function SignUp() {
                       <input 
                           className = "inputBoxSign" 
                           type = "text" 
-                          id = "inputFirstName"
+                          id = "firstName"
                           placeholder = "First name" 
                           maxLength = "100"
                           value = {firstName}
@@ -97,7 +172,7 @@ function SignUp() {
                       <input 
                           className = "inputBoxSign" 
                           type = "text" 
-                          id = "inputLastName"
+                          id = "lastName"
                           placeholder = "Last name" 
                           maxLength = "100"
                           value = {lastName}
@@ -110,7 +185,7 @@ function SignUp() {
                       <input 
                           className = "inputBoxSign"
                           type = "email"
-                          id = "inputEmail"
+                          id = "email"
                           placeholder = "Email" 
                           maxLength = "100"
                           value = {email}
@@ -123,7 +198,7 @@ function SignUp() {
                       <input 
                           className = "inputBoxSign" 
                           type = "password" 
-                          id = "inputPassword"
+                          id = "password"
                           placeholder = "Password"
                           maxLength = "100"
                           onChange={(e) => setPassword(e.target.value)} >
@@ -135,7 +210,7 @@ function SignUp() {
                       <input 
                           className = "inputBoxSign" 
                           type = "password" 
-                          id = "inputRepeatPassword"
+                          id = "repeatPassword"
                           placeholder = "Repeat password" 
                           maxLength = "100"
                           onChange={(e) => setRepeatPassword(e.target.value)} >
@@ -145,8 +220,24 @@ function SignUp() {
                 <tr>
                     <td colSpan = "2"><button className = "signupButton" onClick={() => { handleSignUp() }}>Continue</button></td>
                 </tr>
+
+                
           </table>
-        
+
+          <div class = "mainbodysubtitle">
+              <p class = "errorMsg errorShowNone" id = "emptyError">Error: You cannot leave the highlighted field(s) blank</p>
+          </div>
+          <div class = "mainbodysubtitle">
+              <p class = "errorMsg errorShowNone" id = "emailInvalidError">Error: The email you entered is invalid.</p>
+          </div>
+          <div class = "mainbodysubtitle">
+              <p class = "errorMsg errorShowNone" id = "passwordInvalidError">Error: Password must be at least 8
+              characters, include one capital letter and a special character</p>
+          </div>
+          <div class = "mainbodysubtitle">
+              <p class = "errorMsg errorShowNone" id = "passwordsDontMatch">Error: Passwords do not match</p>
+          </div>
+
       </div>
 
     </div>

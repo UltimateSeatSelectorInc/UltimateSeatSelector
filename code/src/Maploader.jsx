@@ -4,7 +4,7 @@ import { getDatabase, ref, update, child, onValue,  } from "firebase/database";
 import firebase from './firebase/firebase.js'; // database usage (don't remove)
 import Navbar from './navbar/Navbar.jsx'
 import Map from './Map.jsx'
-import './map.css'
+import './Map.css'
 
 // function that changes firebase values to seat taken and updates name/email
 export function submitChoice(index, name, email) {
