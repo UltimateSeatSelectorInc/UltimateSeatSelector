@@ -25,6 +25,7 @@ that information */
 
 /* IMPORTANT */
 
+/*
 onAuthStateChanged(auth, (user) => {
   if (user) {
     getUser(user.uid).then((result) => {
@@ -38,7 +39,7 @@ onAuthStateChanged(auth, (user) => {
       }
     });
   }
-});
+});*/
 
 // function that gets the user's location
 function getCurrentLocation() {
@@ -162,10 +163,26 @@ function Map(props) {
   }
 
   function submitInfo() {
-    const inputName = document.getElementById("inputName").value;
-    const inputEmail = document.getElementById("inputEmail").value;
-    submitChoice(props.seatStyle, inputName, inputEmail)
-    props.updateStyle()
+
+    // make a call here to check all seats to make sure
+    // that user hasn't already selected a seat. if they haven't allow below
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        getUser(user.uid).then((result) => {
+          if (result) {
+            const fullName = result.fullName;
+            const email = result.email
+            submitChoice(props.seatStyle, fullName, email)
+            props.updateStyle()
+          } else {
+            console.log("No user is logged in");
+          }
+        });
+      }
+    });
+
+
   }
 
   return (
@@ -406,19 +423,9 @@ function Map(props) {
         <div class = "popupStyle">
           <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
 
-          <table class = "inputTable">
-                <tr>
-                    <td class = "cell"><input class = "inputBox" type = "text" id = "inputName"
-                        placeholder = "Full Name" maxlength = "100"></input></td>
-                </tr>
-                <tr>
-                    <td class = "cell"><input class = "inputBox" type = "text" id = "inputEmail"
-                        placeholder = "Email" maxlength = "100"></input></td>
-                </tr>
-
-          </table>
-          <button class = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
+          <button class = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
           <button class = "submitButton" onClick={() => closeModal()}>Close</button>
+
         </div>
         </Modal>
       )}

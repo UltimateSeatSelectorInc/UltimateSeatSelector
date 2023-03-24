@@ -3,6 +3,11 @@ import Navbar from '../navbar/Navbar.jsx'
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import './Login.css';
 
+// need to implement input validation on this page.
+// same as signup, except just empty field error
+// and then must check if account exists (call firebase) if not, display error.
+
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
