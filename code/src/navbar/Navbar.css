@@ -37,6 +37,16 @@ body {
   display: block;
   padding: 12px;
 }
+
+.nav-link-user, .disabled {
+  color: rgb(255, 255, 255);
+  border-radius: 6px;
+  font-family: kanit;
+  text-decoration: none;
+  display: block;
+  padding: 12px;
+  pointer-events: none;
+}
   
 .nav-link:hover {
     background-color: #383f59;
@@ -47,6 +57,13 @@ body {
   text-decoration: none;
   opacity: 50%;
 }
+
+.nav-link-user.disabled {
+  pointer-events: none;
+  text-decoration: none;
+  opacity: 50%;
+}
+
 
 .profileImg {
   width: 26px;
