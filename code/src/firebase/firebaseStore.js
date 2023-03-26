@@ -28,7 +28,6 @@ export const useAuth = () => {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      console.log('Auth state changed:', user);
       setUser(user);
 
       // check if user is signed in and email is verified
@@ -41,9 +40,6 @@ export const useAuth = () => {
 
     return unsubscribe;
   }, [auth]);
-
-  console.log('User object:', user);
-  console.log('Email verified:', emailVerified);
 
   return { user, emailVerified, auth };
 };

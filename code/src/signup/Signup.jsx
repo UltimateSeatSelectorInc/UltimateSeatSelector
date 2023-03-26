@@ -70,9 +70,16 @@ function SignUp() {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // some simple string manipulation to make names proper
+  // some simple string manipulation to make names proper (with support for apostraphe's)
   const firstNameCap = ((firstName.charAt(0).toUpperCase()) + firstName.substring(1).toLowerCase())
-  const lastNameCap = ((lastName.charAt(0).toUpperCase()) + lastName.substring(1).toLowerCase())
+  let lastNameCap = ((lastName.charAt(0).toUpperCase()) + lastName.substring(1).toLowerCase())
+  const apostropheIndex = lastNameCap.indexOf("'")
+  if (apostropheIndex > 0 && apostropheIndex < lastNameCap.length - 1) {
+    const lastNameCapArray = lastNameCap.split('')
+    lastNameCapArray[apostropheIndex+1] = lastNameCapArray[apostropheIndex+1].toUpperCase()
+    lastNameCap = lastNameCapArray.join('')
+  }
+
   const listOfFields = [
     {name: 'firstName', value: firstName},
     {name: 'lastName', value: lastName},
@@ -130,8 +137,7 @@ function SignUp() {
       // reroute to verify page
       window.location.href = "/verify";
     } catch (error) {
-      alert(error.message) // using alert for now until input validation implemented
-      setErrorMessage(error.message);
+      document.getElementById("signupError").classList.remove("errorShowNone")
     }
   };
 
@@ -237,6 +243,9 @@ function SignUp() {
           <div class = "mainbodysubtitle">
               <p class = "errorMsg errorShowNone" id = "passwordsDontMatch">Error: Passwords do not match</p>
           </div>
+          <div class = "mainbodysubtitle">
+          <p class = "errorMsg errorShowNone" id = "signupError">Error: Could not sign you up: Contact administrator</p>
+        </div>
 
       </div>
 

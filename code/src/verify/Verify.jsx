@@ -11,9 +11,13 @@ function sendVerification() {
 
   try {
     const user = auth.currentUser;
-    
+
     if (user) {
-      // Send verification email
+      if (user.emailVerified) { // display special message if they are already verified
+        var showAlreadyVMsg = document.getElementById("alreadyVerifiedMsg")
+        showAlreadyVMsg.style.display = "block"
+      } else {
+        // Send verification email
         sendEmailVerification(auth.currentUser)
           .then(() => {
             const intervalId = setInterval(() => { // set timer
@@ -24,28 +28,25 @@ function sendVerification() {
                     clearInterval(intervalId);
                     window.location.href = "/";
                   }
-                }) // else, display error
+                })
                 .catch((error) => {
                   console.log(error);
                 });
-            }, 5000); // Check verification status every 5 seconds
+            }, 3000); // Check verification status every 3 seconds
           })
-          .catch((error) => {
-            alert(error)
-          });
-      } else {
-        alert("user not signed in")
+
+        // display the "message sent" text
+        var showMessage = document.getElementById("emailSentMsg");
+        showMessage.style.display = "block";
       }
+    } else {
+      alert("User not signed in.");
+    }
 
   } catch (error) {
     alert(error.message) // for dev... make more meaningful later
   }
-
-  // display the "message sent" text
-  var showMessage = document.getElementById("emailSentMsg");
-  showMessage.style.display = "block"
 }
-
 function Verify() {
     return (
   
@@ -76,7 +77,12 @@ function Verify() {
 
             <div class = "mainbodysubtitle">
               <p class = "emailMessage" id = "emailSentMsg">Email sent! Check your inbox. Click the link 
-              to be automatically rerouted!</p>
+              in the email to gain access!</p>
+            </div>
+
+            <div class = "mainbodysubtitle">
+              <p class = "emailMessage" id = "alreadyVerifiedMsg">You have already been verified. Please
+              navigate to the <strong><a href="/">Seat Map</a></strong></p>
             </div>
 
         </div>

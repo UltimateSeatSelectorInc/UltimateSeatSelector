@@ -67,21 +67,19 @@ function Map(props) {
   const [chosenModalIsOpen, setChosenModalIsOpen] = useState(false);
   const [tableModalIsOpen, setTableModalIsOpen] = useState(false);
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
-  const { user, emailVerified } = useAuth();
   
-  // simple rereouting for those not logged in or not verified
- // simple rereouting for those not logged in or not verified
- /*
-console.log(user, emailVerified);
-if (!user) {
-  console.log('Redirecting to login page');
-  window.location.replace('/login'); // redirect to the login page
-} else if (user && !emailVerified) {
-  console.log('Redirecting to verify page');
-  window.location.replace('/verify'); // redirect to the verify page
-}
-*/
-
+  // checks status of user and redirects them accordingly
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      if (user.emailVerified) {
+        // do nothing, user is logged in and verified
+      } else {
+        window.location.replace("/verify") // account not verified
+      }
+    } else {
+        window.location.replace("/login") // account not logged in
+    }
+  });
 
   function handleHover() {
     setHover(true);

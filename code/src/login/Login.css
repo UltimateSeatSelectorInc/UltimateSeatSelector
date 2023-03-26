@@ -47,6 +47,23 @@ h1 {
     border-radius: 4px;
     padding: 7px;
 }
+
+
+
+.cellSignError {
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 7px;
+}
+
+.errorMsg {
+    text-align: center;
+    color: rgb(255, 0, 0);
+}
+
+.errorShowNone {
+    display: none;
+}
   
 .inputBoxLog {
     color: rgb(255, 255, 255);
