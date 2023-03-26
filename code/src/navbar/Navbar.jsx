@@ -41,6 +41,9 @@ function Navbar(props) {
       <div className="navbar-title">Ultimate Seat Selector</div>
       <ul className="navbar-nav">
         <li className="nav-item">
+          <a href="/instructor" className={`nav-link ${isActive ? '' : 'disabled'}`}>Instructor</a>
+        </li>
+        <li className="nav-item">
           <a href="/" className={`nav-link ${isActive ? '' : 'disabled'}`}>Seat Map</a>
         </li>
         <li className="nav-item">

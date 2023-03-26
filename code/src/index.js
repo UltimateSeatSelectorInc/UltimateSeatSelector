@@ -7,6 +7,7 @@ import SignUp from './signup/Signup.jsx';
 import Login from './login/Login.jsx';
 import Verify from './verify/Verify.jsx';
 import About from './about/About.jsx';
+import Instructor from './instructor/Instructor.jsx';
 
 
 // simple routing
@@ -24,6 +25,8 @@ function App() {
     return <Verify />;
   } else if (path === '/about') {
     return <About />;
+  } else if (path === '/instructor') {
+    return <Instructor />;
   } else {
     return <div>404 Not Found</div>;
   }
