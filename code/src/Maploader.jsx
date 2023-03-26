@@ -37,20 +37,6 @@ function Maploader(){
     })
 }, [])
 
-// changes firebase data to seat not taken, removing name and email
-function deSelectSeat() {
-  const db = ref(getDatabase());
-  const updates = {};
-  updates['chosen'] = false;
-  updates['name'] = '';
-  updates['email'] = '';
-
-  for (let i = 0; i < 36; i++) {
-    const seatRef = child(db, i.toString());
-    update(seatRef, updates);
-  }
-}
-
 // The svg style styles the entire image on the page.
 function updateStyle(index){ 
   setSeatStyle((prev) => (prev === index ? null : index))
@@ -60,8 +46,6 @@ function updateStyle(index){
     <div>
 
         <Navbar isActive = { true } />
-
-        <button onClick = {() => {deSelectSeat()}}>De-select all seats (DEV)</button>
 
         <svg className = "map" viewBox="119 -150 1000 2000">
         {seats && seats.map((seat, index) => 
