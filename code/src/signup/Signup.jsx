@@ -238,7 +238,7 @@ function SignUp() {
           </div>
           <div class = "mainbodysubtitle">
               <p class = "errorMsg errorShowNone" id = "passwordInvalidError">Error: Password must be at least 8
-              characters, include one capital letter and a special character</p>
+              characters, include one capital letter, one lowercase, and a special character</p>
           </div>
           <div class = "mainbodysubtitle">
               <p class = "errorMsg errorShowNone" id = "passwordsDontMatch">Error: Passwords do not match</p>
