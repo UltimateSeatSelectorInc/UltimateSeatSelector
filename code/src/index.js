@@ -35,7 +35,7 @@ function App() {
 Modal.setAppElement(document.body); // <-- add this line
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+//  <React.StrictMode>
     <App />
-  </React.StrictMode>
+//  </React.StrictMode>
 );
