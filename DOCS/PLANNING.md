@@ -20,3 +20,6 @@ functionality.
 
 ## Sprint 5 Planning Mar 14, 2023
 - Our priority for the sprint will be to implement a second database for user account info, configure special priveleges for instructors and protected routes, and get token/user tracking functioning.
+
+## Sprint 6 Planning Mar 28, 2023
+- For this sprint, we want to fully implement the instructor page and extend the account features. In addition, we want to add different options for seats, like being able to deselect them on your own and not being able to select the podem without being an instructor.

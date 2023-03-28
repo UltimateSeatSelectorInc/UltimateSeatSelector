@@ -21,11 +21,83 @@
     font-size: 20px;
 }
 
-.displayAttendance {
+.displayAttendance1 {
     font-family: kanit;
     position: absolute;
     top: 30%;
-    left: 31%;
+    left: 10%;
+    font-size: 20px;
+    color: white;
+}
+.displayAttendance1header {
+    font-family: kanit;
+    position: absolute;
+    top: 27%;
+    left: 10%;
+    font-size: 20px;
+    color: white;
+}
+.displayAttendance2 {
+    font-family: kanit;
+    position: absolute;
+    top: 30%;
+    left: 55%;
+    font-size: 20px;
+    color: white;
+}
+.displayAttendance2header {
+    font-family: kanit;
+    position: absolute;
+    top: 27%;
+    left: 55%;
+    font-size: 20px;
+    color: white;
+}
+.displayAttendance3 {
+    font-family: kanit;
+    position: absolute;
+    top: 60%;
+    left: 10%;
+    font-size: 20px;
+    color: white;
+}
+.displayAttendance3header {
+    font-family: kanit;
+    position: absolute;
+    top: 57%;
+    left: 10%;
+    font-size: 20px;
+    color: white;
+}
+.displayAttendance4 {
+    font-family: kanit;
+    position: absolute;
+    top: 60%;
+    left: 55%;
+    font-size: 20px;
+    color: white;
+}
+.displayAttendance4header {
+    font-family: kanit;
+    position: absolute;
+    top: 57%;
+    left: 55%;
+    font-size: 20px;
+    color: white;
+}
+.displayAttendance5 {
+    font-family: kanit;
+    position: absolute;
+    top: 90%;
+    left: 35%;
+    font-size: 20px;
+    color: white;
+}
+.displayAttendance5header {
+    font-family: kanit;
+    position: absolute;
+    top: 87%;
+    left: 35%;
     font-size: 20px;
     color: white;
 }

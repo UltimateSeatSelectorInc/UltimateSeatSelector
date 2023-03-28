@@ -12,4 +12,4 @@
 - Upon reviewing Sprint 4, we managed to get our production environment working and improved the looks of the front-end. We have a good starting point for Sprint 5 and made massive progress towards the MVP. Ultimately, we were happy with our progress towards meeting our user stories.
 
 ## Sprint 5 Review Mar 28, 2023
-- 
+- Upon reviewing Sprint 5, we made quite a bit of progress. Unfortunately we didn't finish every user story but some of our estimates on the amount of hours other stories would take was off. We still made massive progress and completely finished MVP so we were satisfied with what we accomplished.
