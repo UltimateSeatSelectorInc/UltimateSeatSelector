@@ -117,7 +117,6 @@ function SignUp() {
       return;
     }
 
-
     // try to create a user with the function
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -137,7 +136,12 @@ function SignUp() {
       // reroute to verify page
       window.location.href = "/verify";
     } catch (error) {
-      document.getElementById("signupError").classList.remove("errorShowNone")
+      if (error == "FirebaseError: Firebase: Error (auth/email-already-in-use).") {
+        document.getElementById("emailInUseError").classList.remove("errorShowNone")
+      } else {
+        document.getElementById("signupError").classList.remove("errorShowNone")
+      }
+      
     }
   };
 
@@ -157,7 +161,8 @@ function SignUp() {
         </div>
         <div className = "mainbodysubtitle">
           <p>Signup to Utimate Seat Selector with an email and password. You will
-            receive an email to verify your account.
+            receive an email to verify your account. Are you an instructor?
+            Contact an administrator.
           </p>
         </div>
 
@@ -238,14 +243,17 @@ function SignUp() {
           </div>
           <div class = "mainbodysubtitle">
               <p class = "errorMsg errorShowNone" id = "passwordInvalidError">Error: Password must be at least 8
-              characters, include one capital letter, one lowercase, and a special character</p>
+              characters, include one uppercase letter, one lowercase, a number, and a special character</p>
           </div>
           <div class = "mainbodysubtitle">
               <p class = "errorMsg errorShowNone" id = "passwordsDontMatch">Error: Passwords do not match</p>
           </div>
           <div class = "mainbodysubtitle">
+          <p class = "errorMsg errorShowNone" id = "emailInUseError">Error: This email is already in use!</p>
+          </div>
+          <div class = "mainbodysubtitle">
           <p class = "errorMsg errorShowNone" id = "signupError">Error: Could not sign you up: Contact administrator</p>
-        </div>
+          </div>
 
       </div>
 

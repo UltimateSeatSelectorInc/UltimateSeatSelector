@@ -1,5 +1,5 @@
 const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const validPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+const validPass = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+-=,./?;':"[\]{}`|<>]).{8,}$/;
 
 // checks if any field is empty, and if it is, returns that field
 function checkIfEmpty(field) {
@@ -23,6 +23,7 @@ function checkIfEmailValid(email) {
 function checkIfPasswordValid(password) {
     if (!password.match(validPass)){
         return false
+
     } else {
         return true
     }
