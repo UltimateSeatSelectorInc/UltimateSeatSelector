@@ -1,5 +1,25 @@
 # Eric's Angels Sprint Backlog
 
+## **Sprint 6 Backlog**
+
+### User Stories:
+- (MATT 4) As a user, I don't want to be able to select more than one seat
+- (VINCE 6) As a user, I want to be able to deselect a seat
+- (MATT 6) As a user, I want an account page where I am able to delete my account or reset my password
+- (CONNOR 3) As a user, I don't want to be able to select the instructor lectern
+- (VINCE 8) As an instructor, I want the ability to add an instructor on another page
+- (CONNOR 4) As an instructor, I want to be able to see a list of who is in attendence organized by table
+- (CONNOR 4) As an instructor, I want to be able to download an excel spreadsheet of 
+- (CONNOR 3) As an instructor, I want to be warned before I clear the table and reminded to download an excel sheet before I do it.
+- (MATT 2) As a user, I want error messages for emails that are already in use for signing up or not found for logging in
+- (MATT 2) As a student, I don't want to be able to access instructor pages
+
+
+**Total Story Points: 42**
+Matt: 14
+Vince: 14
+Connor: 14
+
 ## **Sprint 5 Backlog**
 
 ### User Stories:
