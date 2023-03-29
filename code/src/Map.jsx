@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { auth } from "./firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { getDatabase, ref, get, child } from "firebase/database";
 import { submitChoice } from "./Maploader";
-import { collection, getDoc, doc } from "firebase/firestore"; 
-import { dbstore, useAuth } from "./firebase/firebaseStore";
+import { collection, getDoc, doc  } from "firebase/firestore"; 
+import { dbstore } from "./firebase/firebaseStore";
 import { motion } from 'framer-motion';
 import './index.css';
 
@@ -57,6 +58,37 @@ async function getUser(userID) {
         return null;
       }
     })
+}
+
+// function that checks currently logged-in user's email address against all
+// email addresses in the seat database. If there is a match, return true
+async function checkUser() {
+  const db = ref(getDatabase()); // reference to database
+  return new Promise((resolve, reject) => { // return a promise
+    auth.onAuthStateChanged(function(user) { // check user
+      if (user) {
+        const seatPromises = [];
+        for (let i = 0; i < 36; i++) { // loop through all the seats
+          const seatRef = child(db, i.toString());
+          seatPromises.push(get(seatRef).then((snapshot) => {
+            const seat = snapshot.val();
+            if (seat.email == user.email) { // for each seat, check email against email
+              return true;
+            } else {
+              return false;
+            }
+          }));
+        }
+        Promise.all(seatPromises).then((results) => { // use promise.all to wait for all checks
+          if (results.some((result) => result === true)) {
+            resolve(true);
+          } else {
+            resolve(false); // return true or false based on return of all promise checks
+          }
+        });
+      }
+    });
+  });
 }
 
 function Map(props) {
@@ -118,10 +150,18 @@ function Map(props) {
         console.log("LECTERN SELECTED");
     
       } else if (!props.chosen) { // If not, display regular popup
-        props.updateStyle(index);
-        console.log("SEAT SELECTED");
-        setModalIsOpen(true);
-    
+
+          // calls function to check if user has already selected a seat
+          checkUser().then((result) => {
+            if (result == false) { // if no match, allow user to select seat
+              props.updateStyle(index);
+              console.log("SEAT SELECTED");
+              setModalIsOpen(true);
+            } else { // if user already selected a seat, don't display popup
+              console.log("USER ALREADY SELECTED A SEAT")
+            }
+          });
+
       } else if (props.chosen) { // If already chosen, display information popup
         props.updateStyle(index);
         setModalIsOpen(false)
@@ -135,7 +175,7 @@ function Map(props) {
       //alert("Unable to get your location. Please check your location settings.");
     //}**GEO IMPLEMENTATION**
   }
- 
+
   function closeModal() {
     setModalIsOpen(false);
     setlecternModalIsOpen(false);
@@ -144,9 +184,6 @@ function Map(props) {
   }
 
   function submitInfo() {
-
-    // make a call here to check all seats to make sure
-    // that user hasn't already selected a seat. if they haven't allow below
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -162,8 +199,6 @@ function Map(props) {
         });
       }
     });
-
-
   }
 
   return (
@@ -240,10 +275,10 @@ function Map(props) {
               },
             }}
           >
-          <div class = "popupStyle">
+          <div className = "popupStyle">
             <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
   
-            <table class = "inputTable">
+            <table className = "inputTable">
                   <tr>
                       <td><p>Seat Claimed by: {props.name}</p></td>
                   </tr>
@@ -253,7 +288,7 @@ function Map(props) {
                       
                   
             </table>
-            <button class = "submitButton" onClick={() => closeModal()}>Close</button>
+            <button className = "submitButton" onClick={() => closeModal()}>Close</button>
           </div>
           </Modal>
         ) : null}
@@ -320,10 +355,10 @@ function Map(props) {
             }}
             
           >
-          <div class = "popupStyle">
+          <div className = "popupStyle">
             <h2>Table {props.seat[5]} </h2>
 
-            <button class = "submitButton" onClick={() => closeModal()}>Close</button>
+            <button className = "submitButton" onClick={() => closeModal()}>Close</button>
           </div>
           </Modal>
         ) : null}
@@ -355,23 +390,23 @@ function Map(props) {
             },
           }}
         >
-        <div class = "popupStyle">
+        <div className = "popupStyle">
           <h2>Lectern (Instructor) </h2>
 
-          <table class = "inputTable">
+          <table className = "inputTable">
                 <tr>
-                    <td class = "cell"><input class = "inputBox" type = "text" id = "inputName"
+                    <td className = "cell"><input className = "inputBox" type = "text" id = "inputName"
                         placeholder = "Full Name" maxlength = "100"></input></td>
                 </tr>
                 <tr>
-                    <td class = "cell"><input class = "inputBox" type = "text" id = "inputEmail"
+                    <td className = "cell"><input className = "inputBox" type = "text" id = "inputEmail"
                         placeholder = "Email" maxlength = "100"></input></td>
                 </tr>
                     
                 
             </table>
-          <button class = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
-          <button class = "submitButton" onClick={() => closeModal()}>Close</button>
+          <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
+          <button className = "submitButton" onClick={() => closeModal()}>Close</button>
         </div>
         </Modal>
       ) : (
@@ -401,11 +436,11 @@ function Map(props) {
             },
           }}
         >
-        <div class = "popupStyle">
+        <div className = "popupStyle">
           <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
 
-          <button class = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
-          <button class = "submitButton" onClick={() => closeModal()}>Close</button>
+          <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
+          <button className = "submitButton" onClick={() => closeModal()}>Close</button>
 
         </div>
         </Modal>
