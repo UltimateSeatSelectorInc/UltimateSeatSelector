@@ -134,25 +134,33 @@ function Map(props) {
   async function handleClick() {
     const index = props.index
     const userEmail = auth.currentUser.email;
-    if (props.seat.includes("TABLE")) {
-      props.updateStyle(index, 'blue')
-      setTableModalIsOpen(true);
-      console.log("TABLE SELECTED");
-    } else if (props.seat === "Lectern") {
-      props.updateStyle(index);
-      setlecternModalIsOpen(true);
-      console.log("LECTERN SELECTED");
+    if (props.seat.includes("TABLE")) { // If table selected
+        props.updateStyle(index, 'blue')
+        setTableModalIsOpen(true);
+        console.log("TABLE SELECTED");
+    } else if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
+        props.updateStyle(index);
+        setlecternModalIsOpen(true);
+        console.log("LECTERN SELECTED");
     } else if (props.chosen && props.email === userEmail) {
-      setDeselectModalIsOpen(true);
-    } else if (!props.chosen) {
-      props.updateStyle(index);
-      console.log("SEAT SELECTED");
-      setModalIsOpen(true);
-    } else if (props.chosen) {
-      props.updateStyle(index);
-      setModalIsOpen(false);
-      setChosenModalIsOpen(true);
-      console.log("CHOSEN SEAT SELECTED");
+        setDeselectModalIsOpen(true);
+    } else if (!props.chosen) { // If not, display regular popup
+        // calls function to check if user has already selected a seat
+        checkUser().then((result) => {
+          if (result == false) { // if no match, allow user to select seat
+            props.updateStyle(index);
+          console.log("SEAT SELECTED");
+          setModalIsOpen(true);
+          }
+          else { // if user already selected a seat, don't display popup
+            console.log("USER ALREADY SELECTED A SEAT")
+          }
+        })
+    } else if (props.chosen) { // If already chosen, display information popup
+        props.updateStyle(index);
+        setModalIsOpen(false);
+        setChosenModalIsOpen(true);
+        console.log("CHOSEN SEAT SELECTED");
     }
     
   }
