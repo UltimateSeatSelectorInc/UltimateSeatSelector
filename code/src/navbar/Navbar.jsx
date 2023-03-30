@@ -54,7 +54,7 @@ function Navbar(props) {
         </li>
         {user && (
           <li className="nav-item">
-            <a  className={`nav-link-user ${isActive ? '' : 'disabled'}`}>{firstName}</a>
+            <a href = "/account" className={`nav-link ${isActive ? '' : 'disabled'}`}>{firstName}</a>
           </li>
         )}
       </ul>

@@ -6,7 +6,7 @@ import Maploader from './Maploader.jsx';
 import SignUp from './signup/Signup.jsx';
 import Login from './login/Login.jsx';
 import Verify from './verify/Verify.jsx';
-import About from './about/About.jsx';
+import Account from './account/account.jsx';
 import Instructor from './instructor/Instructor.jsx';
 
 
@@ -23,10 +23,11 @@ function App() {
     return <SignUp />;
   } else if (path === '/verify') {
     return <Verify />;
-  } else if (path === '/about') {
-    return <About />;
+  } else if (path === '/account') {
+    return <Account />;
   } else if (path === '/instructor') {
     return <Instructor />;
+    
   } else {
     return <div>404 Not Found</div>;
   }
