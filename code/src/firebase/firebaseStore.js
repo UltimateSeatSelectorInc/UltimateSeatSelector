@@ -5,6 +5,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { useState, useEffect } from 'react';
 import { auth } from "./firebase.js";
+import { doc, getDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBehKF152E5XJdsZf-Yzj5PBaX3DOiFeRk",
@@ -25,23 +26,31 @@ const dbstore = getFirestore(app);
 export const useAuth = () => {
   const [user, setUser] = useState(null);
   const [emailVerified, setEmailVerified] = useState(false);
+  const [isInstructor, setIsInstructor] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(async user => {
       setUser(user);
 
       // check if user is signed in and email is verified
       if (user && user.emailVerified) {
         setEmailVerified(true);
+
+        // Get the isInstructor flag from the Firestore database
+        const docRef = doc(dbstore, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+        setIsInstructor(docSnap.data().isInstructor);
+        
       } else {
         setEmailVerified(false);
+        setIsInstructor(false);
       }
     });
 
     return unsubscribe;
   }, [auth]);
 
-  return { user, emailVerified, auth };
+  return { user, emailVerified, auth, isInstructor };
 };
 
 export { app, dbstore };

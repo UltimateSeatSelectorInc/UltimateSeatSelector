@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { auth } from "./firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, get, child } from "firebase/database";
+import { getDatabase, ref, get, child, update } from "firebase/database";
 import { submitChoice } from "./Maploader";
 import { collection, getDoc, doc  } from "firebase/firestore"; 
-import { dbstore } from "./firebase/firebaseStore";
+import { dbstore,useAuth } from "./firebase/firebaseStore";
 import { motion } from 'framer-motion';
 import './index.css';
-
 
 // function that gets the user's location
 function getCurrentLocation() {
@@ -26,6 +25,7 @@ function getCurrentLocation() {
     );
   });
 }
+
 // function that gets the distance between two coords
 function getDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; // Earth's radius in km
@@ -99,6 +99,7 @@ function Map(props) {
   const [chosenModalIsOpen, setChosenModalIsOpen] = useState(false);
   const [tableModalIsOpen, setTableModalIsOpen] = useState(false);
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
+  const [deselectModalIsOpen, setDeselectModalIsOpen] = useState(false);
   
   // checks status of user and redirects them accordingly
   onAuthStateChanged(auth, (user) => {
@@ -113,67 +114,55 @@ function Map(props) {
     }
   });
 
+  // function that deselects users seat, called from deselect Modal
+  function deselectSeat() {
+    const db = ref(getDatabase());
+    const updates = {};
+    updates["chosen"] = false;
+    updates["name"] = "";
+    updates["email"] = "";
+    const seatRef = child(db, props.index.toString());
+    update(seatRef, updates);
+    console.log("CHOSEN SEAT DESELECTED");
+    closeModal()
+  }
+
   function handleHover() {
     setHover(true);
   }
 
   async function handleClick() {
-    // Get Lewis University's coordinates (latitude and longitude)
-    const lewisUniversityLat = 41.6053;
-    const lewisUniversityLon = -88.0798;
-    const index = props.index;
-    setWasSelected(!wasSelected)
-  
-    // Get the user's current location
-    //try { **GEO IMPLEMENTATION**
-      //const location = await getCurrentLocation();
-      //const distance = getDistance(
-        //location.latitude,
-        //location.longitude,
-        //lewisUniversityLat,
-        //lewisUniversityLon
-     //);**GEO IMPLEMENTATION**
-
-      // Set an allowed distance range in kilometers (e.g., 1 km)
-      const allowedDistance = 1000;
-      if (props.seat.includes("TABLE")) { // if table is selected
+    const index = props.index
+    const userEmail = auth.currentUser.email;
+    if (props.seat.includes("TABLE")) { // If table selected
         props.updateStyle(index, 'blue')
-        setTableModalIsOpen(true)
-        console.log("TABLE SELECTED")
-    
-      }   
-      //else if (distance <= allowedDistance) {**GEO IMPLEMENTATION**
-        // If the user is within range, display the modal to claim a seat
-      else if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
+        setTableModalIsOpen(true);
+        console.log("TABLE SELECTED");
+    } else if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
         props.updateStyle(index);
-        setlecternModalIsOpen(true)
+        setlecternModalIsOpen(true);
         console.log("LECTERN SELECTED");
-    
-      } else if (!props.chosen) { // If not, display regular popup
-
-          // calls function to check if user has already selected a seat
-          checkUser().then((result) => {
-            if (result == false) { // if no match, allow user to select seat
-              props.updateStyle(index);
-              console.log("SEAT SELECTED");
-              setModalIsOpen(true);
-            } else { // if user already selected a seat, don't display popup
-              console.log("USER ALREADY SELECTED A SEAT")
-            }
-          });
-
-      } else if (props.chosen) { // If already chosen, display information popup
+    } else if (props.chosen && props.email === userEmail) {
+        setDeselectModalIsOpen(true);
+    } else if (!props.chosen) { // If not, display regular popup
+        // calls function to check if user has already selected a seat
+        checkUser().then((result) => {
+          if (result == false) { // if no match, allow user to select seat
+            props.updateStyle(index);
+          console.log("SEAT SELECTED");
+          setModalIsOpen(true);
+          }
+          else { // if user already selected a seat, don't display popup
+            console.log("USER ALREADY SELECTED A SEAT")
+          }
+        })
+    } else if (props.chosen) { // If already chosen, display information popup
         props.updateStyle(index);
-        setModalIsOpen(false)
+        setModalIsOpen(false);
         setChosenModalIsOpen(true);
-        console.log("CHOSEN SEAT SELECTED")
-      }
-      //} else {**GEO IMPLEMENTATION**
-          //setAlertModalIsOpen(true);
-      //}
-    //} catch (error) {
-      //alert("Unable to get your location. Please check your location settings.");
-    //}**GEO IMPLEMENTATION**
+        console.log("CHOSEN SEAT SELECTED");
+    }
+    
   }
 
   function closeModal() {
@@ -181,6 +170,7 @@ function Map(props) {
     setlecternModalIsOpen(false);
     setChosenModalIsOpen(false)
     setTableModalIsOpen(false)
+    setDeselectModalIsOpen(false)
   }
 
   function submitInfo() {
@@ -202,131 +192,171 @@ function Map(props) {
   }
 
   return (
-    <>
-      <text
-        display={hover || props.seatStyle === props.index ? "block" : "none"}
-        x={props.x}
-        y={props.y + 50}
-        fontSize="10"
-        fill="black"
-        height={props.height}
-        width={props.width}
-      >
-      </text>
-      <motion.rect
-        initial={false}
-        whileHover={
-          !props.seat.includes("TABLE")
-            ? {
-              scale: [1, 0.95, 1],
-              transition: { duration: 0.2, ease: "easeOut" },
-              }
-            : {}
-        }
-        onMouseEnter={() => handleHover()}
-        onMouseLeave={() => setHover(false)}
-        onClick={() => handleClick()}
-        x={props.x}
-        y={props.y}
-        height={props.height + 4}
-        width={props.width + 4}
-        fill={
-          props.chosen
-            ? hover && props.updateStyle
+      <>
+        <text
+          display={hover || props.seatStyle === props.index ? "block" : "none"}
+          x={props.x}
+          y={props.y + 50}
+          fontSize="10"
+          fill="black"
+          height={props.height}
+          width={props.width}
+        >
+        </text>
+        <motion.rect
+          initial={false}
+          whileHover={
+            !props.seat.includes("TABLE")
+              ? {
+                scale: [1, 0.95, 1],
+                transition: { duration: 0.2, ease: "easeOut" },
+                }
+              : {}
+          }
+          onMouseEnter={() => handleHover()}
+          onMouseLeave={() => setHover(false)}
+          onClick={() => handleClick()}
+          x={props.x}
+          y={props.y}
+          height={props.height + 4}
+          width={props.width + 4}
+          fill={
+            props.chosen
+              ? hover && props.updateStyle
+                ? "grey"
+                : "white"
+              : "transparent"
+          }
+          stroke={
+            props.chosen && hover && props.updateStyle
               ? "grey"
+              : props.chosen && !props.seat.includes("TABLE")
+              ? "white"
+              : hover || props.seatStyle === props.index
+              ? "yellow"
               : "white"
-            : "transparent"
-        }
-        stroke={
-          props.chosen && hover && props.updateStyle
-            ? "grey"
-            : props.chosen && !props.seat.includes("TABLE")
-            ? "white"
-            : hover || props.seatStyle === props.index
-            ? "yellow"
-            : "white"
-        }
-        strokeWidth="5"
-      ></motion.rect>
-        {chosenModalIsOpen ? (
-            <Modal // Chosen seat modal - popup, just displays who claimed seat.
-            isOpen={chosenModalIsOpen}
-            onRequestClose={() => closeModal()}
-            contentLabel="Example Modal"
-            className = "chosenModal"
-            style={{
-              overlay: {
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                zIndex: 999,
-  
-              },
-              content: {
-                position: "fixed",
-                top: "35%",
-                left: "50%",
-                backgroundColor: "#1a1d29",
-                transform: "translate(-50%, -50%)",
-                color: "white",
-                backgroundColor: "#1a1d29",
-                border: "black",
-                borderRadius: "10px",
-                outline: "none",
-                padding: "10px"
-              },
-            }}
-          >
-          <div className = "popupStyle">
-            <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
-  
-            <table className = "inputTable">
-                  <tr>
-                      <td><p>Seat Claimed by: {props.name}</p></td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                  </tr>
-                      
-                  
-            </table>
-            <button className = "submitButton" onClick={() => closeModal()}>Close</button>
-          </div>
-          </Modal>
-        ) : null}
-        {alertModalIsOpen ? (
-          <Modal
-            isOpen={alertModalIsOpen}
-            onRequestClose={() => setAlertModalIsOpen(false)}
-            contentLabel="Alert Modal"
-            style={{
-              overlay: {
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                zIndex: 999,
-  
-              },
-              content: {
-                position: "fixed",
-                top: "35%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "25%",
-                height: "20%",
-                fontSize: "16px",
-                backgroundColor: "#1a1d29",
-                border: "black",
-                borderRadius: "10px",
-                outline: "none",
-                padding: "20px",
-              },
-            }}
-          >
-            <div className="popupStyle">
-              <h2>You must be at Lewis University to claim a seat.</h2>
-              <button className="submitButton" onClick={() => setAlertModalIsOpen(false)}>
-                Close
-              </button>
+          }
+          strokeWidth="5"
+        ></motion.rect>
+          {deselectModalIsOpen ? (
+              <Modal
+                isOpen={deselectModalIsOpen}
+                onRequestClose={() => closeModal()}
+                contentLabel="Deselect Modal"
+                style={{
+                  overlay: {
+                    backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    zIndex: 999,
+                  },
+                  content: {
+                    position: "fixed",
+                    width: "20%",
+                    height: "20%",
+                    top: "35%",
+                    left: "50%",
+                    backgroundColor: "#1a1d29",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    backgroundColor: "#1a1d29",
+                    border: "black",
+                    borderRadius: "10px",
+                    outline: "none",
+                    padding: "10px",
+                  },
+                }}
+              >
+                <div className="popupStyle">
+                  <h2>Are you sure you want to deselect this seat?</h2>
+                  <button className="submitButton" onClick={() => deselectSeat()}>
+                    Yes
+                  </button>
+                  <button className="submitButton" onClick={() => closeModal()}>
+                    No
+                  </button>
+                </div>
+              </Modal>
+          ) : null}
+
+          {chosenModalIsOpen ? (
+              <Modal // Chosen seat modal - popup, just displays who claimed seat.
+              isOpen={chosenModalIsOpen}
+              onRequestClose={() => closeModal()}
+              contentLabel="Example Modal"
+              className = "chosenModal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 999,
+
+                },
+                content: {
+                  position: "fixed",
+                  top: "35%",
+                  left: "50%",
+                  backgroundColor: "#1a1d29",
+                  transform: "translate(-50%, -50%)",
+                  color: "white",
+                  backgroundColor: "#1a1d29",
+                  border: "black",
+                  borderRadius: "10px",
+                  outline: "none",
+                  padding: "10px"
+                },
+              }}
+            >
+            <div className = "popupStyle">
+              <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
+
+              <table className = "inputTable">
+                    <tr>
+                        <td><p>Seat Claimed by: {props.name}</p></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                        
+                    
+              </table>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
             </div>
-          </Modal>
-        ) : null}
+            </Modal>
+          ) : null}
+
+          {alertModalIsOpen ? (
+            <Modal
+              isOpen={alertModalIsOpen}
+              onRequestClose={() => setAlertModalIsOpen(false)}
+              contentLabel="Alert Modal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 999,
+
+                },
+                content: {
+                  position: "fixed",
+                  top: "35%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "25%",
+                  height: "20%",
+                  fontSize: "16px",
+                  backgroundColor: "#1a1d29",
+                  border: "black",
+                  borderRadius: "10px",
+                  outline: "none",
+                  padding: "20px",
+                },
+              }}
+            >
+              <div className="popupStyle">
+                <h2>You must be at Lewis University to claim a seat.</h2>
+                <button className="submitButton" onClick={() => setAlertModalIsOpen(false)}>
+                  Close
+                </button>
+              </div>
+            </Modal>
+          ) : null}
 
           {tableModalIsOpen ? (
             <Modal // Table seat model, just contains the table name
@@ -338,7 +368,7 @@ function Map(props) {
               overlay: {
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
                 zIndex: 999,
-  
+
               },
               content: {
                 position: "fixed",
@@ -363,89 +393,89 @@ function Map(props) {
           </Modal>
         ) : null}
 
-      {lecternModalIsOpen ? (
-        <Modal // Regular Modal - popup
-          isOpen={lecternModalIsOpen}
-          onRequestClose={() => closeModal()}
-          contentLabel="Example Modal"
-          className = "lecternModal"
-          style={{
-            overlay: {
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              zIndex: 999,
+          {lecternModalIsOpen ? (
+            <Modal // Regular Modal - popup
+              isOpen={lecternModalIsOpen}
+              onRequestClose={() => closeModal()}
+              contentLabel="Example Modal"
+              className = "lecternModal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 999,
 
-            },
-            content: {
-              position: "fixed",
-              top: "35%",
-              left: "50%",
-              backgroundColor: "#1a1d29",
-              transform: "translate(-50%, -50%)",
-              color: "white",
-              backgroundColor: "#1a1d29",
-              border: "black",
-              borderRadius: "10px",
-              outline: "none",
-              padding: "10px"
-            },
-          }}
-        >
-        <div className = "popupStyle">
-          <h2>Lectern (Instructor) </h2>
+                },
+                content: {
+                  position: "fixed",
+                  top: "35%",
+                  left: "50%",
+                  backgroundColor: "#1a1d29",
+                  transform: "translate(-50%, -50%)",
+                  color: "white",
+                  backgroundColor: "#1a1d29",
+                  border: "black",
+                  borderRadius: "10px",
+                  outline: "none",
+                  padding: "10px"
+                },
+              }}
+            >
+            <div className = "popupStyle">
+              <h2>Lectern (Instructor) </h2>
 
-          <table className = "inputTable">
-                <tr>
-                    <td className = "cell"><input className = "inputBox" type = "text" id = "inputName"
-                        placeholder = "Full Name" maxlength = "100"></input></td>
-                </tr>
-                <tr>
-                    <td className = "cell"><input className = "inputBox" type = "text" id = "inputEmail"
-                        placeholder = "Email" maxlength = "100"></input></td>
-                </tr>
+              <table className = "inputTable">
+                    <tr>
+                        <td className = "cell"><input className = "inputBox" type = "text" id = "inputName"
+                            placeholder = "Full Name" maxlength = "100"></input></td>
+                    </tr>
+                    <tr>
+                        <td className = "cell"><input className = "inputBox" type = "text" id = "inputEmail"
+                            placeholder = "Email" maxlength = "100"></input></td>
+                    </tr>
+                        
                     
-                
-            </table>
-          <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
-          <button className = "submitButton" onClick={() => closeModal()}>Close</button>
-        </div>
-        </Modal>
-      ) : (
-        <Modal // Regular Modal - popup
-          isOpen={modalIsOpen}
-          onRequestClose={() => closeModal()}
-          contentLabel="Example Modal"
-          className = "regModal"
-          style={{
-            overlay: {
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              zIndex: 999,
+                </table>
+              <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+            </div>
+            </Modal>
+          ) : (
+            <Modal // Regular Modal - popup
+              isOpen={modalIsOpen}
+              onRequestClose={() => closeModal()}
+              contentLabel="Example Modal"
+              className = "regModal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 999,
 
-            },
-            content: {
-              position: "fixed",
-              top: "35%",
-              left: "50%",
-              backgroundColor: "#1a1d29",
-              transform: "translate(-50%, -50%)",
-              color: "white",
-              backgroundColor: "#1a1d29",
-              border: "black",
-              borderRadius: "10px",
-              outline: "none",
-              padding: "10px"
-            },
-          }}
-        >
-        <div className = "popupStyle">
-          <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
+                },
+                content: {
+                  position: "fixed",
+                  top: "35%",
+                  left: "50%",
+                  backgroundColor: "#1a1d29",
+                  transform: "translate(-50%, -50%)",
+                  color: "white",
+                  backgroundColor: "#1a1d29",
+                  border: "black",
+                  borderRadius: "10px",
+                  outline: "none",
+                  padding: "10px"
+                },
+              }}
+            >
+            <div className = "popupStyle">
+              <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
 
-          <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
-          <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+              <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
 
-        </div>
-        </Modal>
-      )}
-    </>
+            </div>
+            </Modal>
+          )}
+      </>
   );
 }
 

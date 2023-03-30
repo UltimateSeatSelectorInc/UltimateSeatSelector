@@ -1,119 +1,58 @@
-import React, { useState  } from 'react';
-import './Signup.css';
-import Navbar from '../navbar/Navbar.jsx'
-import { auth } from "../firebase/firebase";
+import React, { useState } from 'react';
+import { checkIfEmpty, checkIfEmailValid, checkIfPasswordValid } from '../signup/inputVal';
+import { setEmptyErrors, setFieldErrors } from '../signup/Signup';
+import { auth, dbstore } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore"; 
-import { dbstore } from "../firebase/firebaseStore";
-import { checkIfEmpty, checkIfEmailValid, checkIfPasswordValid } from "./inputVal"
+import Navbar from '../navbar/Navbar.jsx'
+import { setDoc, doc } from "firebase/firestore";
 
-// function to add a red border to the inputs if there are errors
-function setEmptyErrors(fieldName) {
-  const element = document.getElementById(fieldName);
-  if (element) {
-    element.parentElement.classList.remove("cellSign")
-    element.parentElement.classList.add("cellSignError")
-    document.getElementById("emptyError").classList.remove("errorShowNone")
-
-    // remove the red border class style for each element when user enters input
-    element.addEventListener("input", () => {
-      element.parentElement.classList.remove("cellSignError")
-      element.parentElement.classList.add("cellSign")
-
-      const errorElements = document.querySelectorAll(".cellSignError")
-      if (errorElements.length === 0) {
-        document.getElementById("emptyError").classList.add("errorShowNone")
-      }
-    })
-  }
-}
-
-// sets errors based on provided fieldIDs
-function setFieldErrors(fieldName) {
-  const element = document.getElementById(fieldName);
-  if (element) {
-    element.parentElement.classList.remove("cellSign")
-    element.parentElement.classList.add("cellSignError")
-    if (fieldName == "email") {
-      document.getElementById("emailInvalidError").classList.remove("errorShowNone")
-    }
-    if (fieldName == "password") {
-      document.getElementById("passwordInvalidError").classList.remove("errorShowNone")
-    }
-    if (fieldName == "repeatPassword") {
-      document.getElementById("passwordsDontMatch").classList.remove("errorShowNone")
-    }
-      
-    element.addEventListener("input", () => {
-      if (fieldName == "email") {
-        document.getElementById("emailInvalidError").classList.add("errorShowNone")
-      }
-      if (fieldName == "password") {
-        document.getElementById("passwordInvalidError").classList.add("errorShowNone")
-      }
-      if (fieldName == "repeatPassword") {
-        document.getElementById("passwordsDontMatch").classList.add("errorShowNone")
-      }
-      
-      element.parentElement.classList.remove("cellSignError")
-      element.parentElement.classList.add("cellSign")
-    })
-  }
-}
-
-// function that handles signing up
-function SignUp() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  // some simple string manipulation to make names proper (with support for apostraphe's)
-  const firstNameCap = ((firstName.charAt(0).toUpperCase()) + firstName.substring(1).toLowerCase())
-  let lastNameCap = ((lastName.charAt(0).toUpperCase()) + lastName.substring(1).toLowerCase())
-  const apostropheIndex = lastNameCap.indexOf("'")
-  if (apostropheIndex > 0 && apostropheIndex < lastNameCap.length - 1) {
-    const lastNameCapArray = lastNameCap.split('')
-    lastNameCapArray[apostropheIndex+1] = lastNameCapArray[apostropheIndex+1].toUpperCase()
-    lastNameCap = lastNameCapArray.join('')
-  }
-
-  const listOfFields = [
-    {name: 'firstName', value: firstName},
-    {name: 'lastName', value: lastName},
-    {name: 'email', value: email},
-    {name: 'password', value: password},
-    {name: 'repeatPassword', value: repeatPassword}
-  ];
+function AddInstructor() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
 
   const handleSignUp = async () => {
     let hasErrors = false;
-    
-    // check if any of the fields are empty, and if so, apply error styling
+
+    const listOfFields = [
+      { name: 'firstName', value: firstName },
+      { name: 'lastName', value: lastName },
+      { name: 'email', value: email },
+      { name: 'password', value: password },
+      { name: 'repeatPassword', value: repeatPassword },
+    ];
+    // some simple string manipulation to make names proper (with support for apostraphe's)
+    const firstNameCap = ((firstName.charAt(0).toUpperCase()) + firstName.substring(1).toLowerCase())
+    let lastNameCap = ((lastName.charAt(0).toUpperCase()) + lastName.substring(1).toLowerCase())
+    const apostropheIndex = lastNameCap.indexOf("'")
+    if (apostropheIndex > 0 && apostropheIndex < lastNameCap.length - 1) {
+      const lastNameCapArray = lastNameCap.split('')
+      lastNameCapArray[apostropheIndex+1] = lastNameCapArray[apostropheIndex+1].toUpperCase()
+      lastNameCap = lastNameCapArray.join('')
+    }
     for (let i = 0; i < listOfFields.length; i++) {
       if (checkIfEmpty(listOfFields[i].value)) {
         setEmptyErrors(listOfFields[i].name);
-        hasErrors = true; // set the flag to true if an error is found
+        hasErrors = true;
       }
     }
-    
-    // check if email, password, and repeat password are valid
+
     if (checkIfEmailValid(email) === false) {
-      setFieldErrors("email");
+      setFieldErrors('email');
       hasErrors = true;
     }
     if (checkIfPasswordValid(password) === false) {
-      setFieldErrors("password");
+      setFieldErrors('password');
       hasErrors = true;
     }
     if (password !== repeatPassword) {
-      setFieldErrors("repeatPassword");
+      setFieldErrors('repeatPassword');
       hasErrors = true;
     }
-  
-    if (hasErrors === true) { // if there are errors, do not create the user
+
+    if (hasErrors === true) {
       return;
     }
 
@@ -130,7 +69,8 @@ function SignUp() {
       const docRef = await setDoc(doc(dbstore, "users", user.uid), {
         First_Name: firstNameCap,
         Last_Name: lastNameCap,
-        Email: email
+        Email: email,
+        isInstructor: true
       });
 
       // reroute to verify page
@@ -152,17 +92,15 @@ function SignUp() {
       <Navbar isActive = { true } />
 
       <div className = "maintitle">
-        <h1>Signup</h1>
+        <h1>Add Instructor</h1>
       </div>
 
       <div className = "mainbody">
         <div className = "mainbodytitle">
-          <p>Let's sign you up</p>
+          <p>Let's add another instructor</p>
         </div>
         <div className = "mainbodysubtitle">
-          <p>Signup to Utimate Seat Selector with an email and password. You will
-            receive an email to verify your account. Are you an instructor?
-            Contact an administrator.
+          <p>Please enter valid credentials to add a fellow instructor :
           </p>
         </div>
 
@@ -261,4 +199,4 @@ function SignUp() {
   );
 };
 
-export { SignUp as default, setEmptyErrors, setFieldErrors };
+export default AddInstructor;
