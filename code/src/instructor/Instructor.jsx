@@ -3,8 +3,10 @@ import './Instructor.css';
 import Navbar from '../navbar/Navbar.jsx'
 import { getDatabase, ref, update, child, onValue, auth } from "firebase/database";
 import firebase from '../firebase/firebase.js';
+import { useAuth } from '../firebase/firebaseStore';
 
 function Instructor() {
+    const { isInstructor } = useAuth();
     function deSelectSeat() {
         const db = ref(getDatabase());
         const updates = {};
@@ -69,9 +71,10 @@ function Instructor() {
             displayAttendance();
             getDate();
         }, []);
+
     return( 
         <div>
-            <Navbar isActive = { true } />
+            <Navbar isActive = { true } showAddInstructor={isInstructor} />
     
             <button className="Deselector" onClick = {() => {deSelectSeat()}}>Clear all seats</button>
             <p className="text" id="text"></p>

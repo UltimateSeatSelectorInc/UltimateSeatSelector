@@ -192,66 +192,105 @@ function Map(props) {
   }
 
   return (
-    <>
-      <text
-        display={hover || props.seatStyle === props.index ? "block" : "none"}
-        x={props.x}
-        y={props.y + 50}
-        fontSize="10"
-        fill="black"
-        height={props.height}
-        width={props.width}
-      >
-      </text>
-      <motion.rect
-        initial={false}
-        whileHover={
-          !props.seat.includes("TABLE")
-            ? {
-              scale: [1, 0.95, 1],
-              transition: { duration: 0.2, ease: "easeOut" },
-              }
-            : {}
-        }
-        onMouseEnter={() => handleHover()}
-        onMouseLeave={() => setHover(false)}
-        onClick={() => handleClick()}
-        x={props.x}
-        y={props.y}
-        height={props.height + 4}
-        width={props.width + 4}
-        fill={
-          props.chosen
-            ? hover && props.updateStyle
+      <>
+        <text
+          display={hover || props.seatStyle === props.index ? "block" : "none"}
+          x={props.x}
+          y={props.y + 50}
+          fontSize="10"
+          fill="black"
+          height={props.height}
+          width={props.width}
+        >
+        </text>
+        <motion.rect
+          initial={false}
+          whileHover={
+            !props.seat.includes("TABLE")
+              ? {
+                scale: [1, 0.95, 1],
+                transition: { duration: 0.2, ease: "easeOut" },
+                }
+              : {}
+          }
+          onMouseEnter={() => handleHover()}
+          onMouseLeave={() => setHover(false)}
+          onClick={() => handleClick()}
+          x={props.x}
+          y={props.y}
+          height={props.height + 4}
+          width={props.width + 4}
+          fill={
+            props.chosen
+              ? hover && props.updateStyle
+                ? "grey"
+                : "white"
+              : "transparent"
+          }
+          stroke={
+            props.chosen && hover && props.updateStyle
               ? "grey"
+              : props.chosen && !props.seat.includes("TABLE")
+              ? "white"
+              : hover || props.seatStyle === props.index
+              ? "yellow"
               : "white"
-            : "transparent"
-        }
-        stroke={
-          props.chosen && hover && props.updateStyle
-            ? "grey"
-            : props.chosen && !props.seat.includes("TABLE")
-            ? "white"
-            : hover || props.seatStyle === props.index
-            ? "yellow"
-            : "white"
-        }
-        strokeWidth="5"
-      ></motion.rect>
-        {deselectModalIsOpen ? (
-            <Modal
-              isOpen={deselectModalIsOpen}
+          }
+          strokeWidth="5"
+        ></motion.rect>
+          {deselectModalIsOpen ? (
+              <Modal
+                isOpen={deselectModalIsOpen}
+                onRequestClose={() => closeModal()}
+                contentLabel="Deselect Modal"
+                style={{
+                  overlay: {
+                    backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    zIndex: 999,
+                  },
+                  content: {
+                    position: "fixed",
+                    width: "20%",
+                    height: "20%",
+                    top: "35%",
+                    left: "50%",
+                    backgroundColor: "#1a1d29",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    backgroundColor: "#1a1d29",
+                    border: "black",
+                    borderRadius: "10px",
+                    outline: "none",
+                    padding: "10px",
+                  },
+                }}
+              >
+                <div className="popupStyle">
+                  <h2>Are you sure you want to deselect this seat?</h2>
+                  <button className="submitButton" onClick={() => deselectSeat()}>
+                    Yes
+                  </button>
+                  <button className="submitButton" onClick={() => closeModal()}>
+                    No
+                  </button>
+                </div>
+              </Modal>
+          ) : null}
+
+          {chosenModalIsOpen ? (
+              <Modal // Chosen seat modal - popup, just displays who claimed seat.
+              isOpen={chosenModalIsOpen}
               onRequestClose={() => closeModal()}
-              contentLabel="Deselect Modal"
+              contentLabel="Example Modal"
+              className = "chosenModal"
               style={{
                 overlay: {
                   backgroundColor: "rgba(0, 0, 0, 0.5)",
                   zIndex: 999,
+
                 },
                 content: {
                   position: "fixed",
-                  width: "20%",
-                  height: "20%",
                   top: "35%",
                   left: "50%",
                   backgroundColor: "#1a1d29",
@@ -261,32 +300,75 @@ function Map(props) {
                   border: "black",
                   borderRadius: "10px",
                   outline: "none",
-                  padding: "10px",
+                  padding: "10px"
+                },
+              }}
+            >
+            <div className = "popupStyle">
+              <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
+
+              <table className = "inputTable">
+                    <tr>
+                        <td><p>Seat Claimed by: {props.name}</p></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                        
+                    
+              </table>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+            </div>
+            </Modal>
+          ) : null}
+
+          {alertModalIsOpen ? (
+            <Modal
+              isOpen={alertModalIsOpen}
+              onRequestClose={() => setAlertModalIsOpen(false)}
+              contentLabel="Alert Modal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 999,
+
+                },
+                content: {
+                  position: "fixed",
+                  top: "35%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "25%",
+                  height: "20%",
+                  fontSize: "16px",
+                  backgroundColor: "#1a1d29",
+                  border: "black",
+                  borderRadius: "10px",
+                  outline: "none",
+                  padding: "20px",
                 },
               }}
             >
               <div className="popupStyle">
-                <h2>Are you sure you want to deselect this seat?</h2>
-                <button className="submitButton" onClick={() => deselectSeat()}>
-                  Yes
-                </button>
-                <button className="submitButton" onClick={() => closeModal()}>
-                  No
+                <h2>You must be at Lewis University to claim a seat.</h2>
+                <button className="submitButton" onClick={() => setAlertModalIsOpen(false)}>
+                  Close
                 </button>
               </div>
             </Modal>
-        ) : null}
-        {chosenModalIsOpen ? (
-            <Modal // Chosen seat modal - popup, just displays who claimed seat.
-            isOpen={chosenModalIsOpen}
+          ) : null}
+
+          {tableModalIsOpen ? (
+            <Modal // Table seat model, just contains the table name
+            isOpen={tableModalIsOpen}
             onRequestClose={() => closeModal()}
             contentLabel="Example Modal"
-            className = "chosenModal"
+            className = "tableModal"
             style={{
               overlay: {
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
                 zIndex: 999,
-  
+
               },
               content: {
                 position: "fixed",
@@ -298,182 +380,102 @@ function Map(props) {
                 backgroundColor: "#1a1d29",
                 border: "black",
                 borderRadius: "10px",
-                outline: "none",
-                padding: "10px"
+                outline: "none"
               },
             }}
+            
           >
           <div className = "popupStyle">
-            <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
-  
-            <table className = "inputTable">
-                  <tr>
-                      <td><p>Seat Claimed by: {props.name}</p></td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                  </tr>
-                      
-                  
-            </table>
+            <h2>Table {props.seat[5]} </h2>
+
             <button className = "submitButton" onClick={() => closeModal()}>Close</button>
           </div>
           </Modal>
         ) : null}
-        {alertModalIsOpen ? (
-          <Modal
-            isOpen={alertModalIsOpen}
-            onRequestClose={() => setAlertModalIsOpen(false)}
-            contentLabel="Alert Modal"
-            style={{
-              overlay: {
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                zIndex: 999,
-  
-              },
-              content: {
-                position: "fixed",
-                top: "35%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "25%",
-                height: "20%",
-                fontSize: "16px",
-                backgroundColor: "#1a1d29",
-                border: "black",
-                borderRadius: "10px",
-                outline: "none",
-                padding: "20px",
-              },
-            }}
-          >
-            <div className="popupStyle">
-              <h2>You must be at Lewis University to claim a seat.</h2>
-              <button className="submitButton" onClick={() => setAlertModalIsOpen(false)}>
-                Close
-              </button>
+
+          {lecternModalIsOpen ? (
+            <Modal // Regular Modal - popup
+              isOpen={lecternModalIsOpen}
+              onRequestClose={() => closeModal()}
+              contentLabel="Example Modal"
+              className = "lecternModal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 999,
+
+                },
+                content: {
+                  position: "fixed",
+                  top: "35%",
+                  left: "50%",
+                  backgroundColor: "#1a1d29",
+                  transform: "translate(-50%, -50%)",
+                  color: "white",
+                  backgroundColor: "#1a1d29",
+                  border: "black",
+                  borderRadius: "10px",
+                  outline: "none",
+                  padding: "10px"
+                },
+              }}
+            >
+            <div className = "popupStyle">
+              <h2>Lectern (Instructor) </h2>
+
+              <table className = "inputTable">
+                    <tr>
+                        <td className = "cell"><input className = "inputBox" type = "text" id = "inputName"
+                            placeholder = "Full Name" maxlength = "100"></input></td>
+                    </tr>
+                    <tr>
+                        <td className = "cell"><input className = "inputBox" type = "text" id = "inputEmail"
+                            placeholder = "Email" maxlength = "100"></input></td>
+                    </tr>
+                        
+                    
+                </table>
+              <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
             </div>
-          </Modal>
-        ) : null}
+            </Modal>
+          ) : (
+            <Modal // Regular Modal - popup
+              isOpen={modalIsOpen}
+              onRequestClose={() => closeModal()}
+              contentLabel="Example Modal"
+              className = "regModal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 999,
 
-        {tableModalIsOpen ? (
-          <Modal // Table seat model, just contains the table name
-          isOpen={tableModalIsOpen}
-          onRequestClose={() => closeModal()}
-          contentLabel="Example Modal"
-          className = "tableModal"
-          style={{
-            overlay: {
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              zIndex: 999,
+                },
+                content: {
+                  position: "fixed",
+                  top: "35%",
+                  left: "50%",
+                  backgroundColor: "#1a1d29",
+                  transform: "translate(-50%, -50%)",
+                  color: "white",
+                  backgroundColor: "#1a1d29",
+                  border: "black",
+                  borderRadius: "10px",
+                  outline: "none",
+                  padding: "10px"
+                },
+              }}
+            >
+            <div className = "popupStyle">
+              <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
 
-            },
-            content: {
-              position: "fixed",
-              top: "35%",
-              left: "50%",
-              backgroundColor: "#1a1d29",
-              transform: "translate(-50%, -50%)",
-              color: "white",
-              backgroundColor: "#1a1d29",
-              border: "black",
-              borderRadius: "10px",
-              outline: "none"
-            },
-          }}
-          
-        >
-        <div className = "popupStyle">
-          <h2>Table {props.seat[5]} </h2>
+              <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
 
-          <button className = "submitButton" onClick={() => closeModal()}>Close</button>
-        </div>
-        </Modal>
-      ) : null}
-
-        {lecternModalIsOpen ? (
-          <Modal // Regular Modal - popup
-            isOpen={lecternModalIsOpen}
-            onRequestClose={() => closeModal()}
-            contentLabel="Example Modal"
-            className = "lecternModal"
-            style={{
-              overlay: {
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                zIndex: 999,
-
-              },
-              content: {
-                position: "fixed",
-                top: "35%",
-                left: "50%",
-                backgroundColor: "#1a1d29",
-                transform: "translate(-50%, -50%)",
-                color: "white",
-                backgroundColor: "#1a1d29",
-                border: "black",
-                borderRadius: "10px",
-                outline: "none",
-                padding: "10px"
-              },
-            }}
-          >
-          <div className = "popupStyle">
-            <h2>Lectern (Instructor) </h2>
-
-            <table className = "inputTable">
-                  <tr>
-                      <td className = "cell"><input className = "inputBox" type = "text" id = "inputName"
-                          placeholder = "Full Name" maxlength = "100"></input></td>
-                  </tr>
-                  <tr>
-                      <td className = "cell"><input className = "inputBox" type = "text" id = "inputEmail"
-                          placeholder = "Email" maxlength = "100"></input></td>
-                  </tr>
-                      
-                  
-              </table>
-            <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
-            <button className = "submitButton" onClick={() => closeModal()}>Close</button>
-          </div>
-          </Modal>
-        ) : (
-          <Modal // Regular Modal - popup
-            isOpen={modalIsOpen}
-            onRequestClose={() => closeModal()}
-            contentLabel="Example Modal"
-            className = "regModal"
-            style={{
-              overlay: {
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                zIndex: 999,
-
-              },
-              content: {
-                position: "fixed",
-                top: "35%",
-                left: "50%",
-                backgroundColor: "#1a1d29",
-                transform: "translate(-50%, -50%)",
-                color: "white",
-                backgroundColor: "#1a1d29",
-                border: "black",
-                borderRadius: "10px",
-                outline: "none",
-                padding: "10px"
-              },
-            }}
-          >
-          <div className = "popupStyle">
-            <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
-
-            <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
-            <button className = "submitButton" onClick={() => closeModal()}>Close</button>
-
-          </div>
-          </Modal>
-        )}
-    </>
+            </div>
+            </Modal>
+          )}
+      </>
   );
 }
 
