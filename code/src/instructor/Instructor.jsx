@@ -75,19 +75,17 @@ function Instructor() {
     return( 
         <div>
             <Navbar isActive = { true } showAddInstructor={isInstructor} />
-    
+
             <button className="Deselector" onClick = {() => {deSelectSeat()}}>Clear all seats</button>
+            <br></br><br></br>
             <p className="text" id="text"></p>
-            <header className="displayAttendance1header">Table 1</header>
-            <div className="displayAttendance1" id="attendance1"></div>
-            <header className="displayAttendance2header">Table 2</header>
-            <div className="displayAttendance2" id="attendance2"></div>
-            <header className="displayAttendance3header">Table 3</header>
-            <div className="displayAttendance3" id="attendance3"></div> 
-            <header className="displayAttendance4header">Table 4</header>
-            <div className="displayAttendance4" id="attendance4"></div> 
-            <header className="displayAttendance5header">Table 5</header> 
-            <div className="displayAttendance5" id="attendance5"></div>  
+            <div className="displayAttendanceContainer">
+                <div className="displayAttendance1" id="attendance1"><p>Table 1</p></div>
+                <div className="displayAttendance2" id="attendance2"><p>Table 2</p></div>
+                <div className="displayAttendance3" id="attendance3"><p>Table 3</p></div> 
+                <div className="displayAttendance4" id="attendance4"><p>Table 4</p></div>  
+                <div className="displayAttendance5" id="attendance5"><p>Table 5</p></div>  
+            </div>
         </div>
       )
     }

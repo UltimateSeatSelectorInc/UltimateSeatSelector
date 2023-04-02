@@ -52,7 +52,6 @@ function Login() {
     const auth = getAuth()
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "/";
     } catch (error) {
       if (error) {
         document.getElementById("loginError").classList.remove("errorShowNone")

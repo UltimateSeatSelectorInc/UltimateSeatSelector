@@ -26,9 +26,9 @@ body {
 }
   
 .nav-item {
-  margin-right: 10px;
+  margin-left: 10px;
 }
-  
+
 .nav-link, .disabled {
   color: white;
   border-radius: 6px;

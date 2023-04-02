@@ -3,16 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { useAuth, dbstore } from "../firebase/firebaseStore";
 import { doc, getDoc } from "firebase/firestore";
 import './Navbar.css';
+const { Link } = require("react-router-dom");
 
-
-function Navbar(props) {
-  const { isActive = true, showAddInstructor = false } = props;
-  const { user, auth, isInstructor  } = useAuth();
+const Navbar = (props) => {
+  const { isActive = true } = props;
+  const { user, auth, isInstructor } = useAuth();
   const [ firstName, setFirstName ] = useState('');
   const [ email, setEmail ] = useState('');
   
-
-
   // simple hook to get the firstname from the current user utilizing useAuth
   useEffect(() => {
     if (user) {
@@ -38,38 +36,30 @@ function Navbar(props) {
       console.error('Error signing out:', error);
     }
   };
+  const showInstructor = isInstructor;
 
 return (
     <nav className="navbar">
-      <div className="navbar-title">Ultimate Seat Selector</div>
-        <ul className="navbar-nav">
-          {/* Link to add instructor, only visible on Instructor page if user is an instructor */}
-          {showAddInstructor && (
-            <li className="nav-item">
-              <a href="/addinstructor" className={`nav-link ${isActive ? '' : 'disabled'}`}><u>Add Instructor</u></a>
-            </li>
-          )}
-          {/* Other navigation links */}
-          <li className="nav-item">
-            <a href="/instructor" className={`nav-link ${isActive ? '' : 'disabled'}`}>Instructor</a>
-          </li>
-          <li className="nav-item">
-            <a href="/" className={`nav-link ${isActive ? '' : 'disabled'}`}>Seat Map</a>
-          </li>
-          <li className="nav-item">
-            <a href="/about" className={`nav-link ${isActive ? '' : 'disabled'}`}>About</a>
-          </li>
-          <li className="nav-item">
-            <a href="/login" className={`nav-link ${isActive ? '' : 'disabled'}`} onClick={handleLogout}><u>{user ? 'Logout' : 'Login'}</u></a>
-          </li>
-          {user && (
-            <li className="nav-item">
-              <a  className={`nav-link-user ${isActive ? '' : 'disabled'}`}>{firstName}</a>
-            </li>
-          )}
-        </ul>
-    </nav>
+    <div className="navbar-title">Ultimate Seat Selector</div>
+    <ul className="navbar-nav">
+    <li className="nav-item">
+      <Link to="/instructor" className="nav-link" style={{ display: showInstructor ? "block" : "none" }}>Instructor</Link>
+    </li>    
+    <li className="nav-item">
+      <Link to="/" className="nav-link">Seat Map</Link>
+    </li>
+    <li className="nav-item">
+      <Link to="/about" className="nav-link">About</Link>
+    </li>
+    <li className="nav-item">
+      <Link to="/login" className="nav-link" onClick={handleLogout}><u>{user ? 'Logout' : 'Login'}</u></Link>
+    </li>
+    <li className="nav-item">
+        <a className={`nav-link-user ${isActive ? '' : 'disabled'}`}>{firstName}</a>
+    </li>
+    </ul>
+    </nav>          
   );
-}
+};
 
 export default Navbar;
