@@ -7,7 +7,7 @@ const { Link } = require("react-router-dom");
 
 const Navbar = (props) => {
   const { isActive = true } = props;
-  const { user, auth  } = useAuth();
+  const { user, auth, isInstructor } = useAuth();
   const [ firstName, setFirstName ] = useState('');
   const [ email, setEmail ] = useState('');
   
@@ -36,17 +36,18 @@ const Navbar = (props) => {
       console.error('Error signing out:', error);
     }
   };
+  const showInstructor = isInstructor;
 
 return (
     <nav className="navbar">
     <div className="navbar-title">Ultimate Seat Selector</div>
     <ul className="navbar-nav">
     <li className="nav-item">
+      <Link to="/instructor" className="nav-link" style={{ display: showInstructor ? "block" : "none" }}>Instructor</Link>
+    </li>    
+    <li className="nav-item">
       <Link to="/" className="nav-link">Seat Map</Link>
     </li>
-    <li className="nav-item">
-      <Link to="/instructor" className="nav-link">Instructor</Link>
-    </li>    
     <li className="nav-item">
       <Link to="/about" className="nav-link">About</Link>
     </li>
