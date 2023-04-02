@@ -60,11 +60,7 @@ return (
             <a href="/about" className={`nav-link ${isActive ? '' : 'disabled'}`}>About</a>
           </li>
           <li className="nav-item">
-<<<<<<< HEAD
-            <a href = "/account" className={`nav-link ${isActive ? '' : 'disabled'}`}>{firstName}</a>
-=======
             <a href="/login" className={`nav-link ${isActive ? '' : 'disabled'}`} onClick={handleLogout}><u>{user ? 'Logout' : 'Login'}</u></a>
->>>>>>> 6901d54137e658485b0fe350b9c2341f6cabaee3
           </li>
           {user && (
             <li className="nav-item">

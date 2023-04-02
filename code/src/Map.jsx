@@ -225,6 +225,7 @@ function Map(props) {
               ? hover && props.updateStyle
                 ? "grey"
                 : "white"
+              // check for user here
               : "transparent"
           }
           stroke={
