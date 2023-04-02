@@ -1,43 +1,99 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Modal from 'react-modal';
 import Maploader from './Maploader.jsx';
 import SignUp from './signup/Signup.jsx';
 import Login from './login/Login.jsx';
 import Verify from './verify/Verify.jsx';
 import About from './about/About.jsx';
 import Instructor from './instructor/Instructor.jsx';
-import Addinstructor from './addinstructor/AddInstructor.jsx'
+import Addinstructor from './addinstructor/AddInstructor.jsx';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Protected, Protected2 } from './protected/protected.jsx'
+import { useAuth, dbstore } from "./firebase/firebaseStore";
+import { doc, getDoc } from "firebase/firestore";
+import { useState, useEffect } from 'react'
 
-// simple routing
 function App() {
-  // Get the current URL path
-  const path = window.location.pathname;
+  const { user, isInstructor } = useAuth();
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  useEffect(() => {
+    if (user) {
+      const userRef = doc(dbstore, 'users', user.uid);
+      getDoc(userRef).then((doc) => {
+        if (doc.exists()) {
+          const data = doc.data();
+          if (data.First_Name != null) {
+            setIsSignedIn(true);
+          }
+        } else {
+          setIsSignedIn(false);
+        }
+      })
+    }
+  }, [user]);
 
-  if (path === '/') {
-    return <Maploader />;
-  } else if (path === '/login') {
-    return <Login />;
-  } else if (path === '/signup') {
-    return <SignUp />;
-  } else if (path === '/verify') {
-    return <Verify />;
-  } else if (path === '/about') {
-    return <About />;
-  } else if (path === '/instructor') {
-    return <Instructor />;
-  } else if (path === '/addinstructor') {
-    return <Addinstructor />; 
-  } else {
-    return <div>404 Not Found</div>;
-  }
+  return (
+  <BrowserRouter>
+        <Routes>
+          <Route path="/about" element={<About/>} />
+          <Route
+            path="/login"
+            element={
+              <Protected2 isSignedIn={isSignedIn}>
+                <Login />
+              </Protected2>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <Protected2 isSignedIn={isSignedIn}>
+                <SignUp />
+              </Protected2>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <Protected isSignedIn={isSignedIn}>
+                <Maploader />
+              </Protected>
+            }
+          />
+          <Route
+            path="/verify"
+            element={
+              <Protected isSignedIn={isSignedIn}>
+                <Verify />
+              </Protected>
+            }
+          />
+          <Route
+            path="/instructor"
+            element={
+              <Protected isInstructor={isInstructor}>
+                <Instructor />
+              </Protected>
+            }
+          />
+          <Route
+            path="/addinstructor"
+            element={
+              <Protected isInstructor={isInstructor}>
+                <Addinstructor />
+              </Protected>
+            }
+          />
+        </Routes>
+  </BrowserRouter>
+  );
 }
 
-Modal.setAppElement(document.body); // <-- add this line
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 //  <React.StrictMode>
     <App />
 //  </React.StrictMode>
 );
+export default App;
