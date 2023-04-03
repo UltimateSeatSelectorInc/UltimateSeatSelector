@@ -275,10 +275,10 @@ function Map(props) {
 
               <table className = "inputTable">
                   <tr>
-                      <td><p>Seat Claimed by: {props.name} (you!)</p></td>
+                      <td><p>Seat Claimed by: {props.name} (You!)</p></td>
                   </tr>
               </table>
-              <button className = "submitButton" onClick={() => {deselectSeat(); closeModal() }}>Deselect Seat</button>
+              <button className = "submitButton" onClick={() => {deselectSeat(); closeModal() }}>Deselect</button>
               <button className = "submitButton" onClick={() => closeModal()}>Close</button>
 
                 </div>
