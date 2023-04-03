@@ -41,6 +41,7 @@ function Account() {
       .then(() => {
         console.log('SENT PASSWORD RESET EMAIL');
         document.getElementById("successMsg").classList.remove("showNone")
+        document.getElementById("confirmDeleteContent").classList.add("showNone")
       })
       .catch((error) => {
         console.log('Error resetting password:', error);
