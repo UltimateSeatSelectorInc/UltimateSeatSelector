@@ -70,14 +70,7 @@ function App() {
               </Protected>
             }
           />
-          <Route
-            path="/verify"
-            element={
-              <Protected isSignedIn={isSignedIn}>
-                <Verify />
-              </Protected>
-            }
-          />
+          <Route path="/verify" element={<Verify />}/>
           <Route
             path="/instructor"
             element={
