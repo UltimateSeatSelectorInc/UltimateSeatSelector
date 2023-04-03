@@ -101,6 +101,7 @@ function Map(props) {
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
   const [deselectModalIsOpen, setDeselectModalIsOpen] = useState(false);
   
+  /*
   // checks status of user and redirects them accordingly
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -113,6 +114,11 @@ function Map(props) {
         window.location.replace("/login") // account not logged in
     }
   });
+*/
+
+// REMOVED THIS FOR NOW, PERHAPS NOT REQUIRED W/ PROTECTED ROUTES
+
+
 
   // function that deselects users seat, called from deselect Modal
   function deselectSeat() {

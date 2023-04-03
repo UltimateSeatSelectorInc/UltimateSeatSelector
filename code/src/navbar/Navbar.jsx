@@ -55,7 +55,7 @@ return (
       <Link to="/login" className="nav-link" onClick={handleLogout}><u>{user ? 'Logout' : 'Login'}</u></Link>
     </li>
     <li className="nav-item">
-        <a className={`nav-link-user ${isActive ? '' : 'disabled'}`}>{firstName}</a>
+        <Link to="/account" className = "nav-link">{firstName}</Link>
     </li>
     </ul>
     </nav>          

@@ -7,6 +7,18 @@ h1 {
     font-family: ubu;
 }
 
+.accountButtons {
+    font-size: 13px;
+}
+
+.redButton {
+    background-color: rgb(230, 0, 0);
+}
+
+.redButton:hover {
+    background-color: rgb(184, 0, 0);
+}
+
 .maintitle {
     padding-left: 20px;
 }

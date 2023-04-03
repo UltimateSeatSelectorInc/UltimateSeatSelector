@@ -4,6 +4,7 @@ import './index.css';
 import Maploader from './Maploader.jsx';
 import SignUp from './signup/Signup.jsx';
 import Login from './login/Login.jsx';
+import About from './about/About.jsx';
 import Verify from './verify/Verify.jsx';
 import Account from './account/account.jsx';
 import Instructor from './instructor/Instructor.jsx';
@@ -58,6 +59,14 @@ function App() {
             element={
               <Protected isSignedIn={isSignedIn}>
                 <Maploader />
+              </Protected>
+            }
+          />
+            <Route
+            path="/account"
+            element={
+              <Protected isSignedIn={isSignedIn}>
+                <Account />
               </Protected>
             }
           />
