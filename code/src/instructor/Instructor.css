@@ -1,3 +1,24 @@
+.mainbodyInstructor {
+    padding: 15px;
+    font-family: ubu-reg;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #1a1d29;
+    border-radius: 4px;
+    width: 40%;
+}
+
+.maintitle {
+    color: white;
+}
+
+.bodytitle {
+    font-size: 20px;
+    text-align: center;
+    font-family: ubu-reg;
+}
+
 .Deselector {
     font-family: kanit;
     position: relative;
@@ -8,6 +29,12 @@
     color: white;
     border: white;
 }
+
+.tableName {
+    font-size: 20px;
+    padding: 10px;
+}
+
 
 .Deselector:hover {
     background-color: rgb(46, 43, 43);
@@ -41,6 +68,12 @@
     margin-right: auto;
 }
 
+.noStudentsMsg {
+    opacity: 60%;
+    font-family: ubu-reg;
+    font-style: italic;
+}
+
 .text {
     font-size: 20px;
     font-family: kanit;
@@ -52,15 +85,8 @@
 .center {
     text-align: center;
 }
-.displayAttendance1 {
-    padding-left:10px;
-}
-.displayAttendance3 {
-    padding-left:10px;
-}
-.displayAttendance5 {
-    padding-left:10px;
-    padding-bottom: 10px;
+.displayAttendance {
+    padding-left: 20px;;
 }
 
 .confirmation {
