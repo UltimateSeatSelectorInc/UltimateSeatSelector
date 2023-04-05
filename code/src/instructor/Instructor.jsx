@@ -6,6 +6,12 @@ import firebase from '../firebase/firebase.js';
 import { useAuth } from '../firebase/firebaseStore';
 
 function Instructor() {
+    function openConfirmation() {
+        document.getElementById('hidden').style.display = "block";
+    }
+    function closeConfirmation() {
+        document.getElementById('hidden').style.display = "none";
+    }
     const { isInstructor } = useAuth();
     function deSelectSeat() {
         const db = ref(getDatabase());
@@ -18,6 +24,7 @@ function Instructor() {
           const seatRef = child(db, i.toString());
           update(seatRef, updates);
         }
+        closeConfirmation();
       }
     function displayAttendance() {
             const db = ref(getDatabase());
@@ -76,9 +83,14 @@ function Instructor() {
         <div>
             <Navbar isActive = { true } showAddInstructor={isInstructor} />
 
-            <button className="Deselector" onClick = {() => {deSelectSeat()}}>Clear all seats</button>
+            <button className="Deselector" onClick = {() => {openConfirmation()}}>Clear all seats</button>
             <br></br><br></br>
             <p className="text" id="text"></p>
+            <div className="confirmation" id="hidden" style={{display: "none"}}>
+                <p className="center"><b>Are you sure?</b></p>
+                <p className="center">This will clear the seating chart and cannot be undone. Make sure you take a copy of the chart before you do this.</p>
+                <button className="confirmationYes" id="button" onClick = {() => {deSelectSeat()}}>Yes</button> <button className="confirmationNo" id="button" onClick = {() => {closeConfirmation()}}>No</button>
+            </div>
             <div className="displayAttendanceContainer">
                 <div className="displayAttendance1" id="attendance1"><p>Table 1</p></div>
                 <div className="displayAttendance2" id="attendance2"><p>Table 2</p></div>

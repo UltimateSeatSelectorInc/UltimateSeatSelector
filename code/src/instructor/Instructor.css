@@ -1,6 +1,6 @@
 .Deselector {
     font-family: kanit;
-    position: absolute;
+    position: relative;
     top: 15%;
     left: 45%;
     font-size: 20px;
@@ -10,6 +10,20 @@
 }
 
 .Deselector:hover {
+    background-color: rgb(46, 43, 43);
+}
+
+#button {
+    font-family: kanit;
+    position: relative;
+    background-color: #383f59;
+    color: white;
+    border: white;
+    font-size: 22px;
+    left:41%;
+}
+
+#button:hover {
     background-color: rgb(46, 43, 43);
 }
 
@@ -35,6 +49,9 @@
     margin-left: 40%;
     margin-top: 3%;
 }
+.center {
+    text-align: center;
+}
 .displayAttendance1 {
     padding-left:10px;
 }
@@ -44,4 +61,15 @@
 .displayAttendance5 {
     padding-left:10px;
     padding-bottom: 10px;
+}
+
+.confirmation {
+    background-color: rgb(16, 16, 67);
+    position: absolute;
+    margin-left: 35%;
+    font-size: 20px;
+    font-family: kanit;
+    color: white;
+    width:30%;
+    top:35%;
 }
