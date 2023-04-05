@@ -1,5 +1,8 @@
 .mainbodyInstructor {
-    padding: 15px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 30px;
     font-family: ubu-reg;
     color: white;
     margin-left: auto;
@@ -13,21 +16,26 @@
     color: white;
 }
 
+
+.greenSubmitButton {
+    background-color: #1f6e43;
+}
+
+.greenSubmitButton:hover {
+    background-color: #134429;
+}
+
 .bodytitle {
     font-size: 20px;
     text-align: center;
     font-family: ubu-reg;
 }
 
-.Deselector {
-    font-family: kanit;
-    position: relative;
-    top: 15%;
-    left: 45%;
-    font-size: 20px;
-    background-color: #383f59;
-    color: white;
-    border: white;
+.centerButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
 }
 
 .tableName {
@@ -36,61 +44,24 @@
 }
 
 
-.Deselector:hover {
-    background-color: rgb(46, 43, 43);
-}
-
-#button {
-    font-family: kanit;
-    position: relative;
-    background-color: #383f59;
-    color: white;
-    border: white;
-    font-size: 22px;
-    left:41%;
-}
-
-#button:hover {
-    background-color: rgb(46, 43, 43);
-}
-
-.displayAttendanceContainer {
-    font-size: 20px;
-    font-family: kanit;
-    color: white;
-    background-color: #1a1d29;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 20px;
-    width:85%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .noStudentsMsg {
     opacity: 60%;
     font-family: ubu-reg;
     font-style: italic;
 }
 
-.text {
-    font-size: 20px;
-    font-family: kanit;
-    color: white;
-    font-weight: bold;
-    margin-left: 40%;
-    margin-top: 3%;
-}
 .center {
     text-align: center;
 }
+
 .displayAttendance {
     padding-left: 20px;;
 }
 
 .confirmation {
-    background-color: rgb(16, 16, 67);
+    background-color: rgb(15, 19, 58);
+    border-radius: 10px;
+    padding: 10px;
     position: absolute;
     margin-left: 35%;
     font-size: 20px;

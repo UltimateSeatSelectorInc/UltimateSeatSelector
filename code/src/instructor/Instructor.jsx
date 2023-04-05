@@ -116,22 +116,24 @@ function Instructor() {
                     <div className="displayAttendance" id="attendance4"></div> 
                 <p className = "tableName">Table 5</p>
                     <div className="displayAttendance" id="attendance5"></div> 
+
+            </div><br></br>
+
+            <div className = "centerButton mainbodyInstructor">
+                <button className = "submitButton" onClick={() => { confirmationPopup("block") }}>Clear Seat Chart</button>
+                <button className = "greenSubmitButton submitButton" onClick={() => { }}>Download Excel</button>
             </div>
         
-
-
-            <button className="Deselector" onClick = {() => {confirmationPopup("block")}}>Clear all seats</button>
             <br></br><br></br>
             <p className="text" id="text"></p>
             <div className="confirmation" id="hidden" style={{display: "none"}}>
                 <p className="center"><b>Are you sure?</b></p>
                 <p className="center">This will clear the seating chart and cannot be undone. Make sure you take a copy of the chart before you do this.</p>
-                <button className="confirmationYes" id="button" onClick = {() => {deSelectSeat()}}>Yes</button> <button className="confirmationNo" id="button" onClick = {() => {confirmationPopup("none")}}>No</button>
+                <button className="submitButton" id="button" onClick = {() => {deSelectSeat()}}>Yes</button>
+                <button className="submitButton" id="button" onClick = {() => {confirmationPopup("none")}}>No</button>
             </div>
         </div>
       )
 }
-    
-
 
 export default Instructor;
