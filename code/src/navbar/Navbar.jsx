@@ -32,6 +32,7 @@ const Navbar = (props) => {
     try {
       await auth.signOut();
       console.log(email + " has been signed out"); // log user's email that has signed out
+      window.location.href = "/login";
     } catch (error) {
       console.error('Error signing out:', error);
     }

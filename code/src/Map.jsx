@@ -168,7 +168,6 @@ function Map(props) {
         setChosenModalIsOpen(true);
         console.log("CHOSEN SEAT SELECTED");
     }
-    
   }
 
   function closeModal() {
@@ -250,6 +249,7 @@ function Map(props) {
                 isOpen={deselectModalIsOpen}
                 onRequestClose={() => closeModal()}
                 contentLabel="Deselect Modal"
+                className = "chosenModal"
                 style={{
                   overlay: {
                     backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -257,8 +257,6 @@ function Map(props) {
                   },
                   content: {
                     position: "fixed",
-                    width: "20%",
-                    height: "20%",
                     top: "35%",
                     left: "50%",
                     backgroundColor: "#1a1d29",
@@ -268,18 +266,21 @@ function Map(props) {
                     border: "black",
                     borderRadius: "10px",
                     outline: "none",
-                    padding: "10px",
+                    padding: "10px"
                   },
                 }}
               >
-                <div className="popupStyle">
-                  <h2>Are you sure you want to deselect this seat?</h2>
-                  <button className="submitButton" onClick={() => deselectSeat()}>
-                    Yes
-                  </button>
-                  <button className="submitButton" onClick={() => closeModal()}>
-                    No
-                  </button>
+              <div className = "popupStyle">
+              <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
+
+              <table className = "inputTable">
+                  <tr>
+                      <td><p>Seat Claimed by: {props.name} (You!)</p></td>
+                  </tr>
+              </table>
+              <button className = "submitButton" onClick={() => {deselectSeat(); closeModal() }}>Deselect</button>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+
                 </div>
               </Modal>
           ) : null}
@@ -315,15 +316,11 @@ function Map(props) {
               <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
 
               <table className = "inputTable">
-                    <tr>
-                        <td><p>Seat Claimed by: {props.name}</p></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-                        
-                    
+                  <tr>
+                      <td><p>Seat Claimed by: {props.name}</p></td>
+                  </tr>
               </table>
+
               <button className = "submitButton" onClick={() => closeModal()}>Close</button>
             </div>
             </Modal>
@@ -430,18 +427,7 @@ function Map(props) {
             <div className = "popupStyle">
               <h2>Lectern (Instructor) </h2>
 
-              <table className = "inputTable">
-                    <tr>
-                        <td className = "cell"><input className = "inputBox" type = "text" id = "inputName"
-                            placeholder = "Full Name" maxlength = "100"></input></td>
-                    </tr>
-                    <tr>
-                        <td className = "cell"><input className = "inputBox" type = "text" id = "inputEmail"
-                            placeholder = "Email" maxlength = "100"></input></td>
-                    </tr>
-                        
-                    
-                </table>
+
               <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
               <button className = "submitButton" onClick={() => closeModal()}>Close</button>
             </div>

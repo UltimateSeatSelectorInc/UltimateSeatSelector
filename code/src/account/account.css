@@ -2,6 +2,19 @@
     color: white;
 }
 
+.showNone {
+    display: none;
+}
+
+.centeredContent {
+    display: flex;
+    justify-content: center;
+}
+
+.successMsg {
+    color: rgb(3, 200, 3);
+}
+
 h1 {
     font-size: 35px;
     font-family: ubu;
