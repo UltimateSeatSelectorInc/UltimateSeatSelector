@@ -23,24 +23,26 @@ async function sendVerification() {
             user.reload().then(async () => {
               if (user.emailVerified) {
                 clearInterval(intervalId);
-                const querySnapshot = await getDocs(
-                  collection(dbstore, "instructorInvites")
-                );
+                console.log("User email verified"); // Added log
+                const querySnapshot = await getDocs(collection(dbstore, "instructorInvites"));
                 querySnapshot.forEach(async (doc) => {
                   const data = doc.data();
-                  console.log(data.email, user.email)
+                  console.log("Checking invite:", data.email, user.email);
                   if (data.email === user.email) {
-                    // Delete the invite from Firestore
+                    console.log("Deleting invite"); // Added log
                     await deleteDoc(doc.ref);
                   }
                 });
+                console.log("Rerouting"); // Added log
                 window.location.href = "/";
+              } else {
+                console.log("User email not verified"); // Added log
               }
             }).catch((error) => {
               console.log(error);
             });
           }, 3000);
-        });
+        });        
         var showMessage = document.getElementById("emailSentMsg");
         showMessage.style.display = "block";
       }
