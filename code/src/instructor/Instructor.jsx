@@ -5,6 +5,7 @@ import { getDatabase, ref, update, child, onValue, auth } from "firebase/databas
 import firebase from '../firebase/firebase.js';
 import { useAuth } from '../firebase/firebaseStore';
 
+
 // function that opens or closes the popup based on passed variable
 function confirmationPopup(openOrClosed) {
     document.getElementById("hidden").style.display = openOrClosed;
@@ -35,7 +36,7 @@ function getDate() {
 }
 
 function Instructor() {
-
+    const { Link } = require("react-router-dom")
     const { isInstructor } = useAuth();
 
     function displayAttendance() {
@@ -122,6 +123,14 @@ function Instructor() {
             <div className = "centerButton mainbodyInstructor">
                 <button className = "submitButton" onClick={() => { confirmationPopup("block") }}>Clear Seat Chart</button>
                 <button className = "greenSubmitButton submitButton" onClick={() => { }}>Download Excel</button>
+                <button className="submitButton">
+                <Link
+                    to="/addinstructor"
+                    style={{ color: "white", textDecoration: "none" }}
+                >
+                    Add Instructor
+                </Link>
+            </button>
             </div>
         
             <br></br><br></br>

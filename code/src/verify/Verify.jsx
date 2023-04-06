@@ -3,48 +3,52 @@ import Navbar from '../navbar/Navbar.jsx'
 import { auth } from "../firebase/firebase";
 import { sendEmailVerification } from "firebase/auth"; 
 import './Verify.css';
+import { getDoc, deleteDoc, setDoc, doc} from "firebase/firestore";
+import { collection, where, getDocs, query } from "firebase/firestore";
+import { dbstore } from "../firebase/firebaseStore";
 
 
 /* function that sends verification email, then checks every 3 seconds for the user
 to verify their email. Once verified, it redirects them to the home page. */
-function sendVerification() {
-
+async function sendVerification() {
   try {
     const user = auth.currentUser;
-
     if (user) {
-      if (user.emailVerified) { // display special message if they are already verified
+      if (user.emailVerified) {
         var showAlreadyVMsg = document.getElementById("alreadyVerifiedMsg")
         showAlreadyVMsg.style.display = "block"
       } else {
-        // Send verification email
-        sendEmailVerification(auth.currentUser)
-          .then(() => {
-            const intervalId = setInterval(() => { // set timer
-              user.reload()
-                .then(() => {
-                  if (user.emailVerified) { // if it's verified
-                    // clear the interval and redirect to the home page
-                    clearInterval(intervalId);
-                    window.location.href = "/";
+        sendEmailVerification(auth.currentUser).then(() => {
+          const intervalId = setInterval(() => {
+            user.reload().then(async () => {
+              if (user.emailVerified) {
+                clearInterval(intervalId);
+                const querySnapshot = await getDocs(
+                  collection(dbstore, "instructorInvites")
+                );
+                querySnapshot.forEach(async (doc) => {
+                  const data = doc.data();
+                  console.log(data.email, user.email)
+                  if (data.email === user.email) {
+                    // Delete the invite from Firestore
+                    await deleteDoc(doc.ref);
                   }
-                })
-                .catch((error) => {
-                  console.log(error);
                 });
-            }, 3000); // Check verification status every 3 seconds
-          })
-
-        // display the "message sent" text
+                window.location.href = "/";
+              }
+            }).catch((error) => {
+              console.log(error);
+            });
+          }, 3000);
+        });
         var showMessage = document.getElementById("emailSentMsg");
         showMessage.style.display = "block";
       }
     } else {
       alert("User not signed in.");
     }
-
   } catch (error) {
-    alert(error.message) // for dev... make more meaningful later
+    alert(error.message)
   }
 }
 function Verify() {

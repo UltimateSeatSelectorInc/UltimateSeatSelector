@@ -3,10 +3,17 @@ import './Signup.css';
 import Navbar from '../navbar/Navbar.jsx'
 import { auth } from "../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore"; 
+import { getDoc, deleteDoc, setDoc, doc} from "firebase/firestore";
+import { collection, where, getDocs, query } from "firebase/firestore";
 import { dbstore } from "../firebase/firebaseStore";
 import { checkIfEmpty, checkIfEmailValid, checkIfPasswordValid } from "./inputVal"
+import {useLocation} from 'react-router-dom';
 
+
+// function that extracts a token from the URL
+function useQuery() {
+  return new URLSearchParams(useLocation().search)
+}
 // function to add a red border to the inputs if there are errors
 function setEmptyErrors(fieldName) {
   const element = document.getElementById(fieldName);
@@ -69,6 +76,8 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const queryURL = useQuery();
+  const [token, setToken] = useState(queryURL.get('token'));
 
   // some simple string manipulation to make names proper (with support for apostraphe's)
   const firstNameCap = ((firstName.charAt(0).toUpperCase()) + firstName.substring(1).toLowerCase())
@@ -90,7 +99,7 @@ function SignUp() {
 
   const handleSignUp = async () => {
     let hasErrors = false;
-    
+  
     // check if any of the fields are empty, and if so, apply error styling
     for (let i = 0; i < listOfFields.length; i++) {
       if (checkIfEmpty(listOfFields[i].value)) {
@@ -98,7 +107,7 @@ function SignUp() {
         hasErrors = true; // set the flag to true if an error is found
       }
     }
-    
+  
     // check if email, password, and repeat password are valid
     if (checkIfEmailValid(email) === false) {
       setFieldErrors("email");
@@ -116,34 +125,86 @@ function SignUp() {
     if (hasErrors === true) { // if there are errors, do not create the user
       return;
     }
-
-    // try to create a user with the function
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-
-      //Creates a new document in the database for the user's account details.
-      const docRef = await setDoc(doc(dbstore, "users", user.uid), {
-        First_Name: firstNameCap,
-        Last_Name: lastNameCap,
-        Email: email
-      });
-
-      // reroute to verify page
-      window.location.href = "/verify";
-    } catch (error) {
-      if (error == "FirebaseError: Firebase: Error (auth/email-already-in-use).") {
-        document.getElementById("emailInUseError").classList.remove("errorShowNone")
-      } else {
-        document.getElementById("signupError").classList.remove("errorShowNone")
+  
+    if (token) {
+      console.log("token found");
+      console.log(token)
+    
+      try {
+        const querySnapshot = await getDocs(collection(dbstore, "instructorInvites"));
+        querySnapshot.forEach((doc) => {
+          if (querySnapshot.empty) {
+            console.log("invite not found");
+            setErrorMessage("Invalid or expired token.");
+            return;
+          }
+        });
+        
+        // Get the first (and only) document in the querySnapshot
+        const inviteDoc = querySnapshot.docs[0];
+        const inviteData = inviteDoc.data();
+        const inviteEmail = inviteData.email;
+    
+        // Check if the email from Firestore matches the email provided in the form
+        if (email === inviteEmail) {
+          console.log("email matches");
+          try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+  
+            // Create a new document in the database for the user's account details
+            await setDoc(doc(dbstore, "users", user.uid), {
+              First_Name: firstNameCap,
+              Last_Name: lastNameCap,
+              Email: email,
+              isInstructor: true
+            });
+            // Redirect to the verify page
+            window.location.href = "/verify";
+          } catch (error) {
+            console.error("Error when checking invite", error);
+            setErrorMessage("Error: Could not sign you up. Please contact the administrator.");
+          }
+        } else {
+          setErrorMessage(
+            "The email provided does not match the invite. Please use the invited email."
+          );
+        }
+      } catch (error) {
+        console.log("No token provided");
+        setErrorMessage(
+          "Error: Could not verify the token. Please contact the administrator."
+        );
       }
-      
+    } else {
+      // ...
+      // try to create a user with the function
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+        const user = userCredential.user;
+  
+        // Creates a new document in the database for the user's account details.
+        const docRef = await setDoc(doc(dbstore, "users", user.uid), {
+          First_Name: firstNameCap,
+          Last_Name: lastNameCap,
+          Email: email
+        });
+  
+        // reroute to verify page
+        window.location.href = "/verify";
+      } catch (error) {
+        if (error.code === "auth/email-already-in-use") {
+          document.getElementById("emailInUseError").classList.remove("errorShowNone");
+        } else {
+          document.getElementById("signupError").classList.remove("errorShowNone");
+        }
+      } 
     }
-  };
+  };  
 
   return (
 
@@ -229,6 +290,21 @@ function SignUp() {
                     </td>
                 </tr>
                 <tr>
+                  {token && (
+                    <td colSpan="2" className="cellSign">
+                      <input
+                        className="inputBoxSign"
+                        type="text"
+                        id="token"
+                        placeholder="token"
+                        maxLength="100"
+                        value={token}
+                        onChange={(e) => setToken(e.target.value)}
+                      />
+                    </td>
+                  )}
+                </tr>
+                <tr>
                     <td colSpan = "2"><button className = "signupButton" onClick={() => { handleSignUp() }}>Continue</button></td>
                 </tr>
 
@@ -262,3 +338,4 @@ function SignUp() {
 };
 
 export { SignUp as default, setEmptyErrors, setFieldErrors };
+
