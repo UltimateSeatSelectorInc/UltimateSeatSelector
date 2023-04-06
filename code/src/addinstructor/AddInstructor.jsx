@@ -8,7 +8,6 @@ import Navbar from '../navbar/Navbar.jsx'
 import emailjs from 'emailjs-com';
 import { useAuth } from '../firebase/firebaseStore';
 import { serverTimestamp } from 'firebase/firestore';
-import Modal from "react-modal";
 import './addinstructor.css'
 
 function AddInstructor() {
@@ -23,7 +22,7 @@ function AddInstructor() {
       const timer = setTimeout(() => {
         setIsModalOpen(false);
         navigate('/'); // Replace '/' with the path to your main page
-      }, 5000); // Redirects after 5 seconds
+      }, 4000); // Redirects after 4 seconds
   
       return () => clearTimeout(timer);
     }
@@ -47,6 +46,9 @@ function AddInstructor() {
           console.log('SUCCESS!', response.status, response.text);
           setInviteSent(true);
           setIsModalOpen(true);
+          var showMessage = document.getElementById("emailSentMsg");
+          showMessage.innerHTML = "Success! Email sent..."
+          showMessage.style.display = "block";
         },
         (error) => {
           console.error('FAILED...', error);
@@ -72,43 +74,19 @@ function AddInstructor() {
     }
 
     await sendVerificationCode(email);
+    var showMessage = document.getElementById("emailSentMsg");
+        showMessage.innerHTML = "Please wait..."
+        showMessage.style.display = "block";
   };
 
   return (
     <div>
       <Navbar isActive={true} showAddInstructor={isInstructor} />
-      <br></br><br></br><br></br>
-      <Modal // Regular Modal - popup
-              isOpen={isModalOpen}
-              onRequestClose={() => setIsModalOpen(false)}
-              contentLabel="Example Modal"
-              className = "lecternModal"
-              style={{
-                overlay: {
-                  backgroundColor: "rgba(0, 0, 0, 0.5)",
-                  zIndex: 999,
-                },
-                content: {
-                  position: "fixed",
-                  top: "35%",
-                  left: "50%",
-                  backgroundColor: "#1a1d29",
-                  transform: "translate(-50%, -50%)",
-                  color: "white",
-                  backgroundColor: "#1a1d29",
-                  border: "black",
-                  borderRadius: "10px",
-                  outline: "none",
-                  padding: "10px"
-                },
-              }}
-            >
-            <div className = "popupStyle2">
-              <h3>Invite Sent!</h3>
-              <p className = "infoMsg">Please click the button below. The page will refresh automatically in 5 seconds</p>
-              <button className = "submitButton" onClick={()=>{navigate('/');}}>Close</button>
-            </div>
-        </Modal>
+
+      <div class = "maintitle">
+          <h1>Add Instructor</h1>
+      </div>
+
       <div className="mainbody">
         <div className="mainbodytitle">
           <p>Invite a fellow instructor</p>
@@ -116,7 +94,10 @@ function AddInstructor() {
         <div className="mainbodysubtitle">
           <p>
             Please enter the email of the person you'd like to invite as an instructor
-            </p>
+          </p>
+          <p>
+            Note: Only add valid, trusted email addresses.
+          </p>
         </div>
         <table className="inputTableSign">
           <tr>
@@ -140,6 +121,10 @@ function AddInstructor() {
             </td>
           </tr>
         </table>
+
+          <div class = "mainbodysubtitle">
+              <p class = "emailMessage" id = "emailSentMsg"></p>
+          </div>
 
         {/* Error messages /}
         {/ ... */}
