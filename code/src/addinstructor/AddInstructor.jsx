@@ -13,7 +13,7 @@ import './addinstructor.css'
 function AddInstructor() {
   const [inviteSent, setInviteSent] = useState(false);
   const [email, setEmail] = useState('');
-  const { isInstructor } = useAuth();
+  const {isInstructor} = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 

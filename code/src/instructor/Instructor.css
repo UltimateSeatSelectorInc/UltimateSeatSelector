@@ -77,6 +77,11 @@
     }
 }
 
+.subWarning {
+    font-size: 14px;
+    font-family: ubu-reg;
+}
+
 @media (min-width: 1200px) {
     .mainbodyInstructor {
         width: 25%;

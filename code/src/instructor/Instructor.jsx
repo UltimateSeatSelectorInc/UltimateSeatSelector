@@ -7,25 +7,6 @@ import { useAuth } from '../firebase/firebaseStore';
 import Modal from "react-modal";
 
 
-// function that opens or closes the popup based on passed variable
-function confirmationPopup(openOrClosed) {
-    document.getElementById("hidden").style.display = openOrClosed;
-}
-
-// function that deselects all seats in the database
-function deSelectSeat() {
-    const db = ref(getDatabase());
-    const updates = {};
-    updates['chosen'] = false;
-    updates['name'] = '';
-    updates['email'] = '';
-  
-    for (let i = 0; i < 36; i++) {
-      const seatRef = child(db, i.toString());
-      update(seatRef, updates);
-    }
-    confirmationPopup("none")  // close the confirmation popup
-}
 
 function getDate() {
     const date = new Date();
@@ -37,8 +18,24 @@ function getDate() {
 }
 
 function Instructor() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const { Link } = require("react-router-dom")
     const { isInstructor } = useAuth();
+
+    // function that deselects all seats in the database
+    function deSelectSeat() {
+        const db = ref(getDatabase());
+        const updates = {};
+        updates['chosen'] = false;
+        updates['name'] = '';
+        updates['email'] = '';
+    
+        for (let i = 0; i < 36; i++) {
+        const seatRef = child(db, i.toString());
+        update(seatRef, updates);
+        }
+        setIsModalOpen(false)
+    }
 
     function displayAttendance() {
         
@@ -99,6 +96,44 @@ function Instructor() {
     return(
 
         <div>
+            <Modal // Regular Modal - popup
+                isOpen={isModalOpen}
+                onRequestClose={() => setIsModalOpen(false)}
+                contentLabel="Example Modal"
+                className = "lecternModal"
+                style={{
+                    overlay: {
+                    backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    zIndex: 999,
+                    },
+                    content: {
+                    position: "fixed",
+                    top: "35%",
+                    left: "50%",
+                    backgroundColor: "#1a1d29",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    backgroundColor: "#1a1d29",
+                    border: "black",
+                    borderRadius: "10px",
+                    outline: "none",
+                    padding: "10px"
+                    },
+                }}
+                >
+              <div className = "popupStyle">
+              <h2>Are you sure? </h2>
+
+              <table className = "inputTable">
+                  <tr>
+                      <td><p>This action cannot be undone. Please download a copy for your records.</p></td>
+                  </tr>
+              </table>
+              <button className = "submitButton" onClick={() => { deSelectSeat() }}>Confirm</button>
+              <button className = "submitButton" onClick={() => { setIsModalOpen(false)}}>Close</button>
+              </div>
+            </Modal>
+
             <Navbar isActive = { true } showAddInstructor={isInstructor} />
 
             <div class = "maintitle">
@@ -121,20 +156,12 @@ function Instructor() {
             </div><br></br>
 
             <div className = "centerButton mainbodyInstructor">
-                <button className = "submitButton" onClick={() => { confirmationPopup("block") }}>Clear Seat Chart</button>
+                <button className = "submitButton" onClick={() => { setIsModalOpen(true) }}>Clear Seat Chart</button>
                 <button className = "greenSubmitButton submitButton" onClick={() => { }}>Download Excel</button>
                 <Link to="/addinstructor" className = "submitButton">Add Instructor</Link>
 
             </div>
-        
-            <br></br><br></br>
-            <p className="text" id="text"></p>
-            <div className="confirmation" id="hidden" style={{display: "none"}}>
-                <p className="center"><b>Are you sure?</b></p>
-                <p className="center">This will clear the seating chart and cannot be undone. Make sure you take a copy of the chart before you do this.</p>
-                <button className="submitButton" id="button" onClick = {() => {deSelectSeat()}}>Yes</button>
-                <button className="submitButton" id="button" onClick = {() => {confirmationPopup("none")}}>No</button>
-            </div>
+
         </div>
       )
 }
