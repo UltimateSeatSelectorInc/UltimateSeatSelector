@@ -23,16 +23,22 @@ async function sendVerification() {
             user.reload().then(async () => {
               if (user.emailVerified) {
                 clearInterval(intervalId);
-                console.log("User email verified"); // Added log
+                console.log("User email verified");
                 const querySnapshot = await getDocs(collection(dbstore, "instructorInvites"));
-                querySnapshot.forEach(async (doc) => {
+                const deletePromises = []; // To store deletion promises
+
+                querySnapshot.forEach((doc) => {
                   const data = doc.data();
                   console.log("Checking invite:", data.email, user.email);
                   if (data.email === user.email) {
-                    console.log("Deleting invite"); // Added log
-                    await deleteDoc(doc.ref);
+                    console.log("Deleting invite");
+                    const deletePromise = deleteDoc(doc.ref);
+                    deletePromises.push(deletePromise); // Add deletion promise to the array
                   }
                 });
+
+                // Wait for all deletion promises to resolve
+                await Promise.all(deletePromises);
                 console.log("Rerouting now");
                 window.location.href = "/";
               } else {
@@ -53,6 +59,7 @@ async function sendVerification() {
     alert(error.message)
   }
 }
+
 function Verify() {
     return (
   
