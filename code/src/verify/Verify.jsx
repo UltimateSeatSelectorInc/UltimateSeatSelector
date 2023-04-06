@@ -33,10 +33,13 @@ async function sendVerification() {
                     await deleteDoc(doc.ref);
                   }
                 });
-                console.log("Rerouting"); // Added log
-                window.location.href = "/";
+                console.log("Rerouting in 10 seconds");
+                setTimeout(() => {
+                  console.log("Rerouting now");
+                  window.location.href = "/";
+                }, 10000); // 10 seconds delay
               } else {
-                console.log("User email not verified"); // Added log
+                console.log("User email not verified");
               }
             }).catch((error) => {
               console.log(error);
