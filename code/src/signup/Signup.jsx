@@ -128,30 +128,34 @@ function SignUp() {
   
     if (token) {
       console.log("token found");
-      console.log(token)
+      console.log(token);
     
       try {
         const querySnapshot = await getDocs(collection(dbstore, "instructorInvites"));
+        let inviteFound = false;
+        let inviteDoc;
+    
         querySnapshot.forEach((doc) => {
-          if (querySnapshot.empty) {
-            console.log("invite not found");
-            setErrorMessage("Invalid or expired token.");
-            return;
+          const inviteData = doc.data();
+          if (email === inviteData.email) {
+            inviteFound = true;
+            inviteDoc = doc;
           }
         });
-        
-        // Get the first (and only) document in the querySnapshot
-        const inviteDoc = querySnapshot.docs[0];
-        const inviteData = inviteDoc.data();
-        const inviteEmail = inviteData.email;
+    
+        if (!inviteFound) {
+          console.log("invite not found");
+          setErrorMessage("Invalid or expired token.");
+          return;
+        }
     
         // Check if the email from Firestore matches the email provided in the form
-        if (email === inviteEmail) {
+        if (email === inviteDoc.data().email) {
           console.log("email matches");
           try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
-  
+    
             // Create a new document in the database for the user's account details
             await setDoc(doc(dbstore, "users", user.uid), {
               First_Name: firstNameCap,
