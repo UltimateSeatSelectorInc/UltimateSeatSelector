@@ -9,6 +9,7 @@ import emailjs from 'emailjs-com';
 import { useAuth } from '../firebase/firebaseStore';
 import { serverTimestamp } from 'firebase/firestore';
 import Modal from "react-modal";
+import './addinstructor.css'
 
 function AddInstructor() {
   const [inviteSent, setInviteSent] = useState(false);
@@ -104,7 +105,7 @@ function AddInstructor() {
             >
             <div className = "popupStyle2">
               <h3>Invite Sent!</h3>
-              <p>Please click the button below. The page will refresh automatically in 5 seconds</p>
+              <p className = "infoMsg">Please click the button below. The page will refresh automatically in 5 seconds</p>
               <button className = "submitButton" onClick={()=>{navigate('/');}}>Close</button>
             </div>
         </Modal>

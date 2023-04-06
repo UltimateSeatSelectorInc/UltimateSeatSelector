@@ -16,7 +16,6 @@
     color: white;
 }
 
-
 .greenSubmitButton {
     background-color: #1f6e43;
 }
@@ -69,4 +68,44 @@
     color: white;
     width:30%;
     top:35%;
+}
+
+/* Responsive web design  */
+@media (min-width: 800px) {
+    .mainbodyInstructor {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .mainbodyInstructor {
+        width: 25%;
+    }
+}
+
+@media (max-width: 700px) {
+    .mainbodytitle {
+        font-size: 17px;
+    }
+    .mainbodyInstructor {
+        width: 60%;
+    }
+}
+
+@media (max-width: 400px) and (min-width: 300px) {
+    .mainbodytitle {
+        font-size: 14px;
+        padding-left: 10px;
+
+    }
+    .mainbodyInstructor {
+        width: 70%;
+    }
+    .submitButton {
+        font-size: 10px;
+        padding: 5px;
+    }
+    h1 {
+        font-size: 25px;
+    }
 }
