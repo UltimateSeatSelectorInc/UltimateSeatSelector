@@ -101,6 +101,10 @@ function Map(props) {
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
   const [deselectModalIsOpen, setDeselectModalIsOpen] = useState(false);
 
+  // makes the instructor lectern only selectable by instructors
+  const {isInstructor } = useAuth();
+  const showInstructor = isInstructor;
+
   // function that deselects users seat, called from deselect Modal
   function deselectSeat() {
     const db = ref(getDatabase());
@@ -407,9 +411,12 @@ function Map(props) {
             >
             <div className = "popupStyle">
               <h2>Lectern (Instructor) </h2>
-
-
-              <button className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Submit</button>
+              <table className = "inputTable">
+                  <tr>
+                      <td><p>Lectern Claimed by: {props.name}</p></td>
+                  </tr>
+              </table>
+              <button style={{ display: showInstructor ? "inline-block" : "none" }} className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
               <button className = "submitButton" onClick={() => closeModal()}>Close</button>
             </div>
             </Modal>

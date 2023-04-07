@@ -5,7 +5,8 @@ import { getDatabase, ref, update, child, onValue, auth } from "firebase/databas
 import firebase from '../firebase/firebase.js';
 import { useAuth } from '../firebase/firebaseStore';
 import Modal from "react-modal";
-
+import * as FileSaver from 'file-saver';
+import XLSX from 'sheetjs-style';
 
 
 function getDate() {
@@ -15,10 +16,12 @@ function getDate() {
     let year = date.getFullYear();
     let currentDate = `${month}-${day}-${year}`;
     document.getElementById("attendanceTitle").innerHTML = "Attendance for: " + currentDate;
+    return currentDate;
 }
 
 function Instructor() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isExcelModalOpen, setIsExcelModalOpen] = useState(false);
     const { Link } = require("react-router-dom")
     const { isInstructor } = useAuth();
 
@@ -35,6 +38,24 @@ function Instructor() {
         update(seatRef, updates);
         }
         setIsModalOpen(false)
+    }
+
+    function exportToExcel() {
+        const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+        const fileExtension = '.xlsx';
+        const currentDate = getDate();
+        const fileName = currentDate;
+
+        let excelData = '';
+        for (let i=0; i < 5; i++) {
+            excelData = excelData + document.getElementById(`attendance${i}`);
+        }
+        console.log(excelData)
+        const ws = XLSX.utils.json_to_shee(excelData);
+        const wb = { Sheets: { 'data': ws}, SheetNames: ['data']};
+        const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+        const data = new Blob([excelBuffer], { type: fileType });
+        FileSaver.saveAs(data, fileName + fileExtension)
     }
 
     function displayAttendance() {
@@ -157,10 +178,47 @@ function Instructor() {
 
             <div className = "centerButton mainbodyInstructor">
                 <button className = "submitButton" onClick={() => { setIsModalOpen(true) }}>Clear Seat Chart</button>
-                <button className = "greenSubmitButton submitButton" onClick={() => { }}>Download Excel</button>
+                <button className = "greenSubmitButton submitButton" onClick={() => { setIsExcelModalOpen(true) }}>Download Excel</button>
                 <Link to="/addinstructor" className = "submitButton">Add Instructor</Link>
 
             </div>
+            <Modal // Excel Modal - popup
+                isOpen={isExcelModalOpen}
+                onRequestClose={() => setIsExcelModalOpen(false)}
+                contentLabel="Example Modal"
+                className = "lecternModal"
+                style={{
+                    overlay: {
+                    backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    zIndex: 999,
+                    },
+                    content: {
+                    position: "fixed",
+                    top: "35%",
+                    left: "50%",
+                    backgroundColor: "#1a1d29",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    backgroundColor: "#1a1d29",
+                    border: "black",
+                    borderRadius: "10px",
+                    outline: "none",
+                    padding: "10px"
+                    },
+                }}
+                >
+              <div className = "popupStyle">
+              <h2>Are you sure? </h2>
+
+              <table className = "inputTable">
+                  <tr>
+                      <td><p>Clicking download will download an excel file containing today's tables.</p></td>
+                  </tr>
+              </table>
+              <button className = "submitButton" onClick={() => { exportToExcel() }}>Download</button>
+              <button className = "submitButton" onClick={() => { setIsExcelModalOpen(false)}}>Close</button>
+              </div>
+            </Modal>
 
         </div>
       )
