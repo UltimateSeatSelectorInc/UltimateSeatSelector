@@ -96,6 +96,8 @@ function Map(props) {
   const [wasSelected, setWasSelected] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [lecternModalIsOpen, setlecternModalIsOpen] = useState(false);
+  const [lecternChosenModalIsOpen, setlecternChosenModalIsOpen] = useState(false);
+  const [lecternDeselectModalIsOpen, setlecternDeselectModalIsOpen] = useState(false);
   const [chosenModalIsOpen, setChosenModalIsOpen] = useState(false);
   const [tableModalIsOpen, setTableModalIsOpen] = useState(false);
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
@@ -131,7 +133,13 @@ function Map(props) {
         console.log("TABLE SELECTED");
     } else if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
         props.updateStyle(index);
-        setlecternModalIsOpen(true);
+        if (!props.chosen) {
+          setlecternModalIsOpen(true);
+        } else if (props.chosen && props.email === userEmail) {
+          setlecternDeselectModalIsOpen(true);
+        } else {
+          setlecternChosenModalIsOpen(true);
+        }
         console.log("LECTERN SELECTED");
     } else if (props.chosen && props.email === userEmail) {
         setDeselectModalIsOpen(true);
@@ -158,6 +166,8 @@ function Map(props) {
   function closeModal() {
     setModalIsOpen(false);
     setlecternModalIsOpen(false);
+    setlecternChosenModalIsOpen(false);
+    setlecternDeselectModalIsOpen(false);
     setChosenModalIsOpen(false)
     setTableModalIsOpen(false)
     setDeselectModalIsOpen(false)
@@ -411,12 +421,86 @@ function Map(props) {
             >
             <div className = "popupStyle">
               <h2>Lectern (Instructor) </h2>
+              <button style={{ display: showInstructor ? "inline-block" : "none" }} className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+            </div>
+            </Modal>
+          ) : null}
+
+          {lecternChosenModalIsOpen ? (
+            <Modal // Regular Modal - popup
+              isOpen={lecternChosenModalIsOpen}
+              onRequestClose={() => closeModal()}
+              contentLabel="Example Modal"
+              className = "lecternModal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 999,
+
+                },
+                content: {
+                  position: "fixed",
+                  top: "35%",
+                  left: "50%",
+                  backgroundColor: "#1a1d29",
+                  transform: "translate(-50%, -50%)",
+                  color: "white",
+                  backgroundColor: "#1a1d29",
+                  border: "black",
+                  borderRadius: "10px",
+                  outline: "none",
+                  padding: "10px"
+                },
+              }}
+            >
+            <div className = "popupStyle">
+              <h2>Lectern (Instructor) </h2>
               <table className = "inputTable">
                   <tr>
                       <td><p>Lectern Claimed by: {props.name}</p></td>
                   </tr>
               </table>
-              <button style={{ display: showInstructor ? "inline-block" : "none" }} className = "submitButton" onClick={() => {submitInfo(); closeModal() }}>Claim</button>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+            </div>
+            </Modal>
+
+          ) : null}        
+          {lecternDeselectModalIsOpen ? (
+            <Modal // Regular Modal - popup
+              isOpen={lecternDeselectModalIsOpen}
+              onRequestClose={() => closeModal()}
+              contentLabel="Example Modal"
+              className = "lecternModal"
+              style={{
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 999,
+
+                },
+                content: {
+                  position: "fixed",
+                  top: "35%",
+                  left: "50%",
+                  backgroundColor: "#1a1d29",
+                  transform: "translate(-50%, -50%)",
+                  color: "white",
+                  backgroundColor: "#1a1d29",
+                  border: "black",
+                  borderRadius: "10px",
+                  outline: "none",
+                  padding: "10px"
+                },
+              }}
+            >
+            <div className = "popupStyle">
+              <h2>Lectern (Instructor) </h2>
+              <table className = "inputTable">
+                  <tr>
+                      <td><p>Lectern Claimed by: {props.name} (You!)</p></td>
+                  </tr>
+              </table>
+              <button className = "submitButton" onClick={() => {deselectSeat(); closeModal() }}>Deselect</button>
               <button className = "submitButton" onClick={() => closeModal()}>Close</button>
             </div>
             </Modal>

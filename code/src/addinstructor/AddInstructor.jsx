@@ -8,7 +8,7 @@ import Navbar from '../navbar/Navbar.jsx'
 import emailjs from 'emailjs-com';
 import { useAuth } from '../firebase/firebaseStore';
 import { serverTimestamp } from 'firebase/firestore';
-import './addinstructor.css'
+import './Addinstructor.css'
 
 function AddInstructor() {
   const [inviteSent, setInviteSent] = useState(false);
