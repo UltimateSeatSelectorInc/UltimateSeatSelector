@@ -46,12 +46,20 @@ function Instructor() {
         const currentDate = getDate();
         const fileName = currentDate;
 
-        let excelData = '';
-        for (let i=0; i < 5; i++) {
-            excelData = excelData + document.getElementById(`attendance${i}`);
-        }
-        console.log(excelData)
-        const ws = XLSX.utils.json_to_shee(excelData);
+        let excelTableData = document.getElementById(`attendance1`).textContent;
+        let excelTableData2 = document.getElementById(`attendance2`).textContent;
+        let excelTableData3 = document.getElementById(`attendance3`).textContent;
+        let excelTableData4 = document.getElementById(`attendance4`).textContent;
+        let excelTableData5 = document.getElementById(`attendance5`).textContent;
+        console.log(excelTableData5)
+        let excelData = [
+          { Table_1: excelTableData},
+          { Table_2: excelTableData2},
+          { Table_3: excelTableData3},
+          { Table_4: excelTableData4},
+          { Table_5: excelTableData5},
+        ]
+        const ws = XLSX.utils.json_to_sheet(excelData);
         const wb = { Sheets: { 'data': ws}, SheetNames: ['data']};
         const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
         const data = new Blob([excelBuffer], { type: fileType });
@@ -95,7 +103,7 @@ function Instructor() {
                 if (seat.charAt(0) == i) {
                     let name = processingStudents[j].name;
                     let email = processingStudents[j].email;
-                    studentList += `${seat} - <a href="mailto:${email}">${name}</a><br>`;
+                    studentList += `${seat} - <a href="mailto:${email}">${name}</a><br> `;
                 }
             }
             if (studentList) {
@@ -212,7 +220,7 @@ function Instructor() {
 
               <table className = "inputTable">
                   <tr>
-                      <td><p>Clicking download will download an excel file containing today's tables.</p></td>
+                      <td><p>This will download a Microsoft Excel file containing a record of today's seat map as of this moment.</p></td>
                   </tr>
               </table>
               <button className = "submitButton" onClick={() => { exportToExcel() }}>Download</button>
