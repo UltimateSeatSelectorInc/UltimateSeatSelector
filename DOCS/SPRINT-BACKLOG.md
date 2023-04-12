@@ -1,5 +1,13 @@
 # Eric's Angels Sprint Backlog
 
+## **Sprint 7 Backlog**
+
+### User Stories:
+- (Matt 4) As a user, I want the same experience across devices so that I can access it from anywhere.
+- (Matt 4) As a user, I want to be able to reset my password from the login page so that I can get into my account if I forgot my password.
+- (Matt 4) As an instructor, I don't want to be able to select more than one seat so that the person who claimed it is clear.
+
+
 ## **Sprint 6 Backlog**
 
 ### User Stories:
