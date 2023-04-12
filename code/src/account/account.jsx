@@ -132,7 +132,9 @@ function Account() {
             <p>Welcome, {firstName}. </p>
           </div>
           <div className = "mainbodysubtitle">
-            <p>What would you like to do with your account? You've got some options...
+            <p>What would you like to do with your account? Here, you can either reset your password
+              or delete your account completely.<br></br><br></br>Warning: Deleting your account is permanent and
+              cannot be undone.
             </p>
             <button className = "accountButtons submitButton" onClick={() => { resetPassword()}}>Reset Password</button>
             <button className = "accountButtons submitButton" onClick={() => { showConfirmDelete() }}>Delete Account</button>

@@ -46,9 +46,11 @@ return (
     <li className="nav-item">
       <Link to="/instructor" className="nav-link" style={{ display: showInstructor ? "block" : "none" }}>Instructor</Link>
     </li>    
+    {user && (
     <li className="nav-item">
       <Link to="/" className="nav-link">Seat Map</Link>
     </li>
+  )}
     <li className="nav-item">
       <Link to="/about" className="nav-link">About</Link>
     </li>

@@ -17,9 +17,19 @@ import { useState, useEffect } from 'react'
 
 function App() {
   const { user, isInstructor } = useAuth();
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [ isSignedIn, setIsSignedIn ] = useState(false);
+  const [ isVerified, setIsVerified ] = useState(false);
+
   useEffect(() => {
     if (user) {
+
+      // set  isVerified to true if a user is verified
+      if (user.emailVerified) {
+        setIsVerified(true)
+      } else {
+        setIsVerified(false); }
+
+      // set isSignedIn to true if a firestore document exists with user's firstname
       const userRef = doc(dbstore, 'users', user.uid);
       getDoc(userRef).then((doc) => {
         if (doc.exists()) {
@@ -37,7 +47,9 @@ function App() {
   return (
   <BrowserRouter>
         <Routes>
+
           <Route path="/about" element={<About/>} />
+
           <Route
             path="/login"
             element={
@@ -46,6 +58,7 @@ function App() {
               </Protected2>
             }
           />
+
           <Route
             path="/signup"
             element={
@@ -57,20 +70,23 @@ function App() {
           <Route
             path="/"
             element={
-              <Protected isSignedIn={isSignedIn}>
+              <Protected isSignedIn={isSignedIn} isVerified={isVerified}>
                 <Maploader />
               </Protected>
             }
           />
-            <Route
+
+          <Route
             path="/account"
             element={
-              <Protected isSignedIn={isSignedIn}>
+              <Protected isSignedIn={isSignedIn} isVerified={isVerified}>
                 <Account />
               </Protected>
             }
           />
+                    
           <Route path="/verify" element={<Verify />}/>
+
           <Route
             path="/instructor"
             element={
@@ -79,6 +95,7 @@ function App() {
               </Protected>
             }
           />
+
           <Route
             path="/addinstructor"
             element={
@@ -87,6 +104,7 @@ function App() {
               </Protected>
             }
           />
+
         </Routes>
   </BrowserRouter>
   );

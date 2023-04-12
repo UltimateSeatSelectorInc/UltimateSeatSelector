@@ -134,7 +134,17 @@ function Map(props) {
     } else if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
         props.updateStyle(index);
         if (!props.chosen) {
-          setlecternModalIsOpen(true);
+
+          checkUser().then((result) => {
+            if (result == false) { // if no match, allow user to select seat
+              props.updateStyle(index);
+              console.log("SEAT SELECTED");
+              setlecternModalIsOpen(true);
+            }
+            else { // if user already selected a seat, don't display popup
+              console.log("USER ALREADY SELECTED A SEAT")
+            }
+          })
         } else if (props.chosen && props.email === userEmail) {
           setlecternDeselectModalIsOpen(true);
         } else {
@@ -148,8 +158,8 @@ function Map(props) {
         checkUser().then((result) => {
           if (result == false) { // if no match, allow user to select seat
             props.updateStyle(index);
-          console.log("SEAT SELECTED");
-          setModalIsOpen(true);
+            console.log("SEAT SELECTED");
+            setModalIsOpen(true);
           }
           else { // if user already selected a seat, don't display popup
             console.log("USER ALREADY SELECTED A SEAT")

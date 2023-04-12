@@ -90,7 +90,8 @@ function Verify() {
 
             <div class = "mainbodysubtitle">
               <p class = "emailMessage" id = "emailSentMsg">Email sent! Check your inbox. Click the link 
-              in the email to gain access!</p>
+              in the email to gain access! Please allow up to 5 minutes, and don't forget
+                to check your spam folder!</p>
             </div>
 
             <div class = "mainbodysubtitle">
