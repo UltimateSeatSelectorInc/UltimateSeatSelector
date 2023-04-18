@@ -9,6 +9,9 @@
 - (Connor 4) As an instructor, I'd like the excel file I download to be nicely formatted and easy to understand.
 - (Connor 4) As a user, I'd like to get feedback on needing to first deselect my current seat when trying to select another.
 - (Connor 4) As a user, I'd like to be able to see everyone at a table by clicking on it.
+- (Vince 4) As a user, I want to be able to leave feedback to the instructor in a feedback section on a per-class basis.
+- (Vince 2) As an instructor, I want to be able to clear student feedback.
+- (Vince 6) As an instructor I want to be able to create breakout tables, randomizing students seats.
 
 
 ## **Sprint 6 Backlog**
