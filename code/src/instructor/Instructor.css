@@ -10,6 +10,7 @@
     background-color: #1a1d29;
     border-radius: 4px;
     width: 40%;
+    margin-bottom: 10px;
 }
 
 .maintitle {
@@ -82,6 +83,7 @@
     font-family: ubu-reg;
 }
 
+
 @media (min-width: 1200px) {
     .mainbodyInstructor {
         width: 25%;
@@ -107,7 +109,7 @@
         width: 70%;
     }
     .submitButton {
-        font-size: 10px;
+        font-size: 12px;
         padding: 5px;
     }
     h1 {

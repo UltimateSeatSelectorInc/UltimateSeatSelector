@@ -69,34 +69,3 @@ h1 {
     font-family: 'ubu-reg';
     src: url(../fonts/ubu-reg.ttf)
 }
-
-@media (min-width: 800px) {
-    .mainbody {
-        width: 45%;
-    }
-}
-
-@media (min-width: 1200px) {
-    .mainbody {
-        width: 25%;
-    }
-}
-
-@media (max-width: 700px) {
-    .mainbodytitle {
-        font-size: 17px;
-    }
-    .mainbody {
-        width: 50%;
-    }
-}
-
-@media (max-width: 400px) and (min-width: 300px) {
-    .mainbodytitle {
-        font-size: 14px;
-        padding-left: 10px;
-    }
-    .mainbody {
-        width: 70%;
-    }
-}

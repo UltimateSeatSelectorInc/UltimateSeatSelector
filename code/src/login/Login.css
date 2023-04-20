@@ -138,7 +138,7 @@ a {
     }
 }
 
-@media (max-width: 400px) and (min-width: 300px) {
+@media (max-width: 500px) and (min-width: 300px) {
     .mainbodytitle {
         font-size: 14px;
         padding-left: 10px;

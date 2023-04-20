@@ -187,7 +187,10 @@ function Instructor() {
             <div className = "centerButton mainbodyInstructor">
                 <button className = "submitButton" onClick={() => { setIsModalOpen(true) }}>Clear Seat Chart</button>
                 <button className = "greenSubmitButton submitButton" onClick={() => { setIsExcelModalOpen(true) }}>Download Excel</button>
-                <Link to="/addinstructor" className = "submitButton">Add Instructor</Link>
+                <button className="submitButton">
+                <Link to="/addinstructor">Add Instructor</Link>
+                </button>
+
 
             </div>
             <Modal // Excel Modal - popup
