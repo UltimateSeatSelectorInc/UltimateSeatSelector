@@ -14,7 +14,7 @@ and how it function. Specifically, we:
 - There are methods/tricks avaiable with our stack that allow for "real-time"
 functionality.
 
-## Sprint 4 Planning Feb 21. 2023
+## Sprint 4 Planning Feb 21, 2023
 - First priority is getting the react code for the website to properly display when hosted on Azure. 
 - Then, we will implement all of our previous user stories that aren't "done" into the project.
 
@@ -23,3 +23,6 @@ functionality.
 
 ## Sprint 6 Planning Mar 28, 2023
 - For this sprint, we want to fully implement the instructor page and extend the account features. In addition, we want to add different options for seats, like being able to deselect them on your own and not being able to select the podem without being an instructor.
+
+## Sprint 7 Planning April 11, 2023
+- For this sprint, we want to work on improving the user's experience via better experience on mobile, more password functionality, better info pop-ups, as well as more info for tables. We also wanted to focus on giving instructors more functionality such as student feedback and a more styled downloadable excel sheet.
