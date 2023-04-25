@@ -26,3 +26,6 @@ functionality.
 
 ## Sprint 7 Planning April 11, 2023
 - For this sprint, we want to work on improving the user's experience via better experience on mobile, more password functionality, better info pop-ups, as well as more info for tables. We also wanted to focus on giving instructors more functionality such as student feedback and a more styled downloadable excel sheet.
+
+## Sprint 8 Planning April 25, 2023
+- For this final sprint, we are mainly working on sustainability. We are going to create some extensive documentation along with cleaning up our code with further comments. We will also finish implementing the add instructor functionality and considering whether to keep or get rid of geolocation. The goal of this documentation will be to allow the professor to host the website and become the owner of the firebase database.

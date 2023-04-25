@@ -16,3 +16,6 @@
 
 ## Sprint 6 Review Apr 11, 2023
 - Upon reviewing Sprint 6, we made quite a bit of progress. At this point in the project we will be looking to further refine our other features that were otherwise completed but perhaps don't look the best.
+
+## Sprint 7 Review Apr 25, 2023
+- Upon reviewing Sprint 7, we didn't make quite as much progress as previous sprints. Although our project is in a good spot, there were relatively minor changes, mostly luxury features. Our team communication also took a hit, which we hope to improve the next sprint.
