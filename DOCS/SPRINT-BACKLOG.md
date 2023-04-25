@@ -7,7 +7,7 @@
 
 ## Spike Stories:
 - (Matt 6) As a developer, I want to make extensive project documentation so that the transition to the next team is as easy as possible.
-- - (Connor 6) As a developer, I want to adjust the firebase rules and transition ownership of the database so that the next team can continue updating the project easily.
+- (Connor 6) As a developer, I want to adjust the firebase rules and transition ownership of the database so that the next team can continue updating the project easily.
 - (Connor 6) As a developer, I want to write extensive hosting documentation so that the next team can get started easily.
 - (Matt 5) As a developer, I want to remove excess code and add extensive comments so that the codebase is clean and maintainable.
 - (Vince 3) As a developer, I want to remove excess features that aren't being used in the codebase so that it is more maintainable.
