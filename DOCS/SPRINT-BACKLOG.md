@@ -1,5 +1,23 @@
 # Eric's Angels Sprint Backlog
 
+## **Sprint 8 Backlog**
+
+### User Stories:
+- (Vincent 4) As a user, I want the add instructor feature optimized so that adding instructors is a more seemless and smooth process.
+
+## Spike Stories:
+- (Matt 6) As a developer, I want to make extensive project documentation so that the transition to the next team is as easy as possible.
+- - (Connor 6) As a developer, I want to adjust the firebase rules and transition ownership of the database so that the next team can continue updating the project easily.
+- (Connor 6) As a developer, I want to write extensive hosting documentation so that the next team can get started easily.
+- (Matt 5) As a developer, I want to remove excess code and add extensive comments so that the codebase is clean and maintainable.
+- (Vince 3) As a developer, I want to remove excess features that aren't being used in the codebase so that it is more maintainable.
+
+**Total Story Points: 30**
+Matt: 11
+Vince: 7
+Connor: 12
+
+
 ## **Sprint 7 Backlog**
 
 ### User Stories:
