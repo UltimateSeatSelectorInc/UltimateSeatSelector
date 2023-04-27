@@ -32,26 +32,26 @@ N/A
   draggable svg elements.
 - Modularize the code a little better
 
-### DEPENDENCIES ```
-+-- @testing-library/jest-dom@5.16.5
-+-- @testing-library/react@13.4.0
-+-- @testing-library/user-event@13.5.0
-+-- email-js@2.0.2
-+-- emailjs-com@2.6.4
-+-- emailjs@4.0.1
-+-- file-saver@2.0.5
-+-- firebase-admin@11.5.0
-+-- firebase-auth@0.1.2
-+-- firebase@9.18.0
-+-- framer-motion@10.9.1
-+-- react-dom@18.2.0
-+-- react-modal@3.16.1
-+-- react-router-dom@6.10.0
-+-- react-router@6.10.0
-+-- react-scripts@5.0.1
-+-- react@18.2.0
-+-- sheetjs-style@0.15.8
-+-- sheetjs@2.0.0
-+-- svgson@5.2.1
-+-- web-vitals@2.1.4
-+-- xlsx@0.18.5 ```
+### DEPENDENCIES 
+- @testing-library/jest-dom@5.16.5
+- @testing-library/react@13.4.0
+- @testing-library/user-event@13.5.0
+- email-js@2.0.2
+- emailjs-com@2.6.4
+- emailjs@4.0.1
+- file-saver@2.0.5
+- firebase-admin@11.5.0
+- firebase-auth@0.1.2
+- firebase@9.18.0
+- framer-motion@10.9.1
+- react-dom@18.2.0
+- react-modal@3.16.1
+- react-router-dom@6.10.0
+- react-router@6.10.0
+- react-scripts@5.0.1
+- react@18.2.0
+- sheetjs-style@0.15.8
+- sheetjs@2.0.0
+- svgson@5.2.1
+- web-vitals@2.1.4
+- xlsx@0.18.5
