@@ -39,6 +39,7 @@ function Instructor() {
         setIsModalOpen(false)
     }
 
+    // function that exports data to excel file via library
     function exportToExcel() {
         const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
         const fileExtension = '.xlsx';
@@ -70,6 +71,7 @@ function Instructor() {
         XLSX.writeFile(workbook, fileName + fileExtension); 
     }
 
+    // function that gets data from firebase and displays it
     function displayAttendance() {
         
         const db = ref(getDatabase());
@@ -97,7 +99,6 @@ function Instructor() {
             occupiedSeats.length = 0; // reset
         }
         
-
         // display the list of students for each table unless it's empty, display message
         for (let i = 1; i <= 5; i++) {
             let attendanceElement = document.getElementById(`attendance${i}`);
@@ -111,10 +112,10 @@ function Instructor() {
                 }
             }
             if (studentList) {
-                attendanceElement.innerHTML = studentList;
+                attendanceElement.innerHTML = studentList; // if there are students, display them in the element
             } else {
                 attendanceElement.classList.add("noStudentsMsg")
-                attendanceElement.innerHTML = "Empty Table";
+                attendanceElement.innerHTML = "Empty Table"; // if no students
             }
         }
     }  

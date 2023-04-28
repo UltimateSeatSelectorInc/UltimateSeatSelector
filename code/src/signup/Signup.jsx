@@ -181,7 +181,7 @@ function SignUp() {
         );
       }
     } else {
-      // ...
+      
       // try to create a user with the function
       try {
         const userCredential = await createUserWithEmailAndPassword(
