@@ -9,12 +9,12 @@ import { dbstore } from "../firebase/firebaseStore";
 
 
 /* function that sends verification email, then checks every 3 seconds for the user
-to verify their email. Once verified, it redirects them to the home page. */
+to verify their email. Once verified, it redirects them to the home page automatically. */
 async function sendVerification() {
   try {
     const user = auth.currentUser;
     if (user) {
-      if (user.emailVerified) {
+      if (user.emailVerified) { // don't send email if they are already verified, and display msg
         var showAlreadyVMsg = document.getElementById("alreadyVerifiedMsg")
         showAlreadyVMsg.style.display = "block"
       } else {

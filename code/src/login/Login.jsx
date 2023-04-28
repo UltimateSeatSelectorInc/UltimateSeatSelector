@@ -25,6 +25,7 @@ function setEmptyErrors(fieldName) {
   }
 }
 
+// function to login passed on provided email and password
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -15,6 +15,12 @@ import { useAuth, dbstore } from "./firebase/firebaseStore";
 import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from 'react'
 
+// file that handles routing via react routing library
+// redirects users based on -->
+// if they are not logged in: no access to main pages, redirect to login
+// if they are not verified: no access to main pages, redirect to verify page
+// if they are an instrucotr: allow access to special instructor page
+
 function App() {
   const { user, isInstructor } = useAuth();
   const [ isSignedIn, setIsSignedIn ] = useState(false);

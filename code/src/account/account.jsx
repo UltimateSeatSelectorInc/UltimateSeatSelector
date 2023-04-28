@@ -96,7 +96,7 @@ function Account() {
               console.log("Error deleting firestore document:", error);
             });
         })
-        .catch((error) => {
+        .catch((error) => { // set error messaging and styling
           console.log("Error reauthenticating user:", error);
           if (error == "FirebaseError: Firebase: Error (auth/wrong-password).") {
             document.getElementById("confirmPassInput").classList.remove("cellSign")

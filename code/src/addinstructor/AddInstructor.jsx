@@ -28,6 +28,7 @@ function AddInstructor() {
     }
   }, [isModalOpen, navigate]);  
 
+  // function to send the a random verification code to be stored and verified
   async function sendVerificationCode(email) {
     const token = Math.floor(100000 + Math.random() * 900000);
     const docRef = await addDoc(collection(dbstore, "instructorInvites"), {
@@ -60,12 +61,12 @@ function AddInstructor() {
     let hasErrors = false;
 
     if (checkIfEmpty(email)) {
-      setEmptyErrors('email');
+      setEmptyErrors('email'); // set errors if empty
       hasErrors = true;
     }
 
     if (checkIfEmailValid(email) === false) {
-      setFieldErrors('email');
+      setFieldErrors('email'); // set errors if invalid
       hasErrors = true;
     }
 
@@ -74,7 +75,7 @@ function AddInstructor() {
     }
 
     await sendVerificationCode(email);
-    var showMessage = document.getElementById("emailSentMsg");
+    var showMessage = document.getElementById("emailSentMsg"); // provide useful sent msg
         showMessage.innerHTML = "Please wait..."
         showMessage.style.display = "block";
   };
