@@ -34,7 +34,6 @@ N/A
 - email-js@2.0.2
 - emailjs-com@2.6.4
 - emailjs@4.0.1
-- file-saver@2.0.5
 - firebase-admin@11.5.0
 - firebase-auth@0.1.2
 - firebase@9.18.0
