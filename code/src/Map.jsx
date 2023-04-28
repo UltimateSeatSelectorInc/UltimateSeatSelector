@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { auth } from "./firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref, get, child, update } from "firebase/database";
+import { getDatabase, ref, update, child, onValue, get } from "firebase/database";
 import { submitChoice } from "./Maploader";
 import { collection, getDoc, doc  } from "firebase/firestore"; 
 import { dbstore,useAuth } from "./firebase/firebaseStore";
@@ -99,9 +99,14 @@ function Map(props) {
   const [lecternChosenModalIsOpen, setlecternChosenModalIsOpen] = useState(false);
   const [lecternDeselectModalIsOpen, setlecternDeselectModalIsOpen] = useState(false);
   const [chosenModalIsOpen, setChosenModalIsOpen] = useState(false);
-  const [tableModalIsOpen, setTableModalIsOpen] = useState(false);
+  const [table1ModalIsOpen, setTable1ModalIsOpen] = useState(false);
+  const [table2ModalIsOpen, setTable2ModalIsOpen] = useState(false);
+  const [table3ModalIsOpen, setTable3ModalIsOpen] = useState(false);
+  const [table4ModalIsOpen, setTable4ModalIsOpen] = useState(false);
+  const [table5ModalIsOpen, setTable5ModalIsOpen] = useState(false);
   const [alertModalIsOpen, setAlertModalIsOpen] = useState(false);
   const [deselectModalIsOpen, setDeselectModalIsOpen] = useState(false);
+  const [alreadyChosenSeatIsOpen, setAlreadyChosenSeatIsOpen] = useState(false);
 
   // makes the instructor lectern only selectable by instructors
   const {isInstructor } = useAuth();
@@ -129,7 +134,17 @@ function Map(props) {
     const userEmail = auth.currentUser.email;
     if (props.seat.includes("TABLE")) { // If table selected
         props.updateStyle(index, 'blue')
-        setTableModalIsOpen(true);
+        if (index == "8") {
+          setTable1ModalIsOpen(true);
+        } else if (index == "10") {
+          setTable2ModalIsOpen(true);
+        } else if (index == "5") {
+          setTable3ModalIsOpen(true);
+        } else if (index == "35") {
+          setTable4ModalIsOpen(true);
+        } else if (index == "11") {
+          setTable5ModalIsOpen(true);
+        }
         console.log("TABLE SELECTED");
     } else if (props.seat === "Lectern") { // Checks if lectern seat is clicked for lectern popup
         props.updateStyle(index);
@@ -142,6 +157,7 @@ function Map(props) {
               setlecternModalIsOpen(true);
             }
             else { // if user already selected a seat, don't display popup
+              setAlreadyChosenSeatIsOpen(true);
               console.log("USER ALREADY SELECTED A SEAT")
             }
           })
@@ -162,6 +178,7 @@ function Map(props) {
             setModalIsOpen(true);
           }
           else { // if user already selected a seat, don't display popup
+            setAlreadyChosenSeatIsOpen(true);
             console.log("USER ALREADY SELECTED A SEAT")
           }
         })
@@ -173,14 +190,70 @@ function Map(props) {
     }
   }
 
+function getTableOccupants(id = 0) {
+    const db = ref(getDatabase());
+    onValue(db, (snapshot) => {
+    let seats = []
+    const occupiedSeats = [];
+    const processingStudents = [];
+    snapshot.forEach(childSnapshot => {
+    seats.push(childSnapshot.val())
+    })
+
+    // iterate through each seat and push each chosen seat to an array
+    for (let i = 0; i < 36; i++) {
+        const seat = seats[i];
+        if (seat.chosen === true) {
+        occupiedSeats.push(i);
+        }
+    }
+
+    // if we have some occupied seats, push each seat object to the processing array
+    if (occupiedSeats.length != 0) {
+        for (let i = 0; i < occupiedSeats.length; i++) {
+            processingStudents.push(seats[occupiedSeats[i]]);
+        }
+        occupiedSeats.length = 0; // reset
+    }
+    
+
+    // display the list of students for each table unless it's empty, display message
+    if (document.getElementById(`table${id}`)) {
+      let testElement = document.getElementById(`table${id}`);
+        let studentList = "";
+        for (let j = 0; j < processingStudents.length; j++) {
+            let seat = processingStudents[j].seat;
+            if (seat.charAt(0) == id) {
+                let name = processingStudents[j].name;
+                studentList += `${seat} - ${name}<br> `;
+            }
+        }
+        if (studentList) {
+          console.log(studentList)
+          testElement.innerHTML = studentList;
+        } else {
+          testElement.classList.add("noStudentsMsg")
+          testElement.innerHTML = "Empty Table";
+        }
+    } 
+  }
+    )
+}
+
+
   function closeModal() {
     setModalIsOpen(false);
     setlecternModalIsOpen(false);
     setlecternChosenModalIsOpen(false);
     setlecternDeselectModalIsOpen(false);
     setChosenModalIsOpen(false)
-    setTableModalIsOpen(false)
+    setTable1ModalIsOpen(false)
+    setTable2ModalIsOpen(false)
+    setTable3ModalIsOpen(false)
+    setTable4ModalIsOpen(false)
+    setTable5ModalIsOpen(false)
     setDeselectModalIsOpen(false)
+    setAlreadyChosenSeatIsOpen(false)
   }
 
   function submitInfo() {
@@ -290,6 +363,46 @@ function Map(props) {
               </Modal>
           ) : null}
 
+          {alreadyChosenSeatIsOpen ? (
+              <Modal
+                isOpen={alreadyChosenSeatIsOpen}
+                onRequestClose={() => closeModal()}
+                contentLabel="Seat Already Chosen Modal"
+                className = "chosenModal"
+                style={{
+                  overlay: {
+                    backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    zIndex: 999,
+                  },
+                  content: {
+                    position: "fixed",
+                    top: "35%",
+                    left: "50%",
+                    backgroundColor: "#1a1d29",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    backgroundColor: "#1a1d29",
+                    border: "black",
+                    borderRadius: "10px",
+                    outline: "none",
+                    padding: "10px"
+                  },
+                }}
+              >
+              <div className = "popupStyle">
+              <h2>Table {props.seat[0]}, Seat {props.seat} </h2>
+
+              <table className = "inputTable">
+                  <tr>
+                      <td><p>You have already chosen a seat! Please deselect it before choosing another.</p></td>
+                  </tr>
+              </table>
+              <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+
+                </div>
+              </Modal>
+          ) : null}
+
           {chosenModalIsOpen ? (
               <Modal // Chosen seat modal - popup, just displays who claimed seat.
               isOpen={chosenModalIsOpen}
@@ -367,9 +480,10 @@ function Map(props) {
             </Modal>
           ) : null}
 
-          {tableModalIsOpen ? (
-            <Modal // Table seat model, just contains the table name
-            isOpen={tableModalIsOpen}
+      {table1ModalIsOpen ? (
+            <Modal // Table seat model
+            isOpen={table1ModalIsOpen}
+            onAfterOpen={getTableOccupants(1)}
             onRequestClose={() => closeModal()}
             contentLabel="Example Modal"
             className = "tableModal"
@@ -395,7 +509,156 @@ function Map(props) {
             
           >
           <div className = "popupStyle">
-            <h2>Table {props.seat[5]} </h2>
+            <h2>Table 1 </h2>
+            <p id="table1">Empty</p>
+
+            <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+          </div>
+          </Modal>
+        ) : null}
+
+      {table2ModalIsOpen ? (
+            <Modal // Table seat model
+            isOpen={table2ModalIsOpen}
+            onAfterOpen={getTableOccupants(2)}
+            onRequestClose={() => closeModal()}
+            contentLabel="Example Modal"
+            className = "tableModal"
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                zIndex: 999,
+
+              },
+              content: {
+                position: "fixed",
+                top: "35%",
+                left: "50%",
+                backgroundColor: "#1a1d29",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "#1a1d29",
+                border: "black",
+                borderRadius: "10px",
+                outline: "none"
+              },
+            }}
+            
+          >
+          <div className = "popupStyle">
+            <h2>Table 2 </h2>
+            <p id="table2">Empty</p>
+
+            <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+          </div>
+          </Modal>
+        ) : null}
+      
+      {table3ModalIsOpen ? (
+            <Modal // Table seat model
+            isOpen={table3ModalIsOpen}
+            onAfterOpen={getTableOccupants(3)}
+            onRequestClose={() => closeModal()}
+            contentLabel="Example Modal"
+            className = "tableModal"
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                zIndex: 999,
+
+              },
+              content: {
+                position: "fixed",
+                top: "35%",
+                left: "50%",
+                backgroundColor: "#1a1d29",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "#1a1d29",
+                border: "black",
+                borderRadius: "10px",
+                outline: "none"
+              },
+            }}
+            
+          >
+          <div className = "popupStyle">
+            <h2>Table 3 </h2>
+            <p id="table3">Empty</p>
+
+            <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+          </div>
+          </Modal>
+        ) : null}
+
+      {table4ModalIsOpen ? (
+            <Modal // Table seat model
+            isOpen={table4ModalIsOpen}
+            onAfterOpen={getTableOccupants(4)}
+            onRequestClose={() => closeModal()}
+            contentLabel="Example Modal"
+            className = "tableModal"
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                zIndex: 999,
+
+              },
+              content: {
+                position: "fixed",
+                top: "35%",
+                left: "50%",
+                backgroundColor: "#1a1d29",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "#1a1d29",
+                border: "black",
+                borderRadius: "10px",
+                outline: "none"
+              },
+            }}
+            
+          >
+          <div className = "popupStyle">
+            <h2>Table 4 </h2>
+            <p id="table4">Empty</p>
+
+            <button className = "submitButton" onClick={() => closeModal()}>Close</button>
+          </div>
+          </Modal>
+        ) : null}
+
+      {table5ModalIsOpen ? (
+            <Modal // Table seat model
+            isOpen={table5ModalIsOpen}
+            onAfterOpen={getTableOccupants(5)}
+            onRequestClose={() => closeModal()}
+            contentLabel="Example Modal"
+            className = "tableModal"
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                zIndex: 999,
+
+              },
+              content: {
+                position: "fixed",
+                top: "35%",
+                left: "50%",
+                backgroundColor: "#1a1d29",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                backgroundColor: "#1a1d29",
+                border: "black",
+                borderRadius: "10px",
+                outline: "none"
+              },
+            }}
+            
+          >
+          <div className = "popupStyle">
+            <h2>Table 5 </h2>
+            <p id="table5">Empty</p>
 
             <button className = "submitButton" onClick={() => closeModal()}>Close</button>
           </div>

@@ -5,7 +5,6 @@ import { getDatabase, ref, update, child, onValue, auth } from "firebase/databas
 import firebase from '../firebase/firebase.js';
 import { useAuth } from '../firebase/firebaseStore';
 import Modal from "react-modal";
-import * as FileSaver from 'file-saver';
 import XLSX from 'sheetjs-style';
 
 
@@ -47,24 +46,29 @@ function Instructor() {
         const currentDate = getDate();
         const fileName = currentDate;
 
-        let excelTableData = document.getElementById(`attendance1`).textContent;
+        let excelTableData1 = document.getElementById(`attendance1`).textContent;
         let excelTableData2 = document.getElementById(`attendance2`).textContent;
         let excelTableData3 = document.getElementById(`attendance3`).textContent;
         let excelTableData4 = document.getElementById(`attendance4`).textContent;
         let excelTableData5 = document.getElementById(`attendance5`).textContent;
-        console.log(excelTableData5)
+        let excelSplitTableData1 = excelTableData1.split("*")
+        let excelSplitTableData2 = excelTableData2.split("*")
+        let excelSplitTableData3 = excelTableData3.split("*")
+        let excelSplitTableData4 = excelTableData4.split("*")
+        let excelSplitTableData5 = excelTableData5.split("*")
         let excelData = [
-          { Table_1: excelTableData},
-          { Table_2: excelTableData2},
-          { Table_3: excelTableData3},
-          { Table_4: excelTableData4},
-          { Table_5: excelTableData5},
-        ]
+            { Name1: excelSplitTableData1[0], Name2: excelSplitTableData1[1], Name3: excelSplitTableData1[2], Name4: excelSplitTableData1[3], Name5: excelSplitTableData1[4], Name6: excelSplitTableData1[5]},
+            { Name1: excelSplitTableData2[0], Name2: excelSplitTableData2[1], Name3: excelSplitTableData2[2], Name4: excelSplitTableData2[3], Name5: excelSplitTableData2[4], Name6: excelSplitTableData2[5]},
+            { Name1: excelSplitTableData3[0], Name2: excelSplitTableData3[1], Name3: excelSplitTableData3[2], Name4: excelSplitTableData3[3], Name5: excelSplitTableData3[4], Name6: excelSplitTableData3[5]},
+            { Name1: excelSplitTableData4[0], Name2: excelSplitTableData4[1], Name3: excelSplitTableData4[2], Name4: excelSplitTableData4[3], Name5: excelSplitTableData4[4], Name6: excelSplitTableData4[5]},
+            { Name1: excelSplitTableData5[0], Name2: excelSplitTableData5[1], Name3: excelSplitTableData5[2], Name4: excelSplitTableData5[3], Name5: excelSplitTableData5[4], Name6: excelSplitTableData5[5]},
+          ]
+        console.log(excelData)
         const ws = XLSX.utils.json_to_sheet(excelData);
-        const wb = { Sheets: { 'data': ws}, SheetNames: ['data']};
-        const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-        const data = new Blob([excelBuffer], { type: fileType });
-        FileSaver.saveAs(data, fileName + fileExtension)
+        ws["!cols"] = [ { wch: 30}, {wch: 30}, {wch: 30}, {wch: 30}, {wch: 30}, {wch: 30} ];
+        const workbook = XLSX.utils.book_new(); 
+        XLSX.utils.book_append_sheet(workbook, ws, 'UltimateSeatSelector');
+        XLSX.writeFile(workbook, fileName + fileExtension); 
     }
 
     // function that gets data from firebase and displays it
@@ -104,7 +108,7 @@ function Instructor() {
                 if (seat.charAt(0) == i) {
                     let name = processingStudents[j].name;
                     let email = processingStudents[j].email;
-                    studentList += `${seat} - <a href="mailto:${email}">${name}</a><br> `;
+                    studentList += `${seat} - <a href="mailto:${email}">${name}</a> *<br> `;
                 }
             }
             if (studentList) {
