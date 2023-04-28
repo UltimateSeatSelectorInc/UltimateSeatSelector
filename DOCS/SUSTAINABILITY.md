@@ -2,22 +2,17 @@
 
 ### What is Ultimate Seat Selector?
 
-As you probably already know, Ultimate Seat Selector is a react web app that uses interactive elements
-to allow students and instructors to claim seats in a particular classroom. The app is hosted on Azure,
-(Azure acts like the backend, so there is no running backend code) and Firebase Realtime Database,
-Authentication services, and Firestore Database.
+As you probably already know, Ultimate Seat Selector is a react web app that uses interactive elements to allow students and instructors to claim seats in a particular classroom. The app is hosted on Azure, (Azure acts like the backend, so there is no running backend code) and Firebase Realtime Database, Authentication services, and Firestore Database.
 
-The Realtime database keeps track of seats by updating their occupancy in real time. The authentication
-handles... well, authentication. The firestore database contains users. It contains first name, last name
-and email. We use them to display user information on the website, whereas the authentication just handles
-logging in/out and persistence. The UID of the user in authentication is the exact same as the UID of each
-user in the firestore, so they can easily be cross referenced.
+The Realtime database keeps track of seats by updating their occupancy in real time. The authentication handles... well, authentication. The firestore database contains users. It contains first name, last name and email. We use them to display user information on the website, whereas the authentication just handles logging in/out and persistence. The UID of the user in authentication is the exact same as the UID of each user in the firestore, so they can easily be cross referenced.
 
 ### How can I get started?
 
 Make a clone of this repository and cd into the `code` folder. You will have to first install a few
 dependencies. They are listed at the bottom of this document. Once you have all of them installed,
 you should be able to run the app locally. Type `npm start` and it will open in your browser.
+
+If you are going to host the website on Azure, see [here](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector/blob/f994936e787dfff1ce2da13db116f45eab328a81/DOCS/HOSTING.md) for a walkthrough.
 
 ### Additional Information
 
