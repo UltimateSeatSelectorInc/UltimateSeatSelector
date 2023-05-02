@@ -163,6 +163,7 @@ function SignUp() {
               Email: email,
               isInstructor: true
             });
+            await deleteDoc(doc(dbstore, "instructorInvites", inviteDoc.id));
             // Redirect to the verify page
             window.location.href = "/verify";
           } catch (error) {
