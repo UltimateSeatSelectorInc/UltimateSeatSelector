@@ -2,9 +2,9 @@
 
 ### What is Ultimate Seat Selector?
 
-As you probably already know, Ultimate Seat Selector is a react web app that uses interactive elements to allow students and instructors to claim seats in a particular classroom. The app is hosted on Azure, (Azure acts like the backend, so there is no running backend code) and Firebase Realtime Database, Authentication services, and Firestore Database.
+As you probably already know, Ultimate Seat Selector is a React web app that uses interactive elements to allow students and instructors to claim seats in a particular classroom. The app is hosted on Azure (Azure acts like the backend, so there is no running backend code) and Firebase using their Realtime Database, Authentication, and Firestore Database.
 
-The Realtime database keeps track of seats by updating their occupancy in real time. The authentication handles... well, authentication. The firestore database contains users. It contains first name, last name and email. We use them to display user information on the website, whereas the authentication just handles logging in/out and persistence. The UID of the user in authentication is the exact same as the UID of each user in the firestore, so they can easily be cross referenced.
+The Realtime database keeps track of the seats by updating their occupancy in real time. The authentication handles... well, authentication. The firestore database contains users. It contains first name, last name and email. We use them to display user information on the website, whereas the authentication just handles logging in/out and persistence. The UID of the user in authentication is the exact same as the UID of each user in the firestore, so they can easily be cross referenced. Our firebase project can be found [here](https://console.firebase.google.com/u/1/project/ultimate-seat-selector-15f36/overview).
 
 ### How can I get started?
 
