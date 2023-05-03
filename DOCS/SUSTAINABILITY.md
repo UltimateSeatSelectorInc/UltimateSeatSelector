@@ -14,9 +14,7 @@ you should be able to run the app locally. Type `npm start` and it will open in 
 
 If you are going to host the website on Azure, see [here](https://github.com/UltimateSeatSelectorInc/UltimateSeatSelector/blob/f994936e787dfff1ce2da13db116f45eab328a81/DOCS/HOSTING.md) for a walkthrough.
 
-### Additional Information
-
-N/A
+You will also need the owner of the Firebase database (the professor) to give you edit permissions if you are going to be adjusting the databases at all.
 
 ### What else did we want to do?
 
